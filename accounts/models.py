@@ -7,7 +7,10 @@ class Account(models.Model):
     first_name = models.CharField(max_length=32)
 
 class UserType(models.Model):
-    type_name = modelsCharField(max_length=32)
+    type_name = models.CharField(max_length=32)
 
 class Institution(models.Model):
-    institution_name = modelsCharField(max_length=32)
+    institution_name = models.CharField(max_length=32)
+
+class Department(models.Model):
+    department_name = models.CharField(max_length=32)
