@@ -1,10 +1,8 @@
 from django.db import models
 
-# Create your models here.
-
-class Account(models.Model):
+# class Account(models.Model):
     # placeholder attribute!!!
-    first_name = models.CharField(max_length=32)
+    # first_name = models.CharField(max_length=32)
 
 class UserType(models.Model):
     type_name = models.CharField(max_length=32)
