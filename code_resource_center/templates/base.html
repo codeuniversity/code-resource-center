@@ -1,8 +1,3 @@
-{% load bootstrap3 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-{% csrf_token %}
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,11 +23,9 @@
                 <img src="{% static 'logo.jpg' %}" class="d-inline-block align-top" height="15" />
                 Resource Center
             </a>
-            {% buttons %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            {% endbuttons %}
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
                   <a class="nav-item nav-link" href="">Home</a>
