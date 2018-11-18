@@ -5,7 +5,7 @@
 
 <div class="d-flex justify-content-center">
   <div class="mt-3 p-5"
-       style="height: 100vh;
+       style="height: calc(100vh-24px);
        border: 1px solid rgb(213, 213, 213);
        border-radius: 5px; width:400px;
        background: rgb(247, 247, 247);">
@@ -19,12 +19,14 @@
         <form style="margin: auto; width: 50%;"
               method="POST" action="{% url 'login'%}">
         {%  csrf_token %}
-          <label style="font-weight: bold">username</label>
+          <label style="font-weight: bold;">username</label>
           <br />
           <input type="text"
                  name="username"
                  placeholder="username"
-                 style="padding: 4px;
+                 style="margin: 0 auto;
+                 width: 100%;
+                 padding: 4px;
                  border: 1px solid #ccc;
                  border-radius: 3px;"/>
           <br />
@@ -34,14 +36,16 @@
           <input type="password"
                  name="password"
                  placeholder="password"
-                 style="padding: 4px;
+                 style="margin: 0 auto;
+                 width: 100%;
+                 padding: 4px;
                  border: 1px solid #ccc;
                  border-radius: 3px;" />
           <br />
           <br />
           <input class="btn btn-primary animated pulse"
                  style="background: linear-gradient(to right, rgb(36, 198, 220),
-                 rgb(81, 74, 157)); width: 177px;"
+                 rgb(81, 74, 157)); margin: 0 auto; width: 100%;"
                  type="submit"
                  value="Log In" />
           <br />
@@ -49,7 +53,7 @@
         </form>
         <p class="d-flex justify-content-center"><strong>-- OR --</strong></p>
         <a class="d-flex justify-content-center"
-        style="margin-left: 22px;"
+        style="margin: 0 auto; width: 100%;"
         href="{% url 'social:begin' 'google-oauth2' %}">
           <img src="{% static 'googlebtn.png' %}"/></a><br />
         <div class="d-flex justify-content-end">
