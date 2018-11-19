@@ -1,6 +1,8 @@
-# from django.db import models
-# from django.contrib.auth.models import User
-# from django import forms
+from django.db import models
+from django.contrib.auth.models import User
+from django import forms
+import accounts.models 
+from accounts.models import Department
 
 # DEPARTMENT = (
 #     ('SE', 'Software Engineering'),
@@ -40,20 +42,23 @@
 #         choices=MEDIATYPE,
 #     )
 
-# class Material(models.Model):
-#     title = models.CharField(max_length=255)
-#     url = models.TextField(required=False)
-#     description = models.TextField()
-#     media_type_id = models.ForeignKey(MediaType, on_delete=models.CASCADE)
-#     department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
-#     is_free = models.BooleanField(default=True)
-#     pub_date = models.DateTimeField()
-#     votes_total = models.IntegerField(default=1) 
-#     last_edit_date = models.DateTimeField(required=False)
-#     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+class MediaType(models.Model):
+    media_type_name = models.CharField(max_length=32)
 
-#     def __str__(self):
-#         return self.title
+class LearningResource(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.TextField()
+    description = models.TextField()
+    media_type_id = models.ForeignKey(MediaType, on_delete=models.CASCADE)
+    department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+    is_free = models.BooleanField(default=True)
+    pub_date = models.DateTimeField()
+    votes_total = models.IntegerField(default=1) 
+    last_edit_date = models.DateTimeField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
-#     def pub_date_pretty(self):
-#         return self.pub_date.strftime('%b %e %Y')
+    def __str__(self):
+        return self.title
+
+    def pub_date_pretty(self):
+        return self.pub_date.strftime('%b %e %Y')
