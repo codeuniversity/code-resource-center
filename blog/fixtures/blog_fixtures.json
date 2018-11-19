@@ -1,0 +1,46 @@
+[
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "title": "Resource One",
+      "text": "Hello, this is me.",
+      "created_date": "2018-11-19 17:50:37.946954+01",
+      "published_date": "2018-11-20 17:50:37.946954+01"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "author": 2,
+      "title": "Resource Two",
+      "text": "Hello, this is me again.",
+      "created_date": "2018-11-19 17:50:37.946954+01",
+      "published_date": "2019-11-19 17:50:37.946954+01"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "author": 3,
+      "title": "Resource Three",
+      "text": "Hello, this is me again.",
+      "created_date": "2018-09-19 17:50:37.946954+01",
+      "published_date": "2019-11-19 17:50:37.946954+01"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+      "author": 4,
+      "title": "Resource Four",
+      "text": "Hello, this is me again.",
+      "created_date": "2018-12-19 17:50:37.946954+01",
+      "published_date": "2020-11-19 17:50:37.946954+01"
+    }
+  }
+]
