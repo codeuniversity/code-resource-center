@@ -43,6 +43,9 @@ from accounts.models import Department
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)
 
+class Tag(models.Model):
+    tag_name = models.CharField(max_length = 40)
+
 class LearningResource(models.Model):
     title = models.CharField(max_length=255)
     url = models.TextField()
@@ -53,10 +56,17 @@ class LearningResource(models.Model):
     pub_date = models.DateTimeField()
     votes_total = models.IntegerField(default=1) 
     last_edit_date = models.DateTimeField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
+
+class LearningResourceTag(models.Model):
+    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    learningresource_id = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+
+class UserLearningResource(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    learningresource_id = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
