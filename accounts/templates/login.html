@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+  <div class="mt-5 p-5"
+       style="height: 80vh;
+       border: 1px solid rgb(213, 213, 213);
+       border-radius: 5px; width:400px;
+       background: rgb(247, 247, 247);">
+        <h1 style="margin: auto; width: 120px;"> Log in </h1>
+        <hr />
+        <br />
+        {% if error %}
+        <p style="color: rgb(135, 18, 18);">{{ error }}</p>
+        <br />
+        {% endif %}
+        <form style="margin: auto; width: 50%;"
+              method="POST" action="{% url 'login'%}">
+        {%  csrf_token %}
+          <label style="font-weight: bold">username</label>
+          <br />
+          <input type="text"
+                 name="username"
+                 placeholder="username"
+                 style="padding: 4px;
+                 border: 1px solid #ccc;
+                 border-radius: 3px;"/>
+          <br />
+          <br />
+          <label style="font-weight: bold">password</label>
+          <br />
+          <input type="password"
+                 name="password"
+                 placeholder="password"
+                 style="padding: 4px;
+                 border: 1px solid #ccc;
+                 border-radius: 3px;" />
+          <br />
+          <br />
+          <input class="btn btn-primary animated pulse"
+                 style="background: linear-gradient(to right, rgb(36, 198, 220),
+                 rgb(81, 74, 157)); width: 177px;"
+                 type="submit"
+                 value="Log In" />
+          <br />
+          <br />
+        </form>
+        <div class="d-flex justify-content-end">
+          <p> Not a member?</p>
+        </div>
+        <div class="d-flex justify-content-end">
+          <input class="btn"
+                 type="submit" value="Register"
+                 onclick="javascript:{document.getElementById('signup').submit()}"
+                 style="color:rgb(237, 241, 247); background:rgb(81, 80, 157);
+                 cursor: pointer; " />
+          <form id="signup" method="POST" action="{% url 'signup'%}">
+          {% csrf_token %}
+              <input type="hidden" />
+          </form>
+        </div>
+  </div>
+</div>
+
+{% endblock %}
