@@ -2,49 +2,17 @@ from django.db import models
 from django.contrib.auth.models import User
 from accounts.models import Department
 
-# DEPARTMENT = (
-#     ('SE', 'Software Engineering'),
-#     ('PM', 'Product Management'),
-#     ('ID', 'Interaction Design'),
-#     ('STS', 'Science, Technology & Society'),
-#     ('other', 'Other'),
-# )
-
-# class Department(forms.Form):
-#     department = forms.MultipleChoiceField(
-#         required=True,
-#         widget=forms.CheckboxSelectMultiple,
-#         choices=DEPARTMENT,
-#     )
-
-# MEDIATYPE = (
-#     ('book', 'Book'),
-#     ('link', 'Link'),
-#     ('magazine', 'Magazine'),
-#     ('video', 'Video'),
-#     ('image', 'Image'),
-#     ('Online Course'),
-#     ('Article'),
-#     ('Software/Tools'),
-#     ('Slides'),
-#     ('Audio/Podcast'),
-#     ('Library/Database'),
-#     ('Blog'),
-#     ('other', 'Other'),
-# )
-
-# class MediaType(forms.Form):
-#     media_type_name = forms.MultipleChoiceField(
-#         required=True,
-#         widget=forms.CheckboxSelectMultiple,
-#         choices=MEDIATYPE,
-#     )
-
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)
 
+    def __str__(self):
+        return self.media_type_name
+
 class Tag(models.Model):
     tag_name = models.CharField(max_length = 40)
+
+    def __str__(self):
+        return self.tag_name
 
 class LearningResource(models.Model):
     title = models.CharField(max_length=255)
