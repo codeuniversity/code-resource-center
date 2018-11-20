@@ -56,7 +56,7 @@
                 <select class="form-control" id="roleSelect" required>
                     <!-- To do: dynamic loop through user_type table -->
                     {% for usertype in usertypes %}
-                    <option>{{ usertype }}</option>
+                    <option>{{ usertype.type_name }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -68,30 +68,13 @@
                 </label>
                 <!-- To do: dynamic loop through department table -->
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Interaction Design
+                    {% for department in departments %}
+                    <input class="form-check-input" type="checkbox" value="" id="check{{department.id}}">
+                    <label class="form-check-label" for="check{{department.id}">
+                        {{ department.department_name }}
                     </label>
                     <br>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        Product Management
-                    </label>
-                    <br>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                    <label class="form-check-label" for="defaultCheck3">
-                        Software Engineering
-                    </label>
-                    <br>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                    <label class="form-check-label" for="defaultCheck4">
-                        Science, Technology & Society
-                    </label>
-                    <br>
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                    <label class="form-check-label" for="defaultCheck5">
-                        Other
-                    </label>
+                    {% endfor %}
                 </div>
             </div>
             <br />

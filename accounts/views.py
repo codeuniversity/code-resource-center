@@ -23,8 +23,9 @@ def signup(request):
         else:
             return render(request, 'signup.html', {'error': 'Passwords must match.'})
     else:
+        departments = Department.objects.all
         user_types = UserType.objects.all
-        return render(request, 'signup.html', {'usertypes': user_types})
+        return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments})
 
 def login(request):
     if request.method == "POST":
