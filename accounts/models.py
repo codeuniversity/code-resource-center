@@ -30,4 +30,4 @@ class UserProfile(models.Model):
     user_type_id = models.ForeignKey(UserType, on_delete=models.SET_DEFAULT)
     institution_id = models.ForeignKey(Institution, default=2, on_delete=models.SET_DEFAULT)
     role_id = models.ForeignKey(UserRole, default=2, on_delete=models.SET_DEFAULT)
-    avatar = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='profile_images', blank=True)
