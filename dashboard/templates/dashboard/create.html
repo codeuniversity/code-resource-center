@@ -10,29 +10,30 @@
 
 <body>
     <div class="container">
-        <form class="p-5 mx-auto" style="width: 600px">
+        <h1>Add a New Resource</h1>
+        <form method="POST" action="{% url 'create' %}" class="p-5 mx-auto" style="width: 600px">
+        {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="text">Title</label>
-                    <input type="text" class="form-control" placeholder="Title">
+                    <input type="text" class="form-control" placeholder="Title" name="title">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="url">URL</label>
-                    <input type="url" class="form-control" placeholder="URL">
+                    <input type="url" class="form-control" placeholder="URL" name="url">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect1">Media Type</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" name="media_type_id">
                         <!-- TODO: Loop through media types from database
                         {% for media in media_type_name %}
                         <option>{media.media1}</option>
                         {% endfor %} -->
 
                         <option>Book</option>
-                        <option>Link</option>
                         <option>Magazine</option>
                         <option>Video</option>
                         <option>Image</option>
@@ -41,15 +42,14 @@
                         <option>Software/Tools</option>
                         <option>Slides</option>
                         <option>Audio/Podcast</option>
-                        <option>Library</option>
-                        <option>Database</option>
+                        <option>Library/Database</option>
                         <option>Blog</option>
                         <option>Other</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect1">Department</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" name="department_id">
                         <option>Software Engineering</option>
                         <option>Product Management</option>
                         <option>Interaction Design</option>
@@ -60,12 +60,12 @@
             </div>
             <div class="form-group">
                 <label for="textbox">Description</label>
-                <input type="textbox" class="form-control" placeholder="Description">
+                <input type="textbox" class="form-control" placeholder="Description" name="description">
             </div>
 
             <div class="checkbox">
                 <label> Is it free?
-                    <input type="checkbox" value="" name="free">
+                    <input type="checkbox" value="" name="is_free">
                 </label>
             </div>
             <br/>
