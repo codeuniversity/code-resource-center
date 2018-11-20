@@ -37,7 +37,11 @@
                     <input type="hidden" />
                   </form>
                 {% else %}
+                  <!-- {% if register %} -->
+                  <!-- <a class="nav-item nav-link" href="{% url 'login'%}">Sign in</a> -->
+                  <!-- {% else %} -->
                   <a class="nav-item nav-link" href="{% url 'signup'%}">Register</a>
+                  <!-- {% endif %} -->
               </div>
               {% endif %}
             </div>

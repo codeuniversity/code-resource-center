@@ -5,7 +5,20 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 def signup(request):
-    return render(request, 'signup.html', {})
+    if request.method == 'POST':
+        if request.POST['password'] == request.POST['passwordrepeat']:
+            try:
+                User.objects.get(username=request.POST['username'])
+                return render(request, 'signup.html', {'error': 'Username has already been taken.'})
+            except User.DoesNotExist:
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password'])
+                auth.login(request, user)
+
+                return redirect('dashboard')
+        else:
+            return render(request, 'signup.html', {'error': 'Passwords must match.'})
+    else:
+        return render(request, 'signup.html')
 
 def login(request):
     if request.method == "POST":

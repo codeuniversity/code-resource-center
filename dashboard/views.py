@@ -5,7 +5,7 @@ from django.contrib import auth
 
 @login_required(login_url="/accounts/login")
 def dashboard(request):
-    user = User.objects;
+    user = User.objects
     if user is not None:
         return render(request, 'dashboard/dashboard.html')
     else:
