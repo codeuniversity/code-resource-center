@@ -14,4 +14,13 @@ Argon2 currently seems to be the most secure and efficient library. However, con
 
 ## Password validation
 
+Your password can't be too similar to your other personal information.
+Your password must contain at least 8 characters.
+Your password can't be a commonly used password.
+Your password can't be entirely numeric.
+
 https://docs.djangoproject.com/en/2.1/topics/auth/passwords/
+
+## Form sanitation
+
+username: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+# use Django signals to extend User object
+from django.db.models.signals import post_save
 
 class UserType(models.Model):
     type_name = models.CharField(max_length=32)
@@ -32,3 +34,11 @@ class UserProfile(models.Model):
     department_id = models.ForeignKey(Department, default=5, on_delete=models.SET_DEFAULT)
     role_id = models.ForeignKey(UserRole, default=1, on_delete=models.SET_DEFAULT)
     image = models.ImageField(upload_to='profile_images', blank=True)
+
+# Create user profile if Django User object has been created.
+def create_profile(sender, **kwargs):
+    # use keyword argument
+    if kwargs['created']:
+        user_profile = UserProfile.objects.create(django_user_id=kwargs['instance'])
+# connect User and user profile
+post_save.connect(create_profile, sender=User)
