@@ -8,83 +8,72 @@
 <br />
 {% endif %}
 
-<h1>Create</h1>
-
-<form method="POST" action="{% url 'create' %}">
-{% csrf_token %}
-<br />
-
-    <br />
-    <h3>Title:</h3>
-    <input type="text" name="title" />
-
-    <br />
-    <h3>URL:</h3>
-    <input type="text" name="url" />
-    <br />
-
-    
-    <div class="container", id="department">
-        <h3>Department:</h3>
-        <form>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Software Engineering
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Product Management
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Interaction Design
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Science, Technology & Society
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Other
-          </label>
-        </form>
-    </div>
-
-    <div class="container", id="media_type">
-        <h3>Type:</h3>
-        <form>
-            <div class="form-group">
-                <label for="sel1">Select one:</label>
-                <select class="form-control" id="sel1">
-                    <option>Book</option>
-                    <option>Link</option>
-                    <option>Magazine</option>
-                    <option>Video</option>
-                    <option>Image</option>
-                    <option>Online Course</option>
-                    <option>Article</option>
-                    <option>Software/Tools</option>
-                    <option>Slides</option>
-                    <option>Audio/Podcast</option>
-                    <option>Library</option>
-                    <option>Database</option>
-                    <option>Blog</option>
-                    <option>Other</option>
-                </select>
+<body>
+    <div class="container">
+        <form class="p-5 mx-auto" style="width: 600px">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="text">Title</label>
+                    <input type="text" class="form-control" placeholder="Title">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="url">URL</label>
+                    <input type="url" class="form-control" placeholder="URL">
+                </div>
             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlSelect1">Media Type</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <!-- TODO: Loop through media types from database
+                        {% for media in media_type_name %}
+                        <option>{media.media1}</option>
+                        {% endfor %} -->
+
+                        <option>Book</option>
+                        <option>Link</option>
+                        <option>Magazine</option>
+                        <option>Video</option>
+                        <option>Image</option>
+                        <option>Online Course</option>
+                        <option>Article</option>
+                        <option>Software/Tools</option>
+                        <option>Slides</option>
+                        <option>Audio/Podcast</option>
+                        <option>Library</option>
+                        <option>Database</option>
+                        <option>Blog</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlSelect1">Department</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Software Engineering</option>
+                        <option>Product Management</option>
+                        <option>Interaction Design</option>
+                        <option>Science, Technology & Society</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textbox">Description</label>
+                <input type="textbox" class="form-control" placeholder="Description">
+            </div>
+
+            <div class="checkbox">
+                <label> Is it free?
+                    <input type="checkbox" value="" name="free">
+                </label>
+            </div>
+            <br/>
+
+          <button type="submit" class="btn btn-primary">Add Resource</button>
+
         </form>
     </div>
-
-    <h3>Description:</h3>
-    <input type="textbox" name="description" />
-    <br />
-
-    <br />
-    <h3>One last question:</h3>
-    <div class="checkbox">
-        <label> Is it free?
-            <input type="checkbox" value="" name="free">
-        </label>
-    </div>
-    <br />
-
-    <input class="btn btn-primary" type="submit" value="Add Resource" />
-
-</form>
+</body>
 
 {% endblock %}
