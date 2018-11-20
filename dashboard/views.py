@@ -10,3 +10,11 @@ def dashboard(request):
         return render(request, 'dashboard/dashboard.html')
     else:
         return redirect('login')
+
+@login_required(login_url="/accounts/login")
+def create(request):
+    user = User.objects;
+    if user is not None:
+        return render(request, 'dashboard/create.html')
+    else:
+        return redirect('login')
