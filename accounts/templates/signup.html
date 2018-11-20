@@ -55,11 +55,9 @@
                     style="font-weight: bold;">Your role at Code?</label>
                 <select class="form-control" id="roleSelect" required>
                     <!-- To do: dynamic loop through user_type table -->
-                    <option>Student</option>
-                    <option>Academic Staff</option>
-                    <option>Administrative Staff</option>
-                    <option>External</option>
-                    <option>Alumni</option>
+                    {% for usertype in usertypes %}
+                    <option>{{ usertype }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <br />
