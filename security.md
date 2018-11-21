@@ -22,5 +22,5 @@ Your password can't be entirely numeric.
 https://docs.djangoproject.com/en/2.1/topics/auth/passwords/
 
 ## Form sanitation
-
+Forms are protected against Cross Site Request Forgeries, by using Django's CSRF token for input forms.
 username: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
