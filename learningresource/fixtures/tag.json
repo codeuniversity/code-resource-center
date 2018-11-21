@@ -3,182 +3,182 @@
     "model": "learningresource.tag",
     "pk": 1,
     "fields": {
-      "tag_name": "SE_01"
+      "tag_name": "software engineering"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 2,
     "fields": {
-      "tag_name": "SE_02"
+      "tag_name": "databases"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 3,
     "fields": {
-      "tag_name": "SE_03"
+      "tag_name": "design"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 4,
     "fields": {
-      "tag_name": "SE_04"
+      "tag_name": "UX"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 5,
     "fields": {
-      "tag_name": "SE_05"
+      "tag_name": "interface design"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 6,
     "fields": {
-      "tag_name": "SE_06"
+      "tag_name": "animation"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 7,
     "fields": {
-      "tag_name": "SE_07"
+      "tag_name": "A.I"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 8,
     "fields": {
-      "tag_name": "SE_08"
+      "tag_name": "machine learning"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 9,
     "fields": {
-      "tag_name": "SE_09"
+      "tag_name": "SQL"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 10,
     "fields": {
-      "tag_name": "SE_10"
+      "tag_name": "ES6"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 11,
     "fields": {
-      "tag_name": "SE_11"
+      "tag_name": "React"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 12,
     "fields": {
-      "tag_name": "SE_12"
+      "tag_name": "Django"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 13,
     "fields": {
-      "tag_name": "SE_13"
+      "tag_name": "Python"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 14,
     "fields": {
-      "tag_name": "SE_14"
+      "tag_name": "Agile methodologies"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 15,
     "fields": {
-      "tag_name": "SE_15"
+      "tag_name": "Scrum"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 16,
     "fields": {
-      "tag_name": "SE_16"
+      "tag_name": "Kanban"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 17,
     "fields": {
-      "tag_name": "SE_17"
+      "tag_name": "A/B Testing"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 18,
     "fields": {
-      "tag_name": "SE_18"
+      "tag_name": "user testing"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 19,
     "fields": {
-      "tag_name": "SE_19"
+      "tag_name": "unit testing"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 20,
     "fields": {
-      "tag_name": "SE_20"
+      "tag_name": "C++"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 21,
     "fields": {
-      "tag_name": "SE_21"
+      "tag_name": "virtual reality"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 22,
     "fields": {
-      "tag_name": "SE_22"
+      "tag_name": "lambda"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 23,
     "fields": {
-      "tag_name": "SE_23"
+      "tag_name": "aws"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 24,
     "fields": {
-      "tag_name": "SE_24"
+      "tag_name": "devops"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 25,
     "fields": {
-      "tag_name": "SE_25"
+      "tag_name": "security"
     }
   },
   {
     "model": "learningresource.tag",
     "pk": 26,
     "fields": {
-      "tag_name": "SE_26"
+      "tag_name": "git"
     }
   }
 ]

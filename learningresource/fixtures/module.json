@@ -1,0 +1,184 @@
+[
+  {
+    "model": "learningresource.module",
+    "pk": 1,
+    "fields": {
+      "module_name": "SE_01"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 2,
+    "fields": {
+      "module_name": "SE_02"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 3,
+    "fields": {
+      "module_name": "SE_03"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 4,
+    "fields": {
+      "module_name": "SE_04"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 5,
+    "fields": {
+      "module_name": "SE_05"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 6,
+    "fields": {
+      "module_name": "SE_06"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 7,
+    "fields": {
+      "module_name": "SE_07"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 8,
+    "fields": {
+      "module_name": "SE_08"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 9,
+    "fields": {
+      "module_name": "SE_09"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 10,
+    "fields": {
+      "module_name": "SE_10"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 11,
+    "fields": {
+      "module_name": "SE_11"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 12,
+    "fields": {
+      "module_name": "SE_12"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 13,
+    "fields": {
+      "module_name": "SE_13"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 14,
+    "fields": {
+      "module_name": "SE_14"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 15,
+    "fields": {
+      "module_name": "SE_15"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 16,
+    "fields": {
+      "module_name": "SE_16"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 17,
+    "fields": {
+      "module_name": "SE_17"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 18,
+    "fields": {
+      "module_name": "SE_18"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 19,
+    "fields": {
+      "module_name": "SE_19"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 20,
+    "fields": {
+      "module_name": "SE_20"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 21,
+    "fields": {
+      "module_name": "SE_21"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 22,
+    "fields": {
+      "module_name": "SE_22"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 23,
+    "fields": {
+      "module_name": "SE_23"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 24,
+    "fields": {
+      "module_name": "SE_24"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 25,
+    "fields": {
+      "module_name": "SE_25"
+    }
+  },
+  {
+    "model": "learningresource.module",
+    "pk": 26,
+    "fields": {
+      "module_name": "SE_26"
+    }
+  }
+]
