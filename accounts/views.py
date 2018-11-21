@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import UserType, Department, Institution
+from .models import UserType, Department, Institution, UserProfile
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 def signup(request):
     departments = Department.objects.all
@@ -16,38 +17,33 @@ def signup(request):
                 User.objects.get(username=request.POST['input-username'])
                 return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': 'Username has already been taken.'})
             except:
-                user = User.objects.create_user(request.POST['input-username'], password=request.POST['password1'])
+                # store user info in User table
+                user = User.objects.create_user(request.POST['input-username'], request.POST['input-email'], request.POST['password1'])
+                user.first_name = request.POST['input-first-name']
+                user.last_name = request.POST['input-last-name']
+                user.save()
+                
+                # create corresponding UserProfile row
+                # userprofile = UserProfile.objects.get(pk=user.id)
+                # get user_type from form
+                # user_type = request.POST['role-select']
+                # userprofile.user_type_id = user_type
+                
+                # get study program from form
+                # userprofile.departments.add()
+
+                # department = request.POST['role-select']
+                # userprofile.user_type_id = user_type
+                # save new data in UserProfile table
+                # userprofile.save()
+                # login user and redirect to dashboard
                 auth.login(request, user)
-                return redirect('dashboard.html')
+                return redirect('/dashboard')
         else:
             return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': 'Passwords must match.' } )
     else:
         return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': None} )
 
-
-    # if request.method == "POST":
-    #     # check if passwords match
-    #     if request.POST['password'] == request.POST['passwordrepeat']:
-    #         try:
-    #         # convert email into username
-    #             User.objects.get(username=request.POST['username'])
-    #             return render(request, 'signup.html', {'error': 'Username has already been taken.'})
-    #         except User.DoesNotExist:
-    #             username = request.POST['username']
-    #             first_name = request.POST['inputFirstName']
-    #             # check if valid department
-    #             # check if valid study program
-    #             first_name = request.P
-    #             user = User.objects.create_user(username, password=request.POST['password'])
-    #             auth.login(request, user)
-    #             # create corresponding crc_user table
-    #             return redirect('dashboard')
-    #     else:
-    #         return render(request, 'signup.html', {'error': 'Passwords must match.'})
-    # else:
-    #     departments = Department.objects.all
-    #     user_types = UserType.objects.all
-    #     return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments})
  
 def login(request):
     if request.method == "POST":

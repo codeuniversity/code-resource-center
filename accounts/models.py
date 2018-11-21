@@ -31,9 +31,12 @@ class UserProfile(models.Model):
     django_user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type_id = models.ForeignKey(UserType, default=6, on_delete=models.SET_DEFAULT)
     institution_id = models.ForeignKey(Institution, default=1, on_delete=models.SET_DEFAULT)
-    department_id = models.ForeignKey(Department, default=5, on_delete=models.SET_DEFAULT)
+    department_id = models.ManyToManyField(Department, blank=True)
     role_id = models.ForeignKey(UserRole, default=1, on_delete=models.SET_DEFAULT)
     image = models.ImageField(upload_to='profile_images', blank=True)
+
+    def __str__(self):
+        return self.django_user_id
 
 # Create user profile if Django User object has been created.
 def create_profile(sender, **kwargs):
