@@ -44,7 +44,7 @@
     "pk": 6,
     "fields": {
       "user_id": 3,
-      "learningresource_id": 5
+      "learningresource": 5
     }
   }
 ]

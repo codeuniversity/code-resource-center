@@ -14,12 +14,18 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
 
+class Module(models.Model):
+    module_name = models.CharField(db_index=True, max_length=255)
+
+    def __str__(self):
+        return self.module_name
+
 class LearningResource(models.Model):
     title = models.CharField(max_length=255)
     url = models.TextField()
     description = models.TextField()
     media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, db_index=True, on_delete=models.CASCADE)
     is_free = models.BooleanField(default=True)
     pub_date = models.DateTimeField()
     votes_total = models.IntegerField(default=1)
@@ -37,4 +43,8 @@ class LearningResourceTag(models.Model):
 
 class UserLearningResource(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+
+class LearningResourceModule(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
