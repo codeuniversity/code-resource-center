@@ -1,0 +1,79 @@
+[
+  {
+    "model": "learningresource.mediatype",
+    "pk": 1,
+    "fields": {
+      "media_type_name": "book"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 2,
+    "fields": {
+      "media_type_name": "video"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 3,
+    "fields": {
+      "media_type_name": "article"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 4,
+    "fields": {
+      "media_type_name": "online course"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 5,
+    "fields": {
+      "media_type_name": "image"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 6,
+    "fields": {
+      "media_type_name": "slides"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 7,
+    "fields": {
+      "media_type_name": "audio/podcast"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 8,
+    "fields": {
+      "media_type_name": "software/tools"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 9,
+    "fields": {
+      "media_type_name": "library/database"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 10,
+    "fields": {
+      "media_type_name": "blog"
+    }
+  },
+  {
+    "model": "learningresource.mediatype",
+    "pk": 11,
+    "fields": {
+      "media_type_name": "other"
+    }
+  }
+]
