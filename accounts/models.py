@@ -28,20 +28,20 @@ class UserRole(models.Model):
         return self.role_name
 
 class UserProfile(models.Model):
-    django_user_id = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type_id = models.ForeignKey(UserType, default=6, on_delete=models.SET_DEFAULT)
-    institution_id = models.ForeignKey(Institution, default=1, on_delete=models.SET_DEFAULT)
-    department_id = models.ManyToManyField(Department, blank=True)
-    role_id = models.ForeignKey(UserRole, default=1, on_delete=models.SET_DEFAULT)
+    django_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_type = models.ForeignKey(UserType, blank=True, default=6, on_delete=models.SET_DEFAULT)
+    institution = models.ForeignKey(Institution, blank=True, default=1, on_delete=models.SET_DEFAULT)
+    department = models.ManyToManyField(Department, blank=True, default=5)
+    role = models.ForeignKey(UserRole, blank=True, default=1, on_delete=models.SET_DEFAULT)
     image = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):
-        return self.django_user_id
+        return self.django_user
 
 # Create user profile if Django User object has been created.
 def create_profile(sender, **kwargs):
     # use keyword argument
     if kwargs['created']:
-        user_profile = UserProfile.objects.create(django_user_id=kwargs['instance'])
+        user_profile = UserProfile.objects.create(django_user=kwargs['instance'])
 # connect User and user profile
 post_save.connect(create_profile, sender=User)

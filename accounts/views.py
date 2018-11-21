@@ -4,45 +4,63 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .forms import UserSignupForm
 
 def signup(request):
-    departments = Department.objects.all
-    user_types = UserType.objects.all
-    # error = None
-    # args = {'usertypes': user_types, 'departments': departments, 'error': 'no error'}
-    
+    user_form = UserSignupForm()
     if request.method == "POST":
-        if request.POST['password1'] == request.POST['password2']:
+        f = UserSignupForm(request.POST)
+        print('inside POST request')
+        if f.is_valid():
+            print('after is_valid')
             try:
-                User.objects.get(username=request.POST['input-username'])
-                return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': 'Username has already been taken.'})
+                User.objects.get(username=user_form.username)
+                context = {
+                    'user_form': user_form,
+                    'error': 'Username has already been taken.'
+                }
+                print('insidie try')
+                return render(request, 'signup.html', context )
             except:
-                # store user info in User table
-                user = User.objects.create_user(request.POST['input-username'], request.POST['input-email'], request.POST['password1'])
-                user.first_name = request.POST['input-first-name']
-                user.last_name = request.POST['input-last-name']
+                user = User.objects.create_user(user_form.clean_username(), user_form.email(), user_form.password())
+                user.first_name = user_form.clean_fname()
+                user.last_name = user_form.clean_lname()
                 user.save()
-                
-                # create corresponding UserProfile row
-                # userprofile = UserProfile.objects.get(pk=user.id)
-                # get user_type from form
-                # user_type = request.POST['role-select']
-                # userprofile.user_type_id = user_type
-                
-                # get study program from form
-                # userprofile.departments.add()
-
-                # department = request.POST['role-select']
-                # userprofile.user_type_id = user_type
-                # save new data in UserProfile table
-                # userprofile.save()
-                # login user and redirect to dashboard
                 auth.login(request, user)
+                print('inside except')
                 return redirect('/dashboard')
         else:
-            return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': 'Passwords must match.' } )
+            print('inside errors')
+            print(f.errors)
+            context = {
+                    'user_form': f,
+                    'error': f.errors
+
+            }
+            return render(request, 'signup.html', context )
     else:
-        return render(request, 'signup.html', {'usertypes': user_types, 'departments': departments, 'error': None} )
+        context = {'user_form': user_form}
+        print('inside get')
+        return render(request, 'signup.html', context)
+
+        # if request.POST['password1'] == request.POST['password2']:
+        #     try:
+        #         User.objects.get(username=request.POST['input-username'])
+        #       
+        #     except:
+        #        # store user info in User table
+        #        user = User.objects.create_user(request.POST['input-username'], request.POST['input-email'], request.POST['password1'])
+        #        user.first_name = request.POST['input-first-name']
+        #        user.last_name = request.POST['input-last-name']
+        #        user.save()
+        #         auth.login(request, user)
+        #        return redirect('/dashboard')
+        # else:
+        #     return render(request, 'signup.html', {'error': 'Passwords must match.' } )
+    # else:
+    #     context = {'user_form': user_form}
+    #     return render(request, 'signup.html', context)
+
 
  
 def login(request):

@@ -17,118 +17,49 @@
         </div>
         {% endif %}
 
-          <form class="p-8 mx-auto" style="margin: auto; width: 100%;"
-                method="POST" action="{% url 'signup' %}">
-          {%  csrf_token %}
-          <div class="form-row">
+        <form class="p-8 mx-auto" style="margin: auto; width: 100%;"
+            method="POST" action="{% url 'signup' %}">
+            {%  csrf_token %}
+            <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="input-first-name" class="sr-only">First name</label>
-                    <input class="form-control" 
-                        id="input-FirstName" 
-                        type="text" 
-                        placeholder="first name" 
-                        name="input-first-name"
-                        required autofocus>
+                    {{user_form.first_name}}
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="input-last-name" class="sr-only">Last name</label>
-                    <input class="form-control" 
-                        id="input-last-name" 
-                        type="text" 
-                        placeholder="last name"
-                        name='input-last-name' 
-                        required>
+                    {{user_form.last_name}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="input-username" class="sr-only">user name</label>
-                <input type="text" 
-                    id="input-username" 
-                    class="form-control" 
-                    placeholder="user name" 
-                    name="input-username"
-                    required>
+                {{user_form.username}}
             </div>
             <div class="form-group">
-                <label for="input-email" class="sr-only">email</label>
-                <input type="email" 
-                    id="input-email" 
-                    class="form-control" 
-                    placeholder="email" 
-                    name="input-email"
-                    required>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="password1" class="sr-only">password</label>
-                    <input type="password" 
-                        id="password1" 
-                        class="form-control" 
-                        placeholder="password" 
-                        name="password1" 
-                        required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="password2" class="sr-only">repeat password</label>
-                    <input type="password" 
-                        id="password2" 
-                        class="form-control" 
-                        placeholder="repeat password"
-                        name="password2" 
-                        required>
-                </div>
+                {{user_form.email}}
+                {{user_form.errors.email}}
             </div>
 
             <div class="form-row">
-                <label for="roleSelect" 
-                    style="font-weight: bold;">Your role at Code?</label>
-                <select 
-                    class="form-control" 
-                    id="roleSelect" 
-                    name='role-select'
-                    required>
-                    <!-- To do: dynamic loop through user_type table -->
-                    {% for usertype in usertypes %}
-                    <option value="{{ usertype.id }}">{{ usertype.type_name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <br />
-
-            <div class="form-row">
-                <label class="form-check-label" for="form-check" style="font-weight: bold;">
-                    Your field of study?
-                </label>
-                <!-- To do: dynamic loop through department table -->
-                <div class="form-check">
-                    {% for department in departments %}
-                    <input class="form-check-input" 
-                        type="checkbox" 
-                        value="{{department.id}}" 
-                        id="form-check-{{department.id}}">
-                    <label class="form-check-label" for="form-check-{{department.id}}">
-                        {{ department.department_name }}
-                    </label>
-                    <br>
-                    {% endfor %}
+                <div class="form-group col-md-6">
+                    {{user_form.password1}}
+                    {{ user_form.errors.password1 }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{user_form.password2}}
+                    {{ user_form.errors.password1 }}
                 </div>
             </div>
-            <br />
             <div class="form-row">
-                <input 
+                <input
                     class="btn btn-primary animated pulse"
-                    style="background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157)); 
-                        margin: 0 auto; width: 60%;"
+                    style="background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
+                            margin: 0 auto; width: 60%;"
                     type="submit"
                     value="Create account"/>
             </div>
-          </form>
-          <br/>
-          <br/>
-          <div class="d-flex justify-content-end">
-                <a href="{% url 'login'%}">Login</a>
-          </div>
+        </form>
+        <br/>
+        <br/>
+        <div class="d-flex justify-content-end">
+            <a href="{% url 'login'%}">Login</a>
+        </div>
     </div>
 </div>
 {% endblock %}
