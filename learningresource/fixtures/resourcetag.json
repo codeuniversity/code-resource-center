@@ -1,0 +1,50 @@
+[
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 1,
+    "fields": {
+      "tag": 3,
+      "learningresource": 2
+    }
+  },
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 2,
+    "fields": {
+      "tag": 1,
+      "learningresource": 1
+    }
+  },
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 3,
+    "fields": {
+      "tag": 8,
+      "learningresource": 3
+    }
+  },
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 4,
+    "fields": {
+      "tag": 22,
+      "learningresource": 4
+    }
+  },
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 5,
+    "fields": {
+      "tag": 26,
+      "learningresource": 2
+    }
+  },
+  {
+    "model": "learningresource.learningresourcetag",
+    "pk": 6,
+    "fields": {
+      "tag": 15,
+      "learningresource": 1
+    }
+  }
+]

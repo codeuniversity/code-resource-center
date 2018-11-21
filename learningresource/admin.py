@@ -6,4 +6,3 @@ admin.site.register(Tag)
 admin.site.register(LearningResource)
 admin.site.register(LearningResourceTag)
 admin.site.register(UserLearningResource)
-

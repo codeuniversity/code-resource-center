@@ -1,0 +1,90 @@
+[
+  {
+    "model": "learningresource.learningresource",
+    "pk": 1,
+    "fields": {
+      "title": "My First Resource",
+      "url": "www.resource1.com",
+      "description":"this is the first resource",
+      "media_type": 1,
+      "department": 3,
+      "is_free": false,
+      "pub_date": "2018-11-19 17:50:37.946954+01",
+      "votes_total": 2,
+      "last_edit_date": "2018-11-18 13:40:37.946954+01"
+    }
+  },
+  {
+    "model": "learningresource.learningresource",
+    "pk": 2,
+    "fields": {
+      "title": "My Second Resource",
+      "description":"this is the second resource",
+      "media_type": 4,
+      "department": 2,
+      "is_free": true,
+      "pub_date": "2018-08-10 16:33:25.946954+01",
+      "votes_total": 10,
+      "last_edit_date": "2018-10-18 13:30:27.946954+01"
+    }
+  },
+  {
+    "model": "learningresource.learningresource",
+    "pk": 3,
+    "fields": {
+      "title": "My Third Resource",
+      "url": "www.resource3.com",
+      "description":"this is the third resource",
+      "media_type": 5,
+      "department": 3,
+      "is_free": true,
+      "pub_date": "2018-05-13 16:50:37.946954+01",
+      "votes_total": 1,
+      "last_edit_date": "2018-06-07 12:30:37.946954+01"
+    }
+  },
+  {
+    "model": "learningresource.learningresource",
+    "pk": 4,
+    "fields": {
+      "title": "My Fourth Resource",
+      "url": "www.resource4.com",
+      "description":"this is the first resource",
+      "media_type": 8,
+      "department": 4,
+      "pub_date": "2018-11-19 17:50:37.946954+01",
+      "votes_total": 5,
+      "last_edit_date": "2018-11-18 13:40:37.946954+01"
+    }
+  },
+  {
+    "model": "learningresource.learningresource",
+    "pk": 5,
+    "fields": {
+      "title": "My Fifth Resource",
+      "url": "www.resource5.com",
+      "description":"this is the fifth resource",
+      "media_type": 9,
+      "department": 1,
+      "is_free": true,
+      "pub_date": "2018-02-05 09:40:37.946954+01",
+      "votes_total": 12,
+      "last_edit_date": "2018-03-17 10:40:37.946954+01"
+    }
+  },
+  {
+    "model": "learningresource.learningresource",
+    "pk": 6,
+    "fields": {
+      "title": "My Sixth Resource",
+      "url": "www.resource6.com",
+      "description":"this is the sixth resource",
+      "media_type": 7,
+      "department": 2,
+      "is_free": true,
+      "pub_date": "2018-10-12 19:25:37.946954+01",
+      "votes_total": 17,
+      "last_edit_date": "2018-10-15 13:22:37.946954+01"
+    }
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 1,
+    "fields": {
+      "module": 4,
+      "learningresource": 2
+    }
+  },
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 2,
+    "fields": {
+      "module": 25,
+      "learningresource": 3
+    }
+  },
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 3,
+    "fields": {
+      "module": 22,
+      "learningresource": 1
+    }
+  },
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 4,
+    "fields": {
+      "module": 2,
+      "learningresource": 4
+    }
+  },
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 5,
+    "fields": {
+      "module": 3,
+      "learningresource": 2
+    }
+  },
+  {
+    "model": "learningresource.learningresourcemodule",
+    "pk": 6,
+    "fields": {
+      "module": 5,
+      "learningresource": 2
+    }
+  }
+]
