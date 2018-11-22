@@ -20,4 +20,4 @@ class Department(models.Model):
     department_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return department_name
+        return self.department_name
