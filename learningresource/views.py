@@ -2,10 +2,41 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
-from django.utils import timezone
-from .models import MediaType, LearningResource
-from accounts.models import Department
 from .forms import LearningResourceForm
+
+@login_required(login_url="/accounts/login")
+def create(request):
+    user = User.objects;
+    if user is not None:
+        form = LearningResourceForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            form = LearningResourceForm()
+        context = {
+            'form': form
+        }
+        return render(request,"learningresource/create.html",context)
+    else:
+        return redirect('login')
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def dynamic_lookup_view(request, id):
+#     obj = LearningResource.objects.get(id=1)
+#     context = {
+#         'object': obj
+#     }
+#     return render(request, 'learningresource/detail.html', context)
 
 # def create(request):
 #     form = RawResourceForm()
@@ -17,17 +48,6 @@ from .forms import LearningResourceForm
 #         'form': form
 #     }
 #     return render(request,"learningresource/create.html",context)
-
-def create(request):
-    form = LearningResourceForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        form = LearningResourceForm()
-    context = {
-        'form': form
-    }
-    return render(request,"learningresource/create.html",context)
-
 
 # @login_required(login_url="/accounts/login")
 # def create(request):
