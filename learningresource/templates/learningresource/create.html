@@ -36,11 +36,9 @@
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect1">Department</label>
                     <select class="form-control" name="department_id">
-                        <option>Software Engineering</option>
-                        <option>Product Management</option>
-                        <option>Interaction Design</option>
-                        <option>Science, Technology & Society</option>
-                        <option>Other</option>
+                        {% for department in department %}
+                        <option>{{ department }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
