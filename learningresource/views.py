@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
 from .models import MediaType
+from accounts.models import Department
 
 # Create your views here.
 #@login_required(login_url="/accounts/login")
@@ -37,7 +38,10 @@ from .models import MediaType
 
 def create(request):
     media = MediaType.objects.all()
-    media_display = {
-        'media': media
+    department = Department.objects.all()
+    display = {
+        'media': media,
+        'department':department
     }
-    return render(request,"learningresource/create.html", media_display)
+
+    return render(request,"learningresource/create.html", display)
