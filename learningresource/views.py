@@ -3,32 +3,43 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
-from .models import MediaType
+from .models import MediaType, LearningResource
 from accounts.models import Department
-from .forms import LearningResourceForm
+from .forms import RawResourceForm, LearningResourceForm
 
-def resource_create(request):
-    form = LearningResourceForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+def create(request):
+    form = RawResourceForm()
+    if request.method == 'POST':
+        form = RawResourceForm(request.POST)
+        if form.is_valid():
+            LearningResource.objects.create(**form.cleaned_data)
     context = {
         'form': form
     }
     return render(request,"learningresource/create.html",context)
 
+# def resource_create(request):
+#     form = LearningResourceForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#     context = {
+#         'form': form
+#     }
+#     return render(request,"learningresource/create.html",context)
 
-@login_required(login_url="/accounts/login")
-def create(request):
-    user = User.objects;
 
-    if user is not None:
-        media = MediaType.objects.all()
-        department = Department.objects.all()
-        display = {
-            'media': media,
-            'department':department
-        }
-        return render(request,"learningresource/create.html", display)
+# @login_required(login_url="/accounts/login")
+# def create(request):
+#     user = User.objects;
+
+#     if user is not None:
+#         media = MediaType.objects.all()
+#         department = Department.objects.all()
+#         display = {
+#             'media': media,
+#             'department':department
+#         }
+#         return render(request,"learningresource/create.html", display)
         # If all fields required by database are filled
     #     if request.method == 'POST':
     #         if request.POST['title'] and request.POST['url'] and request.POST['media_type_id'] and request.POST['department_id'] and request.POST['description'] and request.POST['is_free']:
