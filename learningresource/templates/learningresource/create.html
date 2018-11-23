@@ -61,6 +61,15 @@
                 {{ form.description }}
             </div>
 
+            <div class="form-group">
+                    <label for="url">Tags</label>
+                    <!-- <input type="url" class="form-control" placeholder="URL" name="url"> -->
+                    {{ form.tag }}
+                    <!--<small class="text-muted">
+                            Separate tags with commas(,).
+                        </small> -->
+            </div>
+
             <div class="checkbox">
                 <label> Is it free?
                     {{ form.is_free }}
