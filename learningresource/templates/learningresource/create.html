@@ -22,48 +22,48 @@
         {% csrf_token %}
             <div class="form-group">
                 <label for="text">Title</label>
-                <input type="text" class="form-control" placeholder="Title" name="title">
+                <!-- <input type="text" class="form-control" placeholder="Title" name="title"> -->
                 {{ form.title }}
             </div>
             
             <div class="form-group">
                 <label for="url">URL</label>
-                <input type="url" class="form-control" placeholder="URL" name="url">
+                <!-- <input type="url" class="form-control" placeholder="URL" name="url"> -->
                 {{ form.url }}
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Media Type</label>
-                <select class="form-control" name="media_type_id">
+                <!-- <select class="form-control" name="media_type_id">
                     {% for media in media %}
                     <option>{{ media|capfirst }}</option>
                     {% endfor %}
-                </select>
+                </select> -->
                 {{ form.media_type }}
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Department</label>
-                <select multiple class="form-control" name="department_id">
+                <!-- <select multiple class="form-control" name="department_id">
                     {% for department in department %}
                     <option>{{ department }}</option>
                     {% endfor %}
                 </select>
                 <small class="text-muted">
                     To select more than one, hold command⌘ key.
-                </small>
+                </small> -->
                 {{ form.department }}
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
+                <!-- <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea> -->
                 {{ form.description }}
             </div>
 
             <div class="checkbox">
                 <label> Is it free?
-                    <input type="checkbox" value="" name="is_free">
+                    {{ form.is_free }}
                 </label>
             </div>
             <br/>
