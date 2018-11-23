@@ -28,23 +28,9 @@
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect1">Media Type</label>
                     <select class="form-control" name="media_type_id">
-                        <!-- TODO: Loop through media types from database
-                        {% for media in media_type_name %}
-                        <option>{media.media1}</option>
-                        {% endfor %} -->
-
-                        <option>Book</option>
-                        <option>Magazine</option>
-                        <option>Video</option>
-                        <option>Image</option>
-                        <option>Online Course</option>
-                        <option>Article</option>
-                        <option>Software/Tools</option>
-                        <option>Slides</option>
-                        <option>Audio/Podcast</option>
-                        <option>Library/Database</option>
-                        <option>Blog</option>
-                        <option>Other</option>
+                        {% for media in media %}
+                        <option>{{ media|capfirst }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group col-md-6">
