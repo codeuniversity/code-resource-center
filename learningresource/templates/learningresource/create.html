@@ -8,18 +8,13 @@
 <br />
 {% endif %}
 
-<form method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Save'/>
-</form>
-
 <!-- <form method='POST'>
     {% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value='Save'/>
 </form> -->
-<!-- 
+
+ 
 <body>
     <div class="container">
         <h1>Add a New Resource</h1>
@@ -28,11 +23,13 @@
             <div class="form-group">
                 <label for="text">Title</label>
                 <input type="text" class="form-control" placeholder="Title" name="title">
+                {{ form.title }}
             </div>
             
             <div class="form-group">
                 <label for="url">URL</label>
                 <input type="url" class="form-control" placeholder="URL" name="url">
+                {{ form.url }}
             </div>
 
             <div class="form-group">
@@ -42,6 +39,7 @@
                     <option>{{ media|capfirst }}</option>
                     {% endfor %}
                 </select>
+                {{ form.media_type }}
             </div>
 
             <div class="form-group">
@@ -54,12 +52,13 @@
                 <small class="text-muted">
                     To select more than one, hold command⌘ key.
                 </small>
-
+                {{ form.department }}
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
+                {{ form.description }}
             </div>
 
             <div class="checkbox">
@@ -73,6 +72,6 @@
 
         </form>
     </div>
-</body> -->
+</body>
 
 {% endblock %}
