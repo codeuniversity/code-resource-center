@@ -1,6 +1,58 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
 from .models import UserProfile
+
+User = get_user_model()
+
+###### CREATE USER FORM ######
+# source: Django documentation
+class UserCreationForm(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('email',)
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+###### CHANGE USER FORM ######
+# source: Django documentation
+class UserChangeForm(forms.ModelForm):
+    """A form for updating users. Includes all the fields on
+    the user, but replaces the password field with admin's
+    password hash display field.
+    """
+    password = ReadOnlyPasswordHashField()
+
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'active', 'admin')
+
+    def clean_password(self):
+        # Regardless of what the user provides, return the initial value.
+        # This is done here, rather than on the field, because the
+        # field does not have access to the initial value
+        return self.initial["password"]
+
 
 class UserSignupForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -33,7 +85,7 @@ class UserSignupForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class":"form-control",
-                "id":"input-userame",
+                "id":"input-username",
                 "placeholder":"username",
                 "name":"input-username",
             }
@@ -63,7 +115,7 @@ class UserSignupForm(forms.ModelForm):
         )
     )
     password2 = forms.CharField(
-        required=True,
+        # required=True,
         widget=forms.PasswordInput(
             attrs={
                 "id":"password2",
@@ -80,34 +132,47 @@ class UserSignupForm(forms.ModelForm):
             'last_name',
             'username',
             'email',
-            'password'
+            'password1',
+            'password2',
         )
 
     def clean_fname(self, *args, **kwargs):
         first_name = self.cleaned_data.get("first_name")
-        # if not "max" in first_name:
-        #     raise forms.ValidationError("This is not a valid first name.")
-        return  first_name
+        if not "max" in first_name:
+            raise forms.ValidationError("This is not a valid first name.")
+        return self.first_name
     
-    def clean_lname(self, *args, **kwargs):
-        last_name = self.cleaned_data.get("last_name")
-        return  last_name
+    # def clean_lname(self, *args, **kwargs):
+    #     last_name = self.cleaned_data.get("last_name")
+    #     return self.last_name
 
-    def clean_username(self, *args, **kwargs):
-        username = self.cleaned_data.get("username")
-        return  username
+    # def clean_username(self, *args, **kwargs):
+    #     username = self.cleaned_data.get("username")
+    #     return self.username
 
     # allow only @code.berlin emails to sign up 
     def valid_email(self, *args, **kwargs):
         email = self.cleaned_data.get("email")
         if not email.endswith("@code.berlin"):
             raise forms.ValidationError("This is not a valid email. Please contact administrator.")
-        return email
+        return self.email
     
     # Password must match
     def password_match(self, *args, **kwargs):
-        password = self.cleaned_data.get("password1")
+        password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        if not password == password2:
+        if not password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords must match.")
-        return password
+        return self.password2
+    
+    def save(self, commit=True):
+        user = super(UserSignupForm, self).save(commit=False)
+        # sanitize form input
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.username = self.cleaned_data['username']
+        user.email = self.cleaned_data['email']
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user

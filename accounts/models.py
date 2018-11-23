@@ -1,7 +1,89 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 # use Django signals to extend User object
 from django.db.models.signals import post_save
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager
+)
+
+###### USER MANAGER ######
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, is_active=True, is_staff=False, is_admin=False):
+        if not email:
+            raise ValueError("Users must have an email.")
+        if not password:
+            raise ValueError("User must have a password.")
+        user_obj = self.model(
+            # make email case-insensitive
+            email = self.normalize_email(email)
+        )
+        user_obj.set_password(password)
+        user_obj.staff = is_staff
+        user_obj.admin = is_admin
+        user_obj.active = is_active 
+        user_obj.save(using=self._db)
+        return user_obj
+
+    def create_staffuser(self, email, password=None):
+        user = self.create_user(
+                email,
+                password=password, 
+                is_staff=True
+        )
+        return user
+
+    def create_superuser(self, email, password=None):
+        user = self.create_user(
+                email,
+                password=password, 
+                is_staff=True,
+                is_admin=True
+        )
+        return user
+
+###### CUSTOM USER MODEL ######
+class User(AbstractBaseUser):
+    email = models.EmailField(max_length=255, unique=True)
+    active = models.BooleanField(default=True) # can login
+    staff = models.BooleanField(default=False) # staffuser
+    admin = models.BooleanField(default=False) # superuser
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    USERNAME_FIELD = 'email' # make email the username
+    # username_field and password are required by default
+    REQUIRED_FIELD = [] # optional make first and last name part of the custom model 
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
+    
+    def get_full_name(self):
+        return self.email
+    
+    def get_short_name(self):
+        return self.email
+
+    # "Does the user have a specific permission?"
+    def has_perm(self, perm, obj=None):
+        return True
+
+    # "Does the user have permissions to view the app `app_label`?"
+    def has_module_perms(self, app_label):
+        return True 
+
+    @property
+    def is_staff(self):
+        return self.staff
+    
+    @property
+    def is_admin(self):
+        return self.admin
+
+    @property
+    def is_active(self):
+        return self.active
 
 class UserType(models.Model):
     type_name = models.CharField(max_length=32)
@@ -29,16 +111,18 @@ class UserRole(models.Model):
 
 class UserProfile(models.Model):
     django_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.ForeignKey(UserType, blank=True, default=6, on_delete=models.SET_DEFAULT)
-    institution = models.ForeignKey(Institution, blank=True, default=1, on_delete=models.SET_DEFAULT)
-    department = models.ManyToManyField(Department, blank=True, default=5)
-    role = models.ForeignKey(UserRole, blank=True, default=1, on_delete=models.SET_DEFAULT)
-    image = models.ImageField(upload_to='profile_images', blank=True)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
+    user_type = models.ForeignKey(UserType, null=True, on_delete=models.SET_NULL)
+    institution = models.ForeignKey(Institution, null=True, on_delete=models.SET_NULL)
+    department = models.ManyToManyField(Department)
+    role = models.ForeignKey(UserRole, null=True, on_delete=models.SET_NULL)
+    image = models.ImageField(upload_to='profile_images', null=True, blank=True)
 
     def __str__(self):
         return self.django_user
 
-# Create user profile if Django User object has been created.
+# Trigger creation of corresponding user profile as soon as Django User object has been created.
 def create_profile(sender, **kwargs):
     # use keyword argument
     if kwargs['created']:

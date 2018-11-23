@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import UserType, Department, Institution, UserProfile
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserSignupForm
+from .models import User, UserManager
 
 def signup(request):
     user_form = UserSignupForm()
@@ -14,18 +15,24 @@ def signup(request):
         if f.is_valid():
             print('after is_valid')
             try:
-                User.objects.get(username=user_form.username)
+                User.objects.get(username=f.username)
+                a_error = f.clean_fname()
+                b_error = f.valid_email()
+                c_error = f.password_match()
                 context = {
                     'user_form': user_form,
                     'error': 'Username has already been taken.'
+                    
                 }
                 print('insidie try')
                 return render(request, 'signup.html', context )
             except:
-                user = User.objects.create_user(user_form.clean_username(), user_form.email(), user_form.password())
-                user.first_name = user_form.clean_fname()
-                user.last_name = user_form.clean_lname()
-                user.save()
+                # user = User.objects.create_user(user_form.username, user_form.email, user_form.password1)
+                # user.first_name = user_form.clean_fname()
+                # user.last_name = user_form.clean_lname()
+
+                f.save()
+                user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
                 auth.login(request, user)
                 print('inside except')
                 return redirect('/dashboard')
