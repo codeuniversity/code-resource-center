@@ -5,27 +5,28 @@ from django.contrib import auth
 from django.utils import timezone
 from .models import MediaType, LearningResource
 from accounts.models import Department
-from .forms import RawResourceForm, LearningResourceForm
+from .forms import LearningResourceForm
 
-def create(request):
-    form = RawResourceForm()
-    if request.method == 'POST':
-        form = RawResourceForm(request.POST)
-        if form.is_valid():
-            LearningResource.objects.create(**form.cleaned_data)
-    context = {
-        'form': form
-    }
-    return render(request,"learningresource/create.html",context)
-
-# def resource_create(request):
-#     form = LearningResourceForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
+# def create(request):
+#     form = RawResourceForm()
+#     if request.method == 'POST':
+#         form = RawResourceForm(request.POST)
+#         if form.is_valid():
+#             LearningResource.objects.create(**form.cleaned_data)
 #     context = {
 #         'form': form
 #     }
 #     return render(request,"learningresource/create.html",context)
+
+def create(request):
+    form = LearningResourceForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = LearningResourceForm()
+    context = {
+        'form': form
+    }
+    return render(request,"learningresource/create.html",context)
 
 
 # @login_required(login_url="/accounts/login")
