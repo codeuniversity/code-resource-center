@@ -26,7 +26,7 @@ class LearningResource(models.Model):
     description = models.TextField()
     media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, db_index=True, on_delete=models.CASCADE)
-    is_free = models.BooleanField(default=True)
+    is_free = models.BooleanField(default=False)
     pub_date = models.DateTimeField()
     votes_total = models.IntegerField(default=1)
     last_edit_date = models.DateTimeField()
