@@ -8,6 +8,12 @@
 <br />
 {% endif %}
 
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Save'/>
+</form>
+<!-- 
 <body>
     <div class="container">
         <h1>Add a New Resource</h1>
@@ -47,7 +53,7 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" rows="3" name="description"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
             </div>
 
             <div class="checkbox">
@@ -61,6 +67,6 @@
 
         </form>
     </div>
-</body>
+</body> -->
 
 {% endblock %}
