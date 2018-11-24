@@ -15,6 +15,7 @@ def dashboard(request):
     else:
         return redirect('login')
 
+@login_required(login_url="/accounts/login")
 def searchResult(request):
     query = None
     if 'q' in request.GET:
@@ -23,3 +24,19 @@ def searchResult(request):
         return render(request, 'dashboard.html', {'query':query, 'learningResources':learningResources})
     else:
         return render(request, 'dashboard.html', {'query':query})
+
+def filterSoftwareEng(request):
+    learningResources = LearningResource.objects.filter(department=1)
+    return render(request, 'dashboard.html', {'learningResources':learningResources})
+
+def filterProductManagement(request):
+    learningResources = LearningResource.objects.filter(department=4)
+    return render(request, 'dashboard.html', {'learningResources':learningResources})
+
+def filterSTS(request):
+    learningResources = LearningResource.objects.filter(department=2)
+    return render(request, 'dashboard.html', {'learningResources':learningResources})
+
+def filterInteractionDesign(request):
+    learningResources = LearningResource.objects.filter(department=3)
+    return render(request, 'dashboard.html', {'learningResources':learningResources})

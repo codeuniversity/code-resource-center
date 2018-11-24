@@ -10,16 +10,32 @@
         <div class="row">
             <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
               {% csrf_token %}
-              <input class="form-control mr-sm-2" type="search" name = "q" placeholder="Search" aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" name ="q" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <div>
-                <a class="btn btn-primary" href="#" role="button">STS</a>
-                <a class="btn btn-primary" href="#" role="button">ID</a>
-                <a class="btn btn-primary" href="#" role="button">SE</a>
-                <a class="btn btn-primary" href="#" role="button">PM</a>
-                <a class="btn btn-primary" href="#" role="button">All</a>
+                <a class="btn btn-primary" href="javascript:{document.getElementById('sts_filter').submit()}" role="button">STS</a>
+                <a class="btn btn-primary" href="javascript:{document.getElementById('id_filter').submit()}" role="button">ID</a>
+                <a class="btn btn-primary" href="javascript:{document.getElementById('se_filter').submit()}" role="button">SE</a>
+                <a class="btn btn-primary" href="javascript:{document.getElementById('pm_filter').submit()}" role="button">PM</a>
+                <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}" role="button">All</a>
             </div>
+            <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
+              {% csrf_token %}
+              <input type="hidden" />
+            </form>
+            <form id="pm_filter" method="get" action="{% url 'dashboard:PMFilter' %}" name="pm_filter">
+              {% csrf_token %}
+              <input type="hidden" />
+            </form>
+            <form id="sts_filter" method="get" action="{% url 'dashboard:STSFilter' %}" name="sts_filter">
+              {% csrf_token %}
+              <input type="hidden" />
+            </form>
+            <form id="id_filter" method="get" action="{% url 'dashboard:IDFilter' %}" name="id_filter">
+              {% csrf_token %}
+              <input type="hidden" />
+            </form>
         </div>
     </div>
 </section>
