@@ -29,8 +29,12 @@
           {% for learningResource in learningResources %}
           <div>
             <div style="border: 1px solid #D7D6D6; padding: 2px; height: 80px; display:flex; justify-content: space-between;">
-              <h4>{{ learningResource.title }}</h4>
-              <div style="padding: 4px;">{{ learningResource.department }}</div>
+              {% if learningResource.title|length > 50 %}
+                <h4>{{ learningResource.short_title }}</h4>
+              {% else %}
+                <h4>{{ learningResource.title }}</h4>
+              {% endif %}
+              <div style="padding: 2px;">{{ learningResource.department }}</div>
           </div>
           <br/>
           {%endfor%}
