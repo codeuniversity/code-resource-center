@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'accounts.apps.AccountsConfig',
+    'search.apps.SearchConfig',
     'learningresource.apps.LearningresourceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
