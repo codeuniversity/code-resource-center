@@ -14,15 +14,21 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
 
+class Module(models.Model):
+    module_name = models.CharField(db_index=True, max_length=255)
+
+    def __str__(self):
+        return self.module_name
+
 class LearningResource(models.Model):
     title = models.CharField(max_length=255)
     url = models.TextField()
     description = models.TextField()
-    media_type_id = models.ForeignKey(MediaType, on_delete=models.CASCADE)
-    department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+    media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, db_index=True, on_delete=models.CASCADE)
     is_free = models.BooleanField(default=True)
     pub_date = models.DateTimeField()
-    votes_total = models.IntegerField(default=1) 
+    votes_total = models.IntegerField(default=1)
     last_edit_date = models.DateTimeField()
 
     def __str__(self):
@@ -32,9 +38,13 @@ class LearningResource(models.Model):
         return self.pub_date.strftime('%b %e %Y')
 
 class LearningResourceTag(models.Model):
-    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    learningresource_id = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
 
 class UserLearningResource(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    learningresource_id = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+
+class LearningResourceModule(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)

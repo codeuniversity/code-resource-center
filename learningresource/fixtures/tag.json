@@ -1,0 +1,184 @@
+[
+  {
+    "model": "learningresource.tag",
+    "pk": 1,
+    "fields": {
+      "tag_name": "software engineering"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 2,
+    "fields": {
+      "tag_name": "databases"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 3,
+    "fields": {
+      "tag_name": "design"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 4,
+    "fields": {
+      "tag_name": "UX"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 5,
+    "fields": {
+      "tag_name": "interface design"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 6,
+    "fields": {
+      "tag_name": "animation"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 7,
+    "fields": {
+      "tag_name": "A.I"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 8,
+    "fields": {
+      "tag_name": "machine learning"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 9,
+    "fields": {
+      "tag_name": "SQL"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 10,
+    "fields": {
+      "tag_name": "ES6"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 11,
+    "fields": {
+      "tag_name": "React"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 12,
+    "fields": {
+      "tag_name": "Django"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 13,
+    "fields": {
+      "tag_name": "Python"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 14,
+    "fields": {
+      "tag_name": "Agile methodologies"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 15,
+    "fields": {
+      "tag_name": "Scrum"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 16,
+    "fields": {
+      "tag_name": "Kanban"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 17,
+    "fields": {
+      "tag_name": "A/B Testing"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 18,
+    "fields": {
+      "tag_name": "user testing"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 19,
+    "fields": {
+      "tag_name": "unit testing"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 20,
+    "fields": {
+      "tag_name": "C++"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 21,
+    "fields": {
+      "tag_name": "virtual reality"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 22,
+    "fields": {
+      "tag_name": "lambda"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 23,
+    "fields": {
+      "tag_name": "aws"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 24,
+    "fields": {
+      "tag_name": "devops"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 25,
+    "fields": {
+      "tag_name": "security"
+    }
+  },
+  {
+    "model": "learningresource.tag",
+    "pk": 26,
+    "fields": {
+      "tag_name": "git"
+    }
+  }
+]
