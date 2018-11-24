@@ -9,7 +9,7 @@ from learningresource.models import LearningResource, UserLearningResource
 def home(request):
     user = User.objects;
     if user is not None:
-        return render(request, 'dashboard.html')
+        return render(request, 'dashboard/dashboard.html')
     else:
         return redirect('login')
 
