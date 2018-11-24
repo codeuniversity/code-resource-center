@@ -10,12 +10,61 @@ User = get_user_model()
 class RegisterForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label='', 
+        widget=forms.PasswordInput(
+            attrs = {
+                "id":"password1",
+                "class":"form-control",
+                "placeholder":"Password",
+                "name":"password1",               
+            }
+        )
+    )
+    password2 = forms.CharField(
+        label='', 
+        widget=forms.PasswordInput(
+            attrs = {
+                "id":"password2",
+                "class":"form-control",
+                "placeholder":"Repeat password",
+                "name":"password2",               
+            }
+    ))
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+        labels = {
+            'first_name': '',
+            'last_name': '',
+            'email': ''
+        }
+        widgets = {
+            'first_name': forms.TextInput(
+                attrs = {
+                    "class":"form-control",
+                    "id":"input-first-name",
+                    "placeholder":"First name",
+                    "name":"input-first-name",
+                }
+            ),
+            'last_name': forms.TextInput(
+                attrs = {
+                    "class":"form-control",
+                    "id":"input-last-name",
+                    "placeholder":"Last name",
+                    "name":"input-last-name",
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs = {
+                    "class":"form-control",
+                    "id":"input-email",
+                    "placeholder":"Email",
+                    "name":"input-email",
+            }),
+        }
 
     # sanitize form inputs
     def clean_first_name(self):
@@ -72,7 +121,7 @@ class UserCreationForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
         # check if passwords match
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("Passwords don't match.")
         return password2
 
     def save(self, commit=True):

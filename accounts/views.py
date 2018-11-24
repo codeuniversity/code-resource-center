@@ -5,8 +5,18 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 # from .forms import UserCreationForm
 from .forms import RegisterForm
-
 from .models import User, UserManager
+# create class-based views
+# from django.views.generic import CreateView, FormView
+
+
+# class RegisterView(CreateView):
+#     form_class = RegisterForm
+#     template_name = 'signup.html'
+#     success_url = '/dashboard'
+
+#     def form_valid(self, form):
+#         request = self.request
 
 def signup(request):
     form = RegisterForm(request.POST or None)
