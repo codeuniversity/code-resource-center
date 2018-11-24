@@ -6,6 +6,13 @@ from django.db.models import Q
 from learningresource.models import LearningResource, UserLearningResource
 
 
+def home(request):
+    user = User.objects;
+    if user is not None:
+        return render(request, 'dashboard.html')
+    else:
+        return redirect('login')
+
 @login_required(login_url="/accounts/login")
 def dashboard(request):
     user = User.objects;
