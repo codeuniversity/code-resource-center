@@ -3,52 +3,85 @@ from .models import UserType, Department, Institution, UserProfile
 # from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from .forms import UserSignupForm
+# from .forms import UserCreationForm
+from .forms import RegisterForm
+
 from .models import User, UserManager
 
 def signup(request):
-    user_form = UserSignupForm()
+    form = RegisterForm(request.POST or None)
     if request.method == "POST":
-        f = UserSignupForm(request.POST)
-        print('inside POST request')
-        if f.is_valid():
-            print('after is_valid')
+        if form.is_valid():
             try:
-                User.objects.get(username=f.username)
-                a_error = f.clean_fname()
-                b_error = f.valid_email()
-                c_error = f.password_match()
+                # email must be unique
+                email = form.cleaned_data.get('email')
+                User.objects.get(username=email)
                 context = {
-                    'user_form': user_form,
-                    'error': 'Username has already been taken.'
-                    
+                    'form': form,
+                    'error': 'Account already exists.'
                 }
-                print('insidie try')
-                return render(request, 'signup.html', context )
+                return render(request, 'signup.html', context) 
             except:
-                # user = User.objects.create_user(user_form.username, user_form.email, user_form.password1)
-                # user.first_name = user_form.clean_fname()
-                # user.last_name = user_form.clean_lname()
-
-                f.save()
-                user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+                if not email.endswith("@code.berlin"):
+                    context = {
+                        'form': form,
+                        'error': 'User must register with [user]@code.berlin email.'
+                    }
+                    return render(request, 'signup.html', context )
+                form.save()
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
-                print('inside except')
                 return redirect('/dashboard')
-        else:
-            print('inside errors')
-            print(f.errors)
-            context = {
-                    'user_form': f,
-                    'error': f.errors
-
-            }
-            return render(request, 'signup.html', context )
     else:
-        context = {'user_form': user_form}
-        print('inside get')
+        context = {
+            'form': form,
+        }
         return render(request, 'signup.html', context)
+
+# def signup(request):
+#     user_form = UserSignupForm()
+#     if request.method == "POST":
+#         f = UserSignupForm(request.POST)
+#         print('inside POST request')
+#         if f.is_valid():
+#             print('after is_valid')
+#             try:
+#                 User.objects.get(username=f.username)
+#                 a_error = f.clean_fname()
+#                 b_error = f.valid_email()
+#                 c_error = f.password_match()
+#                 context = {
+#                     'user_form': user_form,
+#                     'error': 'Username has already been taken.'
+                    
+#                 }
+#                 print('insidie try')
+#                 return render(request, 'signup.html', context )
+#             except:
+#                 # user = User.objects.create_user(user_form.username, user_form.email, user_form.password1)
+#                 # user.first_name = user_form.clean_fname()
+#                 # user.last_name = user_form.clean_lname()
+
+#                 f.save()
+#                 user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+#                 auth.login(request, user)
+#                 print('inside except')
+#                 return redirect('/dashboard')
+#         else:
+#             print('inside errors')
+#             print(f.errors)
+#             context = {
+#                     'user_form': f,
+#                     'error': f.errors
+
+#             }
+#             return render(request, 'signup.html', context )
+#     else:
+#         context = {'user_form': user_form}
+#         print('inside get')
+#         return render(request, 'signup.html', context)
 
         # if request.POST['password1'] == request.POST['password2']:
         #     try:

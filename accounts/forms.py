@@ -6,7 +6,46 @@ from .models import UserProfile
 
 User = get_user_model()
 
-###### CREATE USER FORM ######
+###### REGISTER FORM FOR USERS ######
+class RegisterForm(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+    # sanitize form inputs
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        return first_name
+    
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        return last_name
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        # check if passwords match
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(RegisterForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        # TO DO: Send email to users to confirm signup first
+        # user.active = false
+        if commit:
+            user.save()
+        return user
+
+###### CREATE USER FORM FOR ADMINS ######
 # source: Django documentation
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
@@ -16,12 +55,22 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('first_name', 'last_name', 'email')
+
+    # sanitize form inputs
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        return first_name
+    
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        return last_name
 
     def clean_password2(self):
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
+        # check if passwords match
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return password2
@@ -45,7 +94,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'active', 'admin')
+        fields = ('email', 'password', 'first_name', 'last_name', 'active', 'admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
