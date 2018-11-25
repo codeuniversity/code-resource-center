@@ -5,8 +5,8 @@ app_name='dashboard'
 urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('search', views.searchResult, name='searchResult'),
-    path('filter_se', views.filterSoftwareEng, name='SEFilter'),
-    path('filter_pm', views.filterProductManagement, name="PMFilter"),
-    path('filter_sts', views.filterSTS, name="STSFilter"),
-    path('filter_id', views.filterInteractionDesign, name="IDFilter"),
+    path('se_filter', views.filterSoftwareEng, name='SEFilter'),
+    path('pm_filter', views.filterProductManagement, name="PMFilter"),
+    path('sts_filter', views.filterSTS, name="STSFilter"),
+    path('id_filter', views.filterInteractionDesign, name="IDFilter"),
 ]
