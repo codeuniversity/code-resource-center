@@ -25,9 +25,9 @@ def signup(request):
                     }
                     return render(request, 'signup.html', context )
                 form.save()
-                username = form.cleaned_data.get('username')
+                email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password1')
-                user = auth.authenticate(username=username, password=password)
+                user = auth.authenticate(username=email, password=password)
                 auth.login(request, user)
                 return redirect('/dashboard')
         else:
@@ -45,7 +45,7 @@ def signup(request):
 def login(request):
     if request.method == "POST":
         #the user wants to log in
-        user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
             return redirect('/dashboard')
