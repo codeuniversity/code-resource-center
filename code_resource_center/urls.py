@@ -8,5 +8,6 @@ urlpatterns = [
     path('', dashboard.views.home, name='home'),
     path('dashboard/',include('dashboard.urls')),
     path('accounts/', include('accounts.urls')),
+    path('learningresource/', include('learningresource.urls')),
 
 ]
