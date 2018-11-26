@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from .models import UserType, Department, Institution
 from django.contrib.auth.models import User
@@ -27,3 +28,10 @@ def logout(request):
         return redirect('/accounts/login')
     else:
         return render(request, 'dashboard.html')
+=======
+from django.shortcuts import render
+from .models import UserType, Department, Institution
+
+def signup(request):
+    return render(request, 'signup.html', {})
+>>>>>>> feat_signup
