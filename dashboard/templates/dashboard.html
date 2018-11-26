@@ -3,7 +3,6 @@
 {% block content %}
 
 {% load staticfiles %}
-
 <main role="main">
 <section class="jumbotron text-center bg-gray">
     <div class="container">
@@ -15,12 +14,12 @@
               <input class="form-control mr-sm-2" type="search" name ="q" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <div>
-                <a class="btn btn-primary" href="javascript:{document.getElementById('sts_filter').submit()}" role="button">STS</a>
-                <a class="btn btn-primary" href="javascript:{document.getElementById('id_filter').submit()}" role="button">ID</a>
-                <a class="btn btn-primary" href="javascript:{document.getElementById('se_filter').submit()}" role="button">SE</a>
-                <a class="btn btn-primary" href="javascript:{document.getElementById('pm_filter').submit()}" role="button">PM</a>
-                <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}" role="button">All</a>
+            <div id="filterDepartment" class="btn-group btn-group-toggle">
+                <button class="btn btn-primary" role="button" data-filter="sts_filter">STS</button>
+                <button class="btn btn-primary" role="button" data-filter="id_filter">ID</button>
+                <button class="btn btn-primary" role="button" data-filter="se_filter">SE</button>
+                <button class="btn btn-primary" role="button" data-filter="pm_filter">PM</button>
+                <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}" role="button" data-filter="all_filter">All</a>
             </div>
             <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
               {% csrf_token %}
