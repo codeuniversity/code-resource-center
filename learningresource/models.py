@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from accounts.models import Department
+from accounts.models import Department, User
 
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)

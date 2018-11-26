@@ -18,11 +18,11 @@
         <form style="margin: auto; width: 100%;"
               method="POST" action="{% url 'login'%}">
         {%  csrf_token %}
-          <label style="font-weight: bold;">username</label>
+          <label style="font-weight: bold;">Email</label>
           <br />
-          <input type="text"
-                 name="username"
-                 placeholder="username"
+          <input type="email"
+                 name="email"
+                 placeholder="email"
                  style="margin: 0 auto;
                  width: 100%;
                  padding: 4px;
