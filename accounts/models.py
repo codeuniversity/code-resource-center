@@ -20,8 +20,4 @@ class Department(models.Model):
     department_name = models.CharField(max_length=32)
     
     def __str__(self):
-<<<<<<< HEAD
         return self.department_name
-=======
-        return self.department_name
->>>>>>> bf0f4c807ef7e92e2d75b734675a87cf35de5dfd
