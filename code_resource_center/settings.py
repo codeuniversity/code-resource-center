@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
-    'accounts.apps.AccountsConfig',
     'learningresource.apps.LearningresourceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
