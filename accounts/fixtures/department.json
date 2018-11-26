@@ -1,37 +1,37 @@
 [
-  {
-    "model": "accounts.department",
-    "pk": 1,
-    "fields": {
-      "department_name": "Software Engineering"
+    {
+      "model": "accounts.department",
+      "pk": 1,
+      "fields": {
+        "department_name": "Software Engineering"
+      }
+    },
+    {
+      "model": "accounts.department",
+      "pk": 2,
+      "fields": {
+        "department_name": "Science, Technology & Society"
+      }
+    },
+    {
+      "model": "accounts.department",
+      "pk": 3,
+      "fields": {
+        "department_name": "Interaction Design"
+      }
+    },
+    {
+      "model": "accounts.department",
+      "pk": 4,
+      "fields": {
+        "department_name": "Product Management"
+      }
+    },
+    {
+      "model": "accounts.department",
+      "pk": 5,
+      "fields": {
+        "department_name": "Other"
+      }
     }
-  },
-  {
-    "model": "accounts.department",
-    "pk": 2,
-    "fields": {
-      "department_name": "Science, Technology & Society"
-    }
-  },
-  {
-    "model": "accounts.department",
-    "pk": 3,
-    "fields": {
-      "department_name": "Interaction Design"
-    }
-  },
-  {
-    "model": "accounts.department",
-    "pk": 4,
-    "fields": {
-      "department_name": "Product Management"
-    }
-  },
-  {
-    "model": "accounts.department",
-    "pk": 5,
-    "fields": {
-      "department_name": "Other"
-    }
-  }
-]
+  ]

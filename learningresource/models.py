@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from accounts.models import Department
+from accounts.models import Department, User
 
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)
@@ -22,14 +21,15 @@ class Module(models.Model):
 
 class LearningResource(models.Model):
     title = models.CharField(max_length=255)
-    url = models.TextField()
+    url = models.CharField(max_length=600)
     description = models.TextField()
     media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, db_index=True, on_delete=models.CASCADE)
-    is_free = models.BooleanField(default=True)
-    pub_date = models.DateTimeField()
+    is_free = models.BooleanField(default=False)
+    pub_date = models.DateTimeField(auto_now_add=True)
     votes_total = models.IntegerField(default=1)
-    last_edit_date = models.DateTimeField()
+    last_edit_date = models.DateTimeField(auto_now_add=True)
+    tag = models.CharField(max_length=255, default='other')
 
     def __str__(self):
         return self.title
