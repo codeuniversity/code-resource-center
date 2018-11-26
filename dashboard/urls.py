@@ -3,7 +3,7 @@ from . import views
 app_name='dashboard'
 
 urlpatterns = [
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('home', views.home, name='home'),
     path('search', views.searchResult, name='searchResult'),
     path('se_filter', views.filterSoftwareEng, name='SEFilter'),
     path('pm_filter', views.filterProductManagement, name="PMFilter"),

@@ -19,7 +19,7 @@
                 <button class="btn btn-primary" role="button" data-filter="id_filter">ID</button>
                 <button class="btn btn-primary" role="button" data-filter="se_filter">SE</button>
                 <button class="btn btn-primary" role="button" data-filter="pm_filter">PM</button>
-                <a class="btn btn-primary" href="{% url 'dashboard:dashboard' %}" role="button" data-filter="all_filter">All</a>
+                <a class="btn btn-primary" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
             </div>
             <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
               {% csrf_token %}
