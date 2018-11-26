@@ -9,6 +9,7 @@ from learningresource.models import LearningResource, UserLearningResource
 @login_required(login_url="/accounts/login")
 def dashboard(request):
     user = User.objects
+    learningResources = LearningResource.objects.all()
     if user is not None:
         return render(request, 'dashboard.html', {'learningResources': learningResources})
     else:
