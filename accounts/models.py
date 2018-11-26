@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import User
 # use Django signals to extend User object
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (
@@ -125,7 +124,7 @@ class UserProfile(models.Model):
     django_user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.ForeignKey(UserType, null=True, on_delete=models.SET_NULL)
     institution = models.ForeignKey(Institution, null=True, on_delete=models.SET_NULL)
-    department = models.ManyToManyField(Department)
+    # department = models.ManyToManyField(Department)
     role = models.ForeignKey(UserRole, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to='profile_images', null=True, blank=True)
 
