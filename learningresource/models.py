@@ -30,6 +30,7 @@ class LearningResource(models.Model):
     pub_date = models.DateTimeField()
     votes_total = models.IntegerField(default=1)
     last_edit_date = models.DateTimeField()
+    tag = models.CharField(max_length=600, default='other')
 
     def __str__(self):
         return self.title
