@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from accounts.models import User
 from django.contrib import auth
 from .forms import LearningResourceForm
 
@@ -71,9 +72,9 @@ def create(request):
     #                 product.url = request.POST['url']
     #             else:
     #                 learningresource.url = 'http://' + request.POST['url']
-    #             learningresource.media_type_id = request.POST['media_type_id'] 
-    #             learningresource.department_id = request.POST['department_id'] 
-    #             learningresource.is_free = request.POST['is_free'] 
+    #             learningresource.media_type_id = request.POST['media_type_id']
+    #             learningresource.department_id = request.POST['department_id']
+    #             learningresource.is_free = request.POST['is_free']
     #             learningresource.pub_date = timezone.datetime.now()
     #             learningresource.save()
     #             return render(request,"dashboard/dashboard.html",{})
@@ -83,4 +84,3 @@ def create(request):
     #         return render(request, 'learningresource/create.html')
     # else:
     #     return redirect('login')
-

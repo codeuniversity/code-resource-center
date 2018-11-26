@@ -110,7 +110,7 @@ class Institution(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
-    
+
     def __str__(self):
         return self.department_name
 
@@ -137,4 +137,5 @@ def create_profile(sender, **kwargs):
     if kwargs['created']:
         user_profile = UserProfile.objects.create(django_user=kwargs['instance'])
 # connect User and user profile
-post_save.connect(create_profile, sender=User)
+        post_save.connect(create_profile, sender=User)
+        return self.department_name
