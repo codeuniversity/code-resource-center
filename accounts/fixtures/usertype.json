@@ -1,0 +1,30 @@
+[
+    {
+      "model": "accounts.usertype",
+      "pk": 1,
+      "fields": {
+        "type_name": "Student"
+      }
+    },
+    {
+      "model": "accounts.usertype",
+      "pk": 2,
+      "fields": {
+        "type_name": "Administrative Staff"
+      }
+    },
+    {
+      "model": "accounts.usertype",
+      "pk": 3,
+      "fields": {
+        "type_name": "Academic Staff"
+      }
+    },
+    {
+      "model": "accounts.usertype",
+      "pk": 4,
+      "fields": {
+        "type_name": "External"
+      }
+    }
+  ]
