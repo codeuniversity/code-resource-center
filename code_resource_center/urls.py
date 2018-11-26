@@ -23,4 +23,6 @@ urlpatterns = [
     path('', accounts.views.login, name='login'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('accounts/', include('accounts.urls')),
+    path('learningresource/', include('learningresource.urls')),
+
 ]
