@@ -16,7 +16,7 @@ def signup(request):
                     'form': form,
                     'error': 'Account already exists.'
                 }
-                return render(request, 'signup.html', context) 
+                return render(request, 'signup.html', context)
             except User.DoesNotExist:
                 if not email.endswith("@code.berlin"):
                     context = {
@@ -41,7 +41,7 @@ def signup(request):
             'form': form,
         }
         return render(request, 'signup.html', context)
- 
+
 def login(request):
     if request.method == "POST":
         #the user wants to log in
