@@ -37,6 +37,9 @@ class LearningResource(models.Model):
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
 
+    def short_title(self):
+        return '{}...'.format(self.title[:50])
+
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
