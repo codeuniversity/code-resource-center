@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from accounts.models import Department
+from accounts.models import Department, User
 
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)
@@ -37,6 +36,9 @@ class LearningResource(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
+
+    def short_title(self):
+        return '{}...'.format(self.title[:50])
 
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)

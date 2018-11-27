@@ -7,6 +7,9 @@ migrate:
 migrations:
 	python manage.py makemigrations
 
+load_fixtures:
+	python manage.py loaddata */fixtures/*.json
+
 startapp:
 	python manage.py startapp
 
