@@ -22,17 +22,27 @@ def create(request):
     else:
         return redirect('login')
 
+# @login_required(login_url="/accounts/login")
+# def detail(request, id):
+#     user = User.objects;
+#     if user is not None:
+#         obj = get_object_or_404(LearningResource, id=id)
+#         context = {
+#             "object": obj
+#         }
+#     return render(request, "learningresource/detail.html", context)
+
 
 def detail(request):
     # obj = get_object_or_404(LearningResource)
     # context = {
     #     "object": obj
     # }
-    return render(request, "learningresource/detail.html")
-
-
-
-
+    queryset = LearningResource.objects.all() # list of objects
+    context = {
+        "object_list": queryset
+    }
+    return render(request, "learningresource/detail.html", context)
 
 
 

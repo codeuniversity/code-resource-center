@@ -8,6 +8,19 @@
 <br />
 {% endif %}
 
-Hi
+{% csrf_token %}
+<div>
+{% for instance in object_list %}
+    {% if instance.id == 2 %}
+        <p> 
+            Title: {{ instance.title }}
+            <br/>
+            Description: {{ instance.description }}
+            <br/>
+            URL: {{ instance.url }}
+        </p>
+    {% endif %}
+{% endfor %}
+</div>
 
 {% endblock %}
