@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, UserManager, Department, Profile
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -25,7 +25,13 @@ def signup(request):
                     }
                     return render(request, 'signup.html', context )
                 form.save()
+                # update corresponding profile
                 email = form.cleaned_data.get('email')
+                # profile = get_object_or_404(Profile, user=email)
+                # profile.institution = 'CODE'
+                # print(profile)
+                # authenticate user and log in
+
                 password = form.cleaned_data.get('password1')
                 user = auth.authenticate(username=email, password=password)
                 auth.login(request, user)
