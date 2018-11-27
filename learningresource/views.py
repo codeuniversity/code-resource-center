@@ -17,10 +17,13 @@ def create(request):
             'form': form
         }
         return render(request,"learningresource/create.html",context)
+        #return redirect('/learningresource/' + str(resource_id))
     else:
         return redirect('login')
 
-
+def detail(request, resource_id):
+    resource = get_object_or_404(LearningResourceForm, pk=resource_id)
+    return render(request, 'learningresource/detail.html', {'resource': resource})
 
 
 
