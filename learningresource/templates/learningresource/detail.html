@@ -12,13 +12,44 @@
 <div>
 {% for instance in object_list %}
     {% if instance.id == 2 %}
-        <p> 
-            Title: {{ instance.title }}
-            <br/>
-            Description: {{ instance.description }}
-            <br/>
-            URL: {{ instance.url }}
-        </p>
+        <div>
+            <div class="form-group">
+                <label style="font-weight: bold">Title</label>
+                {{ instance.title }}
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight: bold">URL</label>
+                {{ instance.url }} 
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight: bold">Media Type</label>
+                {{ instance.media_type }}
+            </div>
+
+            <div class="checkbox">
+                <label style="font-weight: bold">Department</label>
+                {{ instance.department }}
+            </div>
+            
+
+            <div class="form-group">
+                <label style="font-weight: bold">Description</label>
+                {{ instance.description }}
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight: bold">Tags</label>
+                {{ instance.tag }}
+            </div>
+
+            <div class="checkbox">
+                <label style="font-weight: bold"> Is it free?
+                    {{ instance.is_free }}
+                </label>
+            </div>
+        </div>
     {% endif %}
 {% endfor %}
 </div>
