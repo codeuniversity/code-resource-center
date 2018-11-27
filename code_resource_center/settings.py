@@ -125,7 +125,7 @@ USE_TZ = True
 # Fixtures
 FIXTURES_DIRS = (
     'learningresource/fixtures',
-    'accounts/fixtures'
+    'accounts/fixtures',
 )
 
 # Static files (CSS, JavaScript, Images)
