@@ -110,9 +110,6 @@ class Institution(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
-<<<<<<< HEAD
-    
-=======
 
     def __str__(self):
         return self.department_name
@@ -120,7 +117,6 @@ class Department(models.Model):
 class UserRole(models.Model):
     role_name = models.CharField(max_length=32)
 
->>>>>>> 1f4a3730430f448cf191ffedc5ee3fe4412945dd
     def __str__(self):
         return self.role_name
 
