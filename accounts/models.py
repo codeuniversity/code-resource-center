@@ -96,18 +96,6 @@ class User(AbstractBaseUser):
     def is_active(self):
         return self.active
 
-class UserType(models.Model):
-    type_name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.type_name
-
-class Institution(models.Model):
-    institution_name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.institution_name
-
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
 
@@ -115,13 +103,39 @@ class Department(models.Model):
         return self.department_name
 
 class Profile(models.Model):
+    # Institution enums
+    CODE = 'CODE'
+    CD = 'CD'
+    OTHER = 'OTHER'
+    INSTITUTION_CHOICES = (
+        (CODE, 'Code University'),
+        (CD, 'Code+Design Camps'),
+        (OTHER, 'other'),
+    )
+
+    # usertype enums
+    STUDENT = 'STUDENT'
+    AC_STAFF = 'AC_STAFF'
+    ADMIN_STAFF = 'ADMIN_STAFF'
+    ALUMNI = 'ALUMNI'
+    EXTERNAL = 'EXTERNAL'
+
+    USERTYPE_CHOICES = (
+        (STUDENT, 'Student'),
+        (CD, 'Code+Design Camper'),
+        (AC_STAFF, 'Academic Staff'),
+        (ADMIN_STAFF, 'Administrative Staff'),
+        (ALUMNI, 'Alumni'),
+        (EXTERNAL, 'External')
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.ForeignKey(UserType, null=True, on_delete=models.SET_NULL)
-    institution = models.ForeignKey(Institution, null=True, on_delete=models.SET_NULL)
+    user_type = models.CharField(max_length=16, null=True, choices=USERTYPE_CHOICES)
+    institution = models.CharField(max_length=32, null=True, choices=INSTITUTION_CHOICES)
     image = models.ImageField(upload_to='profile_images', null=True, blank=True)
 
     def __str__(self):
-        return self.django_user
+        return self.user
 
 class ProfileDepartment(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

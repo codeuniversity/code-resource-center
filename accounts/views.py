@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User, UserManager, UserType, Department, Institution, UserProfile
+from .models import User, UserManager, Department, Profile
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
@@ -62,3 +62,12 @@ def logout(request):
         return redirect('/accounts/login')
     else:
         return render(request, 'dashboard.html')
+
+def profile(request):
+    if request.method == "POST":
+        context = {
+            'success': 'Learning resource successfully changed.'
+        }
+        return render(request, 'profile.html', context)
+    else:
+        return render(request, 'profile.html')
