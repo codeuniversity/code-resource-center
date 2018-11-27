@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from accounts.models import User
 from django.contrib import auth
 from .forms import LearningResourceForm
+from .models import LearningResource
 
 @login_required(login_url="/accounts/login")
 def create(request):
@@ -21,9 +22,13 @@ def create(request):
     else:
         return redirect('login')
 
-def detail(request, resource_id):
-    resource = get_object_or_404(LearningResourceForm, pk=resource_id)
-    return render(request, 'learningresource/detail.html', {'resource': resource})
+
+def detail(request):
+    # obj = get_object_or_404(LearningResource)
+    # context = {
+    #     "object": obj
+    # }
+    return render(request, "learningresource/detail.html")
 
 
 
