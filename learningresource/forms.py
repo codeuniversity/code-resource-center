@@ -33,12 +33,15 @@ class LearningResourceForm(forms.ModelForm):
             ))
          
     department = forms.ModelChoiceField(
-            queryset=Department.objects.all())
-        #     widget=forms.SelectMultiple(
-        #             attrs={
-        #                     'placeholder':'Department',
-        #                     'class':'form-control',
-        #                     }))
+            queryset=Department.objects.all(),
+            widget=forms.Select(
+                      attrs={'class':'form-control'}
+            ))
+#     department = forms.ModelMultipleChoiceField(
+#             queryset=Department.objects.all(),
+#             widget=forms.CheckboxSelectMultiple(
+#                    attrs={'class':'form-control',}
+#             ))
     is_free = forms.BooleanField(required=False)
     tag = forms.CharField(
             widget = forms.TextInput(
