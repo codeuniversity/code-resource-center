@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import User, UserManager, Department, Profile
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileCreationForm
 
 def signup(request):
     form = RegisterForm(request.POST or None)

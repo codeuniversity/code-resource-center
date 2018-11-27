@@ -150,3 +150,54 @@ class UserChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+###### PROFILE FORM ######
+# source: Django documentation
+class ProfileCreationForm(forms.ModelForm):
+    
+    class Meta:
+        model = Profile
+        fields = ('user_type', 'institution',)
+
+        #  # Institution enums
+        # CODE = 'CODE'
+        # CD = 'CD'
+        # OTHER = 'OTHER'
+        # INSTITUTION_CHOICES = (
+        #     (CODE, 'Code University'),
+        #     (CD, 'Code+Design Camps'),
+        #     (OTHER, 'other'),
+        # )
+
+        # # usertype enums
+        # STUDENT = 'STUDENT'
+        # AC_STAFF = 'AC_STAFF'
+        # ADMIN_STAFF = 'ADMIN_STAFF'
+        # ALUMNI = 'ALUMNI'
+        # EXTERNAL = 'EXTERNAL'
+
+        # USERTYPE_CHOICES = (
+        #     (STUDENT, 'Student'),
+        #     (CD, 'Code+Design Camper'),
+        #     (AC_STAFF, 'Academic Staff'),
+        #     (ADMIN_STAFF, 'Administrative Staff'),
+        #     (ALUMNI, 'Alumni'),
+        #     (EXTERNAL, 'External')
+        # )
+        # labels = {
+        #     'user_type': 'What\'s your role at Code?',
+        #     'institution': 'What\'s your organisation?',
+        # }
+        # widgets = {
+        #     'user_type': forms.ChoiceField(
+        #         choices = USERTYPE_CHOICES,
+        #         attrs = {
+        #             "class":"form-control",
+        #             "id":"select-institution",
+        #             "name":"select-institution",
+        #         }
+
+        #     ),
+
+        # }
+

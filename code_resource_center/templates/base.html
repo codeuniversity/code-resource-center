@@ -32,6 +32,7 @@
                 {% if user.is_authenticated %}
                   <a class="nav-item nav-link" href="{% url 'create'%}">Add Resources</a>
                   <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
+                  <a class="nav-item nav-link" href="{% url 'profile'%}"> <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b></a>
                   <form id="logout" method="POST" action="{% url 'logout'%}">
                     {% csrf_token %}
                     <input type="hidden" />
