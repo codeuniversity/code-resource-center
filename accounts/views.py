@@ -29,7 +29,7 @@ def signup(request):
                 password = form.cleaned_data.get('password1')
                 user = auth.authenticate(username=email, password=password)
                 auth.login(request, user)
-                return redirect('/dashboard')
+                return redirect('/dashboard/home')
         else:
             context = {
                 'form': form,
