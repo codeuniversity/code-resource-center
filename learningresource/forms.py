@@ -27,12 +27,11 @@ class LearningResourceForm(forms.ModelForm):
                             'rows': 4,
                             }))
     media_type = forms.ModelChoiceField(
-            queryset=MediaType.objects.all() )
-        #     widget=forms.Select(
-        #             attrs={
-        #                     'placeholder':'Media Type',
-        #                     'class':'form-control',
-        #                     }))
+            queryset=MediaType.objects.all(),
+            widget=forms.Select(
+                      attrs={'class':'form-control'}
+            ))
+         
     department = forms.ModelChoiceField(
             queryset=Department.objects.all())
         #     widget=forms.SelectMultiple(
