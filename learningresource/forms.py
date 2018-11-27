@@ -24,11 +24,22 @@ class LearningResourceForm(forms.ModelForm):
                     attrs={
                             'placeholder':'Description',
                             'class':'form-control',
+                            'rows': 4,
                             }))
     media_type = forms.ModelChoiceField(
-            queryset=MediaType.objects.all())
+            queryset=MediaType.objects.all() )
+        #     widget=forms.Select(
+        #             attrs={
+        #                     'placeholder':'Media Type',
+        #                     'class':'form-control',
+        #                     }))
     department = forms.ModelChoiceField(
             queryset=Department.objects.all())
+        #     widget=forms.SelectMultiple(
+        #             attrs={
+        #                     'placeholder':'Department',
+        #                     'class':'form-control',
+        #                     }))
     is_free = forms.BooleanField(required=False)
     tag = forms.CharField(
             widget = forms.TextInput(
@@ -49,7 +60,3 @@ class LearningResourceForm(forms.ModelForm):
                 'tag',
         ]
 
-
-#     pub_date = models.DateTimeField(auto_now_add=True)
-#     votes_total = models.IntegerField(default=1)
-#     last_edit_date = models.DateTimeField(auto_now_add=True)
