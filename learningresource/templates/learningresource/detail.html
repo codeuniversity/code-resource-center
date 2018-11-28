@@ -23,7 +23,7 @@
             <dt class="col-sm-3">Created by</dt>
             <dd class="col-sm-9">{{ resource.user }}</dd> 
 
-            <dt class="col-sm-3">Published at</dt>
+            <dt class="col-sm-3">Added at</dt>
             <dd class="col-sm-9">{{ resource.pub_date }}</dd>
 
             <dt class="col-sm-3">Media Type</dt>
@@ -53,67 +53,3 @@
 
 {% endblock %}
 
-
-<!-- 
-
-      <div class="d-flex justify-content-center">
-            <div class="mt-3 p-5"
-                    style="height: calc(100vh-24px);
-                    border-radius: 5px; width:700px;
-                    background: rgb(247, 247, 247);">
-        
-                <h1 style="margin: auto; width: 600px;"> {{ resource.title }} </h1>
-                <hr />
-        
-                {% if error %}
-                <div class="alert alert-warning" role="alert">
-                    {{ error }}
-                </div>
-                {% endif %}
-                {% csrf_token %}
-        
-                <div>
-                    <div class="form-group">
-                        <label style="font-weight: bold">Created by</label>
-                        {{ resource.user }}
-                    </div>
-        
-                    <div class="form-group">
-                        <label style="font-weight: bold">Published at</label>
-                        {{ resource.pub_date }}
-                    </div>
-                    
-                    <div class="form-group">
-                        <label style="font-weight: bold">URL</label>
-                        {{ resource.url }} 
-                    </div>
-        
-                    <div class="form-group">
-                        <label style="font-weight: bold">Media Type</label>
-                        {{ resource.media_type }}
-                    </div>
-        
-                    <div class="checkbox">
-                        <label style="font-weight: bold">Department</label>
-                        {{ resource.department }}
-                    </div>
-                    <br/>
-        
-                    <div class="form-group">
-                        <label style="font-weight: bold">Description</label>
-                        {{ resource.description }}
-                    </div>
-        
-                    <div class="form-group">
-                        <label style="font-weight: bold">Tags</label>
-                        {{ resource.tag }}
-                    </div>
-        
-                    <div class="checkbox">
-                        <label style="font-weight: bold"> Is it free?
-                            {{ resource.is_free }}
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>  -->
