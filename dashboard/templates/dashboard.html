@@ -1,6 +1,5 @@
 
 
-
 {% if error %}
 {{ error }}
 <br />
@@ -11,23 +10,27 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Bootstrap Theme Company</title>
+  <title>Code Resource Center</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-<div class="jumbotron text-center" 
-     style="background-color: #f4511e; 
+<div class="jumbotron text-center"
+    style="background-image: url('static/books.jpg'); 
             color: #ffffff;
-            width: 100%">
-  <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200"> CODE RESOURCE CENTER</h1>
-
-  <p>Welcome to our resource collection</p> 
+            width: 100%;
+            height: 250px;"> 
+            
+  <br/> 
+  <br/>
+<!-- <h1>CODE</h1> -->
   <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
     {% csrf_token %}
     <div class="input-group">
@@ -38,13 +41,16 @@
     </div>
   </form>
 
+  <br/>  
+
   <div id="filterDepartment" class="btn-group btn-group-toggle">
-      <button class="btn btn-primary" role="button" data-filter="sts_filter">STS</button>
-      <button class="btn btn-primary" role="button" data-filter="id_filter">ID</button>
-      <button class="btn btn-primary" role="button" data-filter="se_filter">SE</button>
-      <button class="btn btn-primary" role="button" data-filter="pm_filter">PM</button>
-      <a class="btn btn-primary" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="sts_filter">STS</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="id_filter">ID</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="se_filter">SE</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="pm_filter">PM</button>
+      <a class="btn btn-primary btn-danger" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
   </div>
+
   <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
     {% csrf_token %}
     <input type="hidden" />
@@ -61,6 +67,7 @@
     {% csrf_token %}
     <input type="hidden" />
   </form>
+
 </div>
 </div>
 </section>
@@ -77,12 +84,12 @@
     {% endif %}
     <div style="padding: 2px;">{{ learningResource.department }}</div>
     <a onclick="window.location='{% url 'detail' learningResource.id %}';"
-       class="btn btn-primary animated pulse" 
+       class="btn btn-primary animated pulse btn-danger" 
        role="button" 
        aria-pressed="true" 
        style="float: right; 
               background: 
-              linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
+              /* linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157)); */
               margin: 0 auto; 
               width: 15%; 
               height: 50%;">
@@ -108,9 +115,6 @@
 
 </body>
 </html>
-
-
-
 
 
 
