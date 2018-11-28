@@ -33,29 +33,26 @@ def create(request):
 #     return render(request, "learningresource/detail.html", context)
 
 
-def detail(request):
-    # obj = get_object_or_404(LearningResource)
-    # context = {
-    #     "object": obj
-    # }
-    queryset = LearningResource.objects.all() # list of objects
-    context = {
-        "object_list": queryset
-    }
-    return render(request, "learningresource/detail.html", context)
-
-
-
-
-
-
-
-# def dynamic_lookup_view(request, id):
-#     obj = LearningResource.objects.get(id=1)
+# def detail(request):
+#     # obj = get_object_or_404(LearningResource)
+#     # context = {
+#     #     "object": obj
+#     # }
+#     queryset = LearningResource.objects.all() # list of objects
 #     context = {
-#         'object': obj
+#         "object_list": queryset
 #     }
-#     return render(request, 'learningresource/detail.html', context)
+#     return render(request, "learningresource/detail.html", context)
+
+
+
+
+
+
+
+def detail(request, resource_id):
+    resource = get_object_or_404(LearningResource, pk=resource_id)
+    return render(request, 'learningresource/detail.html', {'resource':resource})
 
 # def create(request):
 #     form = RawResourceForm()

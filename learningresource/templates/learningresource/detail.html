@@ -7,8 +7,10 @@
             style="height: calc(100vh-24px);
             border-radius: 5px; width:700px;
             background: rgb(247, 247, 247);">
-        <h1 style="margin: auto; width: 400px;"> Resource Details </h1>
+
+        <h1 style="margin: auto; width: 600px;"> {{ resource.title }} </h1>
         <hr />
+
         {% if error %}
         <div class="alert alert-warning" role="alert">
             {{ error }}
@@ -17,50 +19,49 @@
         {% csrf_token %}
 
         <div>
-        {% for instance in object_list %}
-            {% if instance.id == 2 %}
-                <div>
-                    <div class="form-group">
-                        <label style="font-weight: bold">Title</label>
-                        {{ instance.title }}
-                    </div>
+            <div class="form-group">
+                <label style="font-weight: bold">Created by</label>
+                {{ resource.user }}
+            </div>
 
-                    <div class="form-group">
-                        <label style="font-weight: bold">URL</label>
-                        {{ instance.url }} 
-                    </div>
+            <div class="form-group">
+                <label style="font-weight: bold">Published at</label>
+                {{ resource.pub_date }}
+            </div>
+            
+            <div class="form-group">
+                <label style="font-weight: bold">URL</label>
+                {{ resource.url }} 
+            </div>
 
-                    <div class="form-group">
-                        <label style="font-weight: bold">Media Type</label>
-                        {{ instance.media_type }}
-                    </div>
+            <div class="form-group">
+                <label style="font-weight: bold">Media Type</label>
+                {{ resource.media_type }}
+            </div>
 
-                    <div class="checkbox">
-                        <label style="font-weight: bold">Department</label>
-                        {{ instance.department }}
-                    </div>
-                    
+            <div class="checkbox">
+                <label style="font-weight: bold">Department</label>
+                {{ resource.department }}
+            </div>
+            <br/>
 
-                    <div class="form-group">
-                        <label style="font-weight: bold">Description</label>
-                        {{ instance.description }}
-                    </div>
+            <div class="form-group">
+                <label style="font-weight: bold">Description</label>
+                {{ resource.description }}
+            </div>
 
-                    <div class="form-group">
-                        <label style="font-weight: bold">Tags</label>
-                        {{ instance.tag }}
-                    </div>
+            <div class="form-group">
+                <label style="font-weight: bold">Tags</label>
+                {{ resource.tag }}
+            </div>
 
-                    <div class="checkbox">
-                        <label style="font-weight: bold"> Is it free?
-                            {{ instance.is_free }}
-                        </label>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+            <div class="checkbox">
+                <label style="font-weight: bold"> Is it free?
+                    {{ resource.is_free }}
+                </label>
+            </div>
         </div>
     </div>
-</div>
+</div> 
 
 {% endblock %}
