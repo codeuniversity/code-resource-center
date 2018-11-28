@@ -52,7 +52,7 @@
                 <h4>{{ learningResource.title }}</h4>
               {% endif %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
-              <a href="{{ resource.detail }}" 
+              <a onclick="window.location='{% url 'detail' learningResource.id %}';"
                  class="btn btn-primary animated pulse" 
                  role="button" 
                  aria-pressed="true" 
@@ -63,6 +63,8 @@
                         width: 15%; 
                         height: 50%;">
                         See details</a>
+              <!-- <div class="col-6" onclick="window.location='{% url 'detail' learningResource.id %}';" style="cursor: pointer;"> -->
+
           </div>
           <br/>
         {%endfor%}
