@@ -31,8 +31,18 @@
               <div class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                   <a class="nav-item nav-link" href="{% url 'create'%}">Add Resources</a>
-                  <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
-                  <a class="nav-item nav-link" href="{% url 'profile'%}"> <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b></a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item nav-link" href="{% url 'profile'%}">Profile</a>
+                      <a class="dropdown-item nav-link" href="javascript:{document.getElementById('logout').submit()}">    Logout</a>
+                    </div>
+                  </li>
+                  <!-- <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
+                  <a class="nav-item nav-link" href="{% url 'profile'%}"> <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b></a> -->
+                  
                   <form id="logout" method="POST" action="{% url 'logout'%}">
                     {% csrf_token %}
                     <input type="hidden" />
