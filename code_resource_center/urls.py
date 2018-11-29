@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 import accounts.views
 import dashboard.views
+import learningresource.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
