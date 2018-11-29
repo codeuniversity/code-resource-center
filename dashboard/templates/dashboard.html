@@ -52,7 +52,7 @@
                 <h4>{{ learningResource.title }}</h4>
               {% endif %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
-              <a onclick="window.location='{% url 'detail' learningResource.id %}';"
+              <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
                  class="btn btn-primary animated pulse" 
                  role="button" 
                  aria-pressed="true" 
