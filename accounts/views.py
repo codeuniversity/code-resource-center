@@ -74,24 +74,31 @@ def logout(request):
 def profile(request):
     # request user info
     if request.method == "POST":
-        user_instance = request.user
-        user_form = UpdateUserForm(request.POST or None, instance=user_instance)
+        user_form = UpdateUserForm(request.POST or None, instance=request.user)
         if user_form.is_valid():
-            user_form.save()
-            context = {
-                'user_form': user_form,
-                'success': 'Your profile was changed successfully.'
-            }
-            return render(request, 'profile.html', context) 
+            # check if for correct email domain
+            email = user_form.cleaned_data.get('email')
+            if not email.endswith("@code.berlin"):
+                context = {
+                    'user_form': user_form,
+                    'error': 'You can only login with your code email.'
+                }
+                return render(request, 'profile.html', context )
+            else:
+                user_form.save()
+                context = {
+                    'user_form': user_form,
+                    'success': 'Profile info changed successfully.'
+                }
+                return render(request, 'profile.html', context) 
         else:
             context = {
                 'user_form': user_form,
-                'error': 'Invalid user form.'
+                'error': 'Invalid user info.'
                 }
             return render(request, 'profile.html', context) 
     else:        
-        user_instance = request.user
-        user_form = UpdateUserForm(instance=user_instance)
+        user_form = UpdateUserForm(instance=request.user)
         context = {
             'user_form': user_form,
         }
