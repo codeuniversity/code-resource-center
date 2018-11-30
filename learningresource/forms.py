@@ -25,23 +25,25 @@ class LearningResourceForm(forms.ModelForm):
                             'placeholder':'Description',
                             'class':'form-control',
                             'rows': 4,
-                            }))
+                        }))
     media_type = forms.ModelChoiceField(
             queryset=MediaType.objects.all(),
             widget=forms.Select(
-                      attrs={'class':'form-control'}
-            ))
+                      attrs={
+                              'empty_label':None,
+                              'class':'form-control',
+                      }))
          
-    department = forms.ModelChoiceField(
-            queryset=Department.objects.all(),
-            widget=forms.Select(
-                      attrs={'class':'form-control'}
-            ))
-#     department = forms.ModelMultipleChoiceField(
+#     department = forms.ModelChoiceField(
 #             queryset=Department.objects.all(),
-#             widget=forms.CheckboxSelectMultiple(
-#                    attrs={'class':'form-control',}
+#             widget=forms.Select(
+#                       attrs={'class':'form-control'}
 #             ))
+    department = forms.ModelMultipleChoiceField(
+            queryset=Department.objects.all(),
+            widget=forms.CheckboxSelectMultiple(
+                   attrs={}
+            ))
     is_free = forms.BooleanField(required=False)
     tag = forms.CharField(
             widget = forms.TextInput(
