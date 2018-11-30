@@ -50,17 +50,18 @@
                 <h4>{{ learningResource.short_title }}</h4>
               {% else %}
                 <h4>{{ learningResource.title }}</h4>
+                <h2>{{ name }}</h2>
               {% endif %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
-              <a onclick="window.location='{% url 'detail' learningResource.id %}';"
-                 class="btn btn-primary animated pulse" 
-                 role="button" 
-                 aria-pressed="true" 
-                 style="float: right; 
-                        background: 
+              <a onclick="{% url 'detail' learningResource.id %}"
+                 class="btn btn-primary animated pulse"
+                 role="button"
+                 aria-pressed="true"
+                 style="float: right;
+                        background:
                         linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
-                        margin: 0 auto; 
-                        width: 15%; 
+                        margin: 0 auto;
+                        width: 15%;
                         height: 50%;">
                         See details</a>
               <!-- <div class="col-6" onclick="window.location='{% url 'detail' learningResource.id %}';" style="cursor: pointer;"> -->
