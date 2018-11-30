@@ -130,13 +130,10 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.CharField(max_length=16, null=True, choices=USERTYPE_CHOICES)
-    institution = models.CharField(max_length=32, null=True, choices=INSTITUTION_CHOICES, default=CODE)
+    user_type = models.CharField(max_length=16, null=True, blank=True, choices=USERTYPE_CHOICES)
+    institution = models.CharField(max_length=32, null=True, blank=True, choices=INSTITUTION_CHOICES, default=CODE)
     image = models.ImageField(upload_to='profile_images', null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
-
-    # def __str__(self):
-    #     return self.
 
 class ProfileDepartment(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -153,4 +150,3 @@ def create_profile(sender, **kwargs):
         profile.save()
 # connect User and user profile
 post_save.connect(create_profile, sender=User)
-        # return self.department_name

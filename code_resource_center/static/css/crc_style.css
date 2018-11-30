@@ -1,0 +1,16 @@
+/* style={
+    "background": "transparent",
+    "border-top": "transparent !important",
+    "border-left": "transparent !important",
+    "border-right": "transparent !important",
+    "border-bottom": "4px solid !important",
+} */
+
+.update-profile {
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid;
+    font-weight: 200;
+    padding-left: 0;
+}
