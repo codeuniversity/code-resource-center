@@ -78,7 +78,11 @@ def profile(request):
         user_form = UpdateUserForm(request.POST or None, instance=user_instance)
         if user_form.is_valid():
             user_form.save()
-            return redirect('/accounts/profile')
+            context = {
+                'user_form': user_form,
+                'success': 'Your profile was changed successfully.'
+            }
+            return render(request, 'profile.html', context) 
         else:
             context = {
                 'user_form': user_form,

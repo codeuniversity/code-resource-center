@@ -162,35 +162,33 @@ class UpdateUserForm(UserChangeForm):
             'first_name': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
-                    "id":"input-first-name",
                     "name":"input-first-name",
                 }
             ),
             'last_name': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
-                    "id":"input-last-name",
                     "name":"input-last-name",
                 }
             ),
             'email': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
-                    "id":"input-emaile",
                     "name":"input-email",
                 }
             ),
         }
+        
+    # sanitize form inputs
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        return first_name
     
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        return last_name
 
-    # # sanitize form inputs
-    # def clean_first_name(self):
-    #     first_name = self.cleaned_data['first_name']
-    #     return first_name
-    
-    # def clean_last_name(self):
-    #     last_name = self.cleaned_data['last_name']
-    #     return last_name
+
 
     # def clean_password_confirm(self):
     #     # Check that the two password entries match

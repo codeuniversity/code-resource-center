@@ -7,7 +7,7 @@
 <div class="d-flex justify-content-center">
     <div class="container mt-2 p-5"
          style="border-radius: 5px; 
-            width:400px;">
+            width:420px;">
         <div class="row">
             <div class="col-8">
                 <h2 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h2>
@@ -16,14 +16,16 @@
                 <img src="{% static 'outline_account_circle.png' %}"/>
             </div>
         </div>
-        {% if error %} 
+        {% if error %}
+        <br>
         <div class="alert alert-warning" role="alert">
           {{ error }}
         </div>
         {% endif %}
-        {% if success %} 
+        {% if success %}
+        <br>
         <div class="alert alert-success" role="alert">
-          {{ success }}
+            {{ success }}
         </div>
         {% endif %}
 
