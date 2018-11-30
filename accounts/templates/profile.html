@@ -10,10 +10,18 @@
             width:420px;">
         <div class="row">
             <div class="col-8">
-                <h2 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h2>
+                <h3 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h3>
             </div>
-            <div class="col-4">
-                <img src="{% static 'outline_account_circle.png' %}"/>
+            <div class="col-4" 
+                style="
+                    background-color:rgb(81, 74, 157);
+                    opacity: 0.7;
+                    height: 120px;">
+                <p class="mx-auto" style="
+                    margin-top: 45px;
+                    padding-left: 30px;
+                    opacity: 1;
+                    color: white;">{{ user.initials }}</p>
             </div>
         </div>
         {% if error %}
@@ -31,10 +39,9 @@
 
         <hr />
 
-        <form class="" style="margin: auto; width: 100%;"
+        <form style="margin: auto; width: 100%;"
             method="POST" action="{% url 'profile' %}">
             {%  csrf_token %}
-            <!-- {{user_form.as_p}} -->
             <div class="form-group">
                 <label for="first_name" style="font-size: 10px;">First name</label>
                 <p>{{user_form.first_name}}</p>
