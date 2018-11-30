@@ -37,17 +37,12 @@ class LearningResourceForm(forms.ModelForm):
                 # Note that if a ModelChoiceField is required and has a default initial value, no empty choice is created (regardless of the value of empty_label).
                 # todo 
 
-         
-#     department = forms.ModelChoiceField(
-#             queryset=Department.objects.all(),
-#             widget=forms.Select(
-#                       attrs={'class':'form-control'}
-#             ))
     department = forms.ModelMultipleChoiceField(
             queryset=Department.objects.all(),
-            widget=forms.CheckboxSelectMultiple(
-                   attrs={}
-            ))
+            widget=forms.SelectMultiple(
+                   attrs={
+                        'class':'form-control',
+                   }))
     is_free = forms.BooleanField(required=False)
     tag = forms.CharField(
             widget = forms.TextInput(
@@ -72,5 +67,5 @@ class LearningResourceForm(forms.ModelForm):
         
                 super(LearningResourceForm, self).__init__(*args, **kwargs)
                 
-                self.fields["department"].widget = CheckboxSelectMultiple()
+                self.fields["department"].widget = SelectMultiple()
                 self.fields["department"].queryset = Department.objects.all()
