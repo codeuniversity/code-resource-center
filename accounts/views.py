@@ -76,7 +76,7 @@ def profile(request):
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST or None, instance=request.user)
         if user_form.is_valid():
-            # check if for correct email domain
+            # check if correct email domain
             email = user_form.cleaned_data.get('email')
             if not email.endswith("@code.berlin"):
                 context = {

@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
 from .models import Profile
 
+import re
 User = get_user_model()
 
 ###### REGISTER FORM FOR USERS ######
@@ -69,10 +69,18 @@ class RegisterForm(forms.ModelForm):
     # sanitize form inputs
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
+        if not first_name:
+             raise forms.ValidationError("First name is empty.")
+        if not first_name.replace(" ", "").replace("-", "").replace(".", "").isalpha():
+            raise forms.ValidationError("First name contains invalid characters.")
         return first_name
     
     def clean_last_name(self):
         last_name = self.cleaned_data['last_name']
+        if not last_name:
+            raise forms.ValidationError("Last name is empty.")
+        if not last_name.replace(" ", "").replace("-", "").replace(".", "").isalpha():
+            raise forms.ValidationError("Last name contains invalid characters.")
         return last_name
 
     def clean_password2(self):
@@ -162,33 +170,43 @@ class UpdateUserForm(UserChangeForm):
             'first_name': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
+                    "placeholder": "First name",
                     "name":"input-first-name",
                 }
             ),
             'last_name': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
+                    "placeholder": "Last name",
                     "name":"input-last-name",
                 }
             ),
             'email': forms.TextInput(
                 attrs = {
                     "class":"form-control update-profile",
+                    "placeholder": "Email",
                     "name":"input-email",
                 }
             ),
         }
-        
+
     # sanitize form inputs
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
+        if not first_name:
+             raise forms.ValidationError("First name is empty.")
+        if not first_name.replace(" ", "").replace("-", "").replace(".", "").isalpha():
+            raise forms.ValidationError("First name contains invalid characters.")
         return first_name
     
     def clean_last_name(self):
         last_name = self.cleaned_data['last_name']
+        # check if passwords match
+        if not last_name:
+            raise forms.ValidationError("Last name is empty.")
+        if not last_name.replace(" ", "").replace("-", "").replace(".", "").isalpha():
+            raise forms.ValidationError("Last name contains invalid characters.")
         return last_name
-
-
 
     # def clean_password_confirm(self):
     #     # Check that the two password entries match
