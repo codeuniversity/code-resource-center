@@ -13,8 +13,9 @@ class LearningResourceForm(forms.ModelForm):
                             'placeholder':'Title',
                             'class':'form-control',
                             }))
-    url = forms.CharField(
-            validators=[URLValidator()], 
+    url = forms.URLField(
+            max_length=200,
+            initial="http://",
             widget=forms.TextInput(
                     attrs={
                             'placeholder':'URL',
