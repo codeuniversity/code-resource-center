@@ -34,7 +34,11 @@
                   <a class="nav-item nav-link" href="{% url 'create'%}">Add Resources</a>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      {% if user.profile.avatar %}
+                      <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+                      {% else%}
                       <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
+                      {% endif %}
                     </a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item nav-link" href="{% url 'profile'%}">Profile</a>

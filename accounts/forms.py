@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.core.files.images import get_image_dimensions
 from .models import Profile
 
-import re
 User = get_user_model()
 
 ###### REGISTER FORM FOR USERS ######
@@ -208,173 +208,45 @@ class UpdateUserForm(UserChangeForm):
             raise forms.ValidationError("Last name contains invalid characters.")
         return last_name
 
-    # def clean_password_confirm(self):
-    #     # Check that the two password entries match
-    #     password_confirm = self.cleaned_data.get("password_confirm")
-    #     return password_confirm
-
-    # def clean_password(self):
-    #     """Regardless of what the user provides, return the initial value.
-    #     This is done here, rather than on the field, because the
-    #     field does not have access to the initial value"""
-    #     return self.initial["password"]
-
-
-
-
-
-
-# class UpdateUserForm(forms.ModelForm):
-#  """A form for users to update their user accounts. In addition to the required
-#     fields, it allows to update the password. The form adds an old password field, 
-#     and a new and repeat new password field."""
-#     old_password = forms.CharField(
-#         label='', 
-#         widget=forms.PasswordInput(
-#             attrs = {
-#                 "id":"old_password",
-#                 "class":"form-control",
-#                 "placeholder":"old password",
-#                 "name":"old_password",               
-#             }
-#         )
-#     )
-
-#     new_password1 = forms.CharField(
-#         label='', 
-#         widget=forms.PasswordInput(
-#             attrs = {
-#                 "id":"new_password1",
-#                 "class":"form-control",
-#                 "placeholder":"New password",
-#                 "name":"new_password1",               
-#             }
-#         )
-#     )
-#     new_password2 = forms.CharField(
-#         label='', 
-#         widget=forms.PasswordInput(
-#             attrs = {
-#                 "id":"new_password2",
-#                 "class":"form-control",
-#                 "placeholder":"Repeat new password",
-#                 "name":"new_password2",               
-#             }
-#     ))
-
-#     class Meta:
-#         model = User
-#         fields = ('first_name', 'last_name', 'email')
-#         labels = {
-#             'first_name': '',
-#             'last_name': '',
-#             'email': ''
-#         }
-#         widgets = {
-#             'first_name': forms.TextInput(
-#                 attrs = {
-#                     "class":"form-control",
-#                     "id":"input-first-name",
-#                     "placeholder":"First name",
-#                     "name":"input-first-name",
-#                 }
-#             ),
-#             'last_name': forms.TextInput(
-#                 attrs = {
-#                     "class":"form-control",
-#                     "id":"input-last-name",
-#                     "placeholder":"Last name",
-#                     "name":"input-last-name",
-#                 }
-#             ),
-#             'email': forms.EmailInput(
-#                 attrs = {
-#                     "class":"form-control",
-#                     "id":"input-email",
-#                     "placeholder":"Email",
-#                     "name":"input-email",
-#             }),
-#         }
-
-#     # sanitize form inputs
-#     def clean_first_name(self):
-#         first_name = self.cleaned_data['first_name']
-#         return first_name
-    
-#     def clean_last_name(self):
-#         last_name = self.cleaned_data['last_name']
-#         return last_name
-
-#     def clean_password2(self):
-#         # Check that the password matches the old password
-#         user = auth.authenticate(username=request.POST['email'], password=request.POST['old_password'])
-#         if user is not None:
-#         # Check that the two password entries match
-#         new_password1 = self.cleaned_data.get("password1")
-#         new_password2 = self.cleaned_data.get("password2")
-#         # check if passwords match
-#         if password1 and password2 and password1 != password2:
-#             raise forms.ValidationError("Passwords don't match")
-#         return password2
-
-#     def save(self, commit=True):
-#         # Save the provided password in hashed format
-#         user = super(RegisterForm, self).save(commit=False)
-#         user.set_password(self.cleaned_data["password1"])
-#         # TO DO: Send email to users to confirm signup first
-#         # user.active = false
-#         if commit:
-#             user.save()
-#         return user
-
-
 ###### PROFILE FORM ######
-# source: Django documentation
-# class ProfileCreationForm(forms.ModelForm):
-    
-#     class Meta:
-#         model = Profile
-#         fields = ('user_type', 'institution',)
+class ProfileChangeForm(forms.ModelForm):
+    """A form for users to change their profile information."""
 
-        #  # Institution enums
-        # CODE = 'CODE'
-        # CD = 'CD'
-        # OTHER = 'OTHER'
-        # INSTITUTION_CHOICES = (
-        #     (CODE, 'Code University'),
-        #     (CD, 'Code+Design Camps'),
-        #     (OTHER, 'other'),
-        # )
+    class Meta:
+        model = Profile
+        fields = ('avatar',)
 
-        # # usertype enums
-        # STUDENT = 'STUDENT'
-        # AC_STAFF = 'AC_STAFF'
-        # ADMIN_STAFF = 'ADMIN_STAFF'
-        # ALUMNI = 'ALUMNI'
-        # EXTERNAL = 'EXTERNAL'
+    # TO DO: Image validation
+    #  source: 
+    # https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
+    def clean_avatar(self):
+        avatar = self.cleaned_data['avatar']
 
-        # USERTYPE_CHOICES = (
-        #     (STUDENT, 'Student'),
-        #     (CD, 'Code+Design Camper'),
-        #     (AC_STAFF, 'Academic Staff'),
-        #     (ADMIN_STAFF, 'Administrative Staff'),
-        #     (ALUMNI, 'Alumni'),
-        #     (EXTERNAL, 'External')
-        # )
-        # labels = {
-        #     'user_type': 'What\'s your role at Code?',
-        #     'institution': 'What\'s your organisation?',
-        # }
-        # widgets = {
-        #     'user_type': forms.ChoiceField(
-        #         choices = USERTYPE_CHOICES,
-        #         attrs = {
-        #             "class":"form-control",
-        #             "id":"select-institution",
-        #             "name":"select-institution",
-        #         }
+        try:
+            width, height = get_image_dimensions(avatar)
 
-        #     ),
+            # validate dimensions
+            max_width = 6000
+            max_height = 6000
+            if int(width) > max_width or int(height) > max_height:
+                raise forms.ValidationError( u'Please use an image that is '
+                     '%s x %s pixels or smaller.' % (max_width, max_height))
 
-        # }
+            #validate content type
+            main, sub = avatar.content_type.split('/')
+            if not (main == 'image' and sub in ['jpeg', 'gif', 'png']):
+                raise forms.ValidationError('Please use a JPEG, '
+                    'GIF or PNG image.')
 
+            #validate file size
+            if len(avatar) > (1000 * 1024):
+                raise forms.ValidationError('Avatar file size may not exceed 10Mb.')
+
+        except AttributeError:
+            """
+            Handles case when we are updating the user profile
+            and do not supply a new avatar
+            """
+            pass
+
+        return avatar

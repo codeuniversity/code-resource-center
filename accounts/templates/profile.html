@@ -12,17 +12,24 @@
             <div class="col-8">
                 <h3 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h3>
             </div>
+            {% if user.profile.avatar %}
+            <div class="col-4 img-fluid">
+                <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+            </div>
+            {% else %}
             <div class="col-4" 
                 style="
-                    background-color:rgb(81, 74, 157);
-                    opacity: 0.7;
-                    height: 120px;">
-                <p class="mx-auto" style="
-                    margin-top: 45px;
-                    padding-left: 30px;
-                    opacity: 1;
-                    color: white;">{{ user.initials }}</p>
+                background-color:rgb(81, 74, 157);
+                opacity: 0.7;
+                height: 120px;">
+            <p class="mx-auto" style="
+                margin-top: 45px;
+                padding-left: 30px;
+                opacity: 1;
+                color: white;">{{ user.initials }}</p>
             </div>
+            {% endif %}
+     
         </div>
         {% if error %}
         <br>
@@ -39,25 +46,30 @@
 
         <hr />
 
-        <form style="margin: auto; width: 100%;"
+        <form enctype="multipart/form-data" style="margin: auto; width: 100%;"
             method="POST" action="{% url 'profile' %}">
             {%  csrf_token %}
             <div class="form-group">
-                <label for="first_name" style="font-size: 10px;">First name</label>
+                <label for="input-first-name" style="font-size: 10px;">First name</label>
                 <p>{{user_form.first_name}}</p>
                 <p>{{user_form.first_name.errors}}</p>
             </div>
             <div class="form-group">
-                <label for="last_name" style="font-size: 10px;">Last name</label>
+                <label for="input-last-name" style="font-size: 10px;">Last name</label>
                 <p>{{user_form.last_name}}</p>
                 <p>{{user_form.last_name.errors}}</p>
             </div>
             <div class="form-group">
-                <label for="email" style="font-size: 10px;">Email</label>
+                <label for="input-email" style="font-size: 10px;">Email</label>
                 <p>{{user_form.email}}</p>
                 <p>{{user_form.email.errors}}</p>
             </div>
-            <br>
+            <div class="form-group">
+                <label for="user-avatar" style="font-size: 10px;">Image</label>
+                <p>{{profile_form.avatar}}</p>
+                <p>{{profile_form.avatar.errors}}</p>
+            </div>
+            <br>            
             <div class="form-row">
                 <input
                     class="btn btn-primary animated pulse"

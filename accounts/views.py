@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import (
-    RegisterForm, 
+    RegisterForm,
+    ProfileChangeForm,
     UpdateUserForm, 
 )
 
@@ -75,33 +76,40 @@ def profile(request):
     # request user info
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST or None, instance=request.user)
-        if user_form.is_valid():
+        profile_form = ProfileChangeForm(request.POST or None, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
             # check if correct email domain
             email = user_form.cleaned_data.get('email')
             if not email.endswith("@code.berlin"):
                 context = {
                     'user_form': user_form,
+                    'profile_form': profile_form,
                     'error': 'You can only login with your code email.'
                 }
                 return render(request, 'profile.html', context )
             else:
                 # success
                 user_form.save()
+                profile_form.save()
                 context = {
                     'user_form': user_form,
+                    'profile_form': profile_form,
                     'success': 'Profile info changed successfully.'
                 }
                 return render(request, 'profile.html', context) 
         else:
             context = {
                 'user_form': user_form,
+                'profile_form': profile_form,
                 'error': 'Invalid user info.'
                 }
             return render(request, 'profile.html', context) 
-    else: 
+    else:
         user_form = UpdateUserForm(instance=request.user)
+        profile_form = ProfileChangeForm()
         context = {
             'user_form': user_form,
+            'profile_form': profile_form,
         }
         return render(request, 'profile.html', context) 
 

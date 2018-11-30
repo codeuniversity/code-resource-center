@@ -134,10 +134,14 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.CharField(max_length=16, null=True, blank=True, choices=USERTYPE_CHOICES)
+    user_type = models.CharField(max_length=16, null=True, blank=True, choices=USERTYPE_CHOICES, default=STUDENT)
     institution = models.CharField(max_length=32, null=True, blank=True, choices=INSTITUTION_CHOICES, default=CODE)
-    image = models.ImageField(upload_to='profile_images', null=True, blank=True)
+    avatar = models.ImageField(upload_to='profile_images', null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
+    
+    # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN 
+    # def __str__(self):
+    #     return  self.user
 
 class ProfileDepartment(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
