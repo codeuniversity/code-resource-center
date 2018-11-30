@@ -85,6 +85,7 @@ def profile(request):
                 }
                 return render(request, 'profile.html', context )
             else:
+                # success
                 user_form.save()
                 context = {
                     'user_form': user_form,
@@ -97,7 +98,7 @@ def profile(request):
                 'error': 'Invalid user info.'
                 }
             return render(request, 'profile.html', context) 
-    else:        
+    else: 
         user_form = UpdateUserForm(instance=request.user)
         context = {
             'user_form': user_form,

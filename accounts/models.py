@@ -75,6 +75,10 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name
+    
+    def initials(self):
+        initials = self.first_name[:1].upper() + self.last_name[:1].upper()
+        return initials
 
     # "Does the user have a specific permission?"
     def has_perm(self, perm, obj=None):
