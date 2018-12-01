@@ -57,7 +57,7 @@
                 {% endif %}
               {% endfor %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
-              <a onclick="{% url 'detail' learningResource.id %}"
+              <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
                  class="btn btn-primary animated pulse"
                  role="button"
                  aria-pressed="true"
