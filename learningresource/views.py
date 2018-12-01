@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from accounts.models import User
 from django.contrib import auth
 from .forms import LearningResourceForm
+from .models import LearningResource
 
 @login_required(login_url="/accounts/login")
 def create(request):
@@ -17,27 +18,41 @@ def create(request):
             'form': form
         }
         return render(request,"learningresource/create.html",context)
+        #return redirect('/learningresource/' + str(resource_id))
     else:
         return redirect('login')
 
+# @login_required(login_url="/accounts/login")
+# def detail(request, id):
+#     user = User.objects;
+#     if user is not None:
+#         obj = get_object_or_404(LearningResource, id=id)
+#         context = {
+#             "object": obj
+#         }
+#     return render(request, "learningresource/detail.html", context)
 
 
-
-
-
-
-
-
-
-
-
-
-# def dynamic_lookup_view(request, id):
-#     obj = LearningResource.objects.get(id=1)
+# def detail(request):
+#     # obj = get_object_or_404(LearningResource)
+#     # context = {
+#     #     "object": obj
+#     # }
+#     queryset = LearningResource.objects.all() # list of objects
 #     context = {
-#         'object': obj
+#         "object_list": queryset
 #     }
-#     return render(request, 'learningresource/detail.html', context)
+#     return render(request, "learningresource/detail.html", context)
+
+
+
+
+
+
+
+def detail(request, resource_id):
+    resource = get_object_or_404(LearningResource, pk=resource_id)
+    return render(request, 'learningresource/detail.html', {'resource':resource})
 
 # def create(request):
 #     form = RawResourceForm()

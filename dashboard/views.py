@@ -8,8 +8,13 @@ from django.db.models import Q
 from learningresource.models import LearningResource, UserLearningResource
 
 @login_required(login_url="/accounts/login")
+<<<<<<< HEAD
 def dashboard(request):
     user = User.objects.all()
+=======
+def home(request):
+    user = User.objects
+>>>>>>> 5e0abb5b891be46b7ff9d32b8a09bdefa045013a
     learningResources = LearningResource.objects.all()
     if user is not None:
         return render(request, 'dashboard.html', {'learningResources': learningResources})
