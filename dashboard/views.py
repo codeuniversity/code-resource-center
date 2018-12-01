@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
-# from django.contrib.auth.models import User
 from django.contrib import auth
 from django.db.models import Count
 from django.db.models import Q
@@ -11,8 +10,9 @@ from learningresource.models import LearningResource, UserLearningResource
 def home(request):
     user = User.objects
     learningResources = LearningResource.objects.all()
+    relations = UserLearningResource.objects.all().select_related('user').select_related('learningresource')
     if user is not None:
-        return render(request, 'dashboard.html', {'learningResources': learningResources })
+        return render(request, 'dashboard.html', {'learningResources': learningResources, 'relations': relations,})
     else:
         return redirect('login')
 
@@ -22,30 +22,9 @@ def searchResult(request):
     if 'q' in request.GET:
         query = request.GET.get('q')
         learningResources = LearningResource.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
-        learning
         return render(request, 'dashboard.html', {'query':query, 'learningResources':learningResources})
     else:
         return render(request, 'dashboard.html', {'query':query})
-
-#
-# def getResourceAuthor(request):
-#     learningResources = LearningResource.objects.all()
-#     for resource in learningResources:
-#         author = getAuthor(resource.id)
-#         return render(request, 'dashboard.html', {'author': author },)
-
-def getAuthor(id):
-    #id is hardcoded for now
-    #TODO: find a way to get the resource id from the template!!
-    relations = UserLearningResource.objects.all().select_related('user').select_related('learningresource')
-    for relation in relations:
-        if relation.learningresource.id == id:
-            return relation.user.first_name.capitalize()
-            # return render(request, 'dashboard.html', {'name': name})
-        #     # name = relation.user.first_name.capitalize() + " " + relation.user.last_name.capitalize()
-        #     return relation.user.id
-        # else:
-        #     return "error"
 
 def filterSoftwareEng(request):
     learningResources = LearningResource.objects.filter(department=1)

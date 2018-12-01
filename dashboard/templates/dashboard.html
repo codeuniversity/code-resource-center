@@ -50,8 +50,12 @@
                 <h4>{{ learningResource.short_title }}</h4>
               {% else %}
                 <h4>{{ learningResource.title }}</h4>
-                <h2>{{ name }}</h2>
               {% endif %}
+              {% for relation in relations %}
+                {%if relation.learningresource.id == learningResource.id %}
+                <span style="padding: 2px;"><b>by {{ relation.user.first_name.capitalize}}  {{relation.user.last_name.capitalize}}</b></span>
+                {% endif %}
+              {% endfor %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
               <a onclick="{% url 'detail' learningResource.id %}"
                  class="btn btn-primary animated pulse"
