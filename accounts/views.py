@@ -48,11 +48,7 @@ def login(request):
         user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
-<<<<<<< HEAD
-            return redirect('/dashboard/dashboard')
-=======
             return redirect('/dashboard/home')
->>>>>>> 5e0abb5b891be46b7ff9d32b8a09bdefa045013a
         else:
             return render(request, 'login.html', {'error': 'Ooops! Something went wrong. ☹️'})
     else:
