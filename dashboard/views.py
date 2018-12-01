@@ -12,7 +12,7 @@ def home(request):
     user = User.objects
     learningResources = LearningResource.objects.all()
     if user is not None:
-        return render(request, 'dashboard.html', {'learningResources': learningResources})
+        return render(request, 'dashboard.html', {'learningResources': learningResources })
     else:
         return redirect('login')
 
@@ -27,26 +27,20 @@ def searchResult(request):
     else:
         return render(request, 'dashboard.html', {'query':query})
 
-
-# def getResourceId():
+#
+# def getResourceAuthor(request):
 #     learningResources = LearningResource.objects.all()
 #     for resource in learningResources:
-#         print(resource.id)
+#         author = getAuthor(resource.id)
+#         return render(request, 'dashboard.html', {'author': author },)
 
 def getAuthor(id):
     #id is hardcoded for now
     #TODO: find a way to get the resource id from the template!!
-    relations = UserLearningResource.objects.all()
+    relations = UserLearningResource.objects.all().select_related('user').select_related('learningresource')
     for relation in relations:
-        # print(relation.user, relation.learningresource, relation.user.id)
         if relation.learningresource.id == id:
-            result = UserLearningResource.objects.filter(user=relation.user)
-            author_firstname = relation.user.first_name.capitalize()
-            author_lastname = relation.user.last_name.capitalize()
-            return "{} {}".format(author_firstname, author_lastname)
-
-        else:
-            return "Unidentified Author"
+            return relation.user.first_name.capitalize()
             # return render(request, 'dashboard.html', {'name': name})
         #     # name = relation.user.first_name.capitalize() + " " + relation.user.last_name.capitalize()
         #     return relation.user.id
