@@ -4,6 +4,7 @@ from accounts.models import User
 # from django.contrib.auth.models import User
 # from django.contrib.auth import get_user_model
 from django.contrib import auth
+from django.db.models import Count
 from django.db.models import Q
 from learningresource.models import LearningResource, UserLearningResource
 
@@ -11,8 +12,9 @@ from learningresource.models import LearningResource, UserLearningResource
 def home(request):
     user = User.objects
     learningResources = LearningResource.objects.all()
+    relations = UserLearningResource.objects.all().select_related('user').select_related('learningresource')
     if user is not None:
-        return render(request, 'dashboard.html', {'learningResources': learningResources})
+        return render(request, 'dashboard.html', {'learningResources': learningResources, 'relations': relations,})
     else:
         return redirect('login')
 
@@ -21,7 +23,7 @@ def searchResult(request):
     query = None
     if 'q' in request.GET:
         query = request.GET.get('q')
-        learningResources = LearningResource.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        learningResources = LearningResource.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)| Q(tag__icontains=query))
         return render(request, 'dashboard.html', {'query':query, 'learningResources':learningResources})
     else:
         return render(request, 'dashboard.html', {'query':query})
