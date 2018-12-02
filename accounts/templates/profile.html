@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="container mt-2 p-5"
+         style="border-radius: 5px; 
+            width:420px;">
+        <div class="row">
+            <div class="col-8">
+                <h3 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h3>
+            </div>
+            {% if user.profile.avatar %}
+            <div class="col-4 img-fluid">
+                <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+            </div>
+            {% else %}
+            <div class="col-4" 
+                style="
+                background-color:rgb(81, 74, 157);
+                opacity: 0.7;
+                height: 120px;">
+            <p class="mx-auto" style="
+                margin-top: 45px;
+                padding-left: 30px;
+                opacity: 1;
+                color: white;">{{ user.initials }}</p>
+            </div>
+            {% endif %}
+            <div class="row">
+                <p style="font-size: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
+            </div>
+        </div>
+        {% if error %}
+        <br>
+        <div class="alert alert-warning" role="alert">
+          {{ error }}
+        </div>
+        {% endif %}
+        {% if success %}
+        <br>
+        <div class="alert alert-success" role="alert">
+            {{ success }}
+        </div>
+        {% endif %}
+
+        <hr />
+
+        <form enctype="multipart/form-data" style="margin: auto; width: 100%;"
+            method="POST" action="{% url 'profile' %}">
+            {%  csrf_token %}
+            <div class="form-group">
+                <label for="input-first-name" style="font-size: 10px;">First name</label>
+                <p>{{user_form.first_name}}</p>
+                <p>{{user_form.first_name.errors}}</p>
+            </div>
+            <div class="form-group">
+                <label for="input-last-name" style="font-size: 10px;">Last name</label>
+                <p>{{user_form.last_name}}</p>
+                <p>{{user_form.last_name.errors}}</p>
+            </div>
+            <div class="form-group">
+                <label for="input-email" style="font-size: 10px;">Email</label>
+                <p>{{user_form.email}}</p>
+                <p>{{user_form.email.errors}}</p>
+            </div>
+            <div class="form-group">
+                <label for="user-avatar" style="font-size: 10px;">Image</label>
+                <p>{{profile_form.avatar}}</p>
+                <p>{{profile_form.avatar.errors}}</p>
+            </div>
+            <br>            
+            <div class="form-row">
+                <input
+                    class="btn btn-primary animated pulse"
+                    style="background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
+                            margin: 0 auto; width: 60%;"
+                    type="submit"
+                    value="Submit changes"/>
+            </div>
+        </form>
+        <br>
+        <div class="float-right">
+            <a class="pl-3" href="{% url 'change_password'%}"> Change password
+             <img src="{% static 'outline_edit.png' %}"/></a>
+        </div>
+       
+    </div>
+</div>
+{% endblock %}
