@@ -72,11 +72,11 @@ def logout(request):
 
 # to change user, profile and ProfileDepartment
 @login_required(login_url="/accounts/login")
-def profile(request):
+def profile_edit(request):
     # request user info
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST or None, instance=request.user)
-        profile_form = ProfileChangeForm(request.POST or None, request.FILES)
+        profile_form = ProfileChangeForm(request.POST or None, request.FILES, instance=request.user.profile)
         if user_form.is_valid() and profile_form.is_valid():
             # check if correct email domain
             email = user_form.cleaned_data.get('email')
@@ -106,7 +106,7 @@ def profile(request):
             return render(request, 'profile.html', context) 
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = ProfileChangeForm()
+        profile_form = ProfileChangeForm(instance=request.user.profile)
         context = {
             'user_form': user_form,
             'profile_form': profile_form,

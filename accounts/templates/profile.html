@@ -29,7 +29,9 @@
                 color: white;">{{ user.initials }}</p>
             </div>
             {% endif %}
-     
+            <div class="row">
+                <p style="font-size: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
+            </div>
         </div>
         {% if error %}
         <br>

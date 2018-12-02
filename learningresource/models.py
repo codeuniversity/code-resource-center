@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Department, User
+from accounts.models import Department, User, Profile
 
 class MediaType(models.Model):
     media_type_name = models.CharField(max_length=32)
@@ -45,7 +45,7 @@ class LearningResourceTag(models.Model):
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
 
 class UserLearningResource(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
 
 class LearningResourceModule(models.Model):

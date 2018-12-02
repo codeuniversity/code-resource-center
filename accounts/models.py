@@ -1,4 +1,5 @@
 from django.db import models
+from enum import Enum
 # use Django signals to extend User object
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (
@@ -107,7 +108,7 @@ class Department(models.Model):
         return self.department_name
 
 class Profile(models.Model):
-    # Institution enums
+ # Institution enums
     CODE = 'CODE'
     CD = 'CD'
     OTHER = 'OTHER'
@@ -117,27 +118,31 @@ class Profile(models.Model):
         (OTHER, 'other'),
     )
 
-    # usertype enums
+    # occupation enums
     STUDENT = 'STUDENT'
     AC_STAFF = 'AC_STAFF'
     ADMIN_STAFF = 'ADMIN_STAFF'
     ALUMNI = 'ALUMNI'
     EXTERNAL = 'EXTERNAL'
 
-    USERTYPE_CHOICES = (
+    OCCUPATION_CHOICES = (
         (STUDENT, 'Student'),
         (CD, 'Code+Design Camper'),
-        (AC_STAFF, 'Academic Staff'),
-        (ADMIN_STAFF, 'Administrative Staff'),
+        (AC_STAFF, 'Academic Team'),
+        (ADMIN_STAFF, 'Code Administration Team'),
         (ALUMNI, 'Alumni'),
         (EXTERNAL, 'External')
     )
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.CharField(max_length=16, null=True, blank=True, choices=USERTYPE_CHOICES, default=STUDENT)
+    occupation = models.CharField(max_length=32, null=True, blank=True, choices=OCCUPATION_CHOICES, default=STUDENT)
     institution = models.CharField(max_length=32, null=True, blank=True, choices=INSTITUTION_CHOICES, default=CODE)
     avatar = models.ImageField(upload_to='profile_images', null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    # def get_occupation_di(self):
+    #     (occupation, occupation.value) for occupation in OCCUPATION_CHOICES:
+    #     return self.occupation.value
+
     
     # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN 
     # def __str__(self):

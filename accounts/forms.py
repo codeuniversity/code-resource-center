@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.files.images import get_image_dimensions
-from .models import Profile
+from .models import Profile, Department, ProfileDepartment
 
 User = get_user_model()
 
@@ -250,3 +250,10 @@ class ProfileChangeForm(forms.ModelForm):
             pass
 
         return avatar
+
+###### CHANGE PROFILE_DEPARTMENT FORM ######
+class ProfileDepartmentChangeForm(forms.ModelForm):
+
+    class Meta:
+        model = ProfileDepartment
+        fields = ('department',)
