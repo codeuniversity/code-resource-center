@@ -106,7 +106,7 @@ def profile_edit(request):
             return render(request, 'profile.html', context) 
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = ProfileChangeForm(instance=request.user.profile)
+        profile_form = ProfileChangeForm()
         context = {
             'user_form': user_form,
             'profile_form': profile_form,

@@ -239,7 +239,7 @@ class ProfileChangeForm(forms.ModelForm):
                     'GIF or PNG image.')
 
             #validate file size
-            if len(avatar) > (1000 * 1024):
+            if len(avatar) > (10000 * 1024):
                 raise forms.ValidationError('Avatar file size may not exceed 10Mb.')
 
         except AttributeError:
