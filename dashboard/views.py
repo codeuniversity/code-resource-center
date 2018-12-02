@@ -21,7 +21,7 @@ def searchResult(request):
     query = None
     if 'q' in request.GET:
         query = request.GET.get('q')
-        learningResources = LearningResource.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        learningResources = LearningResource.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)| Q(tag__icontains=query))
         return render(request, 'dashboard.html', {'query':query, 'learningResources':learningResources})
     else:
         return render(request, 'dashboard.html', {'query':query})
