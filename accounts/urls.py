@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
-# from .views import RegisterView
 
 urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('signup', views.signup, name='signup'),
+    path('profile', views.profile_edit, name='profile'),
+    path('change-password', views.change_password, name='change_password'),
 ]
