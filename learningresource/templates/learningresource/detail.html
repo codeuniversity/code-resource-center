@@ -21,7 +21,7 @@
 
         <dl class="row">
             <dt class="col-sm-3">Created by</dt>
-            <dd class="col-sm-9">{{ resource.user }}</dd> 
+            <dd class="col-sm-9">{{ creator.first_name }} {{ creator.last_name}}</dd>
 
             <dt class="col-sm-3">Added on</dt>
             <dd class="col-sm-9">{{ resource.pub_date_pretty }}</dd>
@@ -41,15 +41,14 @@
             <dt class="col-sm-3">Is it free?</dt>
             <dd class="col-sm-9">{{ resource.is_free }} </dd>
         </dl>
-    
-        <a href="{{ resource.url }}" 
-           class="btn btn-primary animated pulse" 
-           role="button" 
-           aria-pressed="true" 
+
+        <a href="{{ resource.url }}"
+           class="btn btn-primary animated pulse"
+           role="button"
+           aria-pressed="true"
            style="float: right; background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
            margin: 0 auto; width: 135px;">Go to resource</a>
     </div>
-</div> 
+</div>
 
 {% endblock %}
-

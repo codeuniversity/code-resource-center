@@ -51,13 +51,18 @@
               {% else %}
                 <h4>{{ learningResource.title }}</h4>
               {% endif %}
+              {% for relation in relations %}
+                {%if relation.learningresource.id == learningResource.id %}
+                <span style="padding: 2px;"><b>added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
+                {% endif %}
+              {% endfor %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
               <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
-                 class="btn btn-primary animated pulse" 
-                 role="button" 
-                 aria-pressed="true" 
-                 style="float: right; 
-                        background: 
+                 class="btn btn-primary animated pulse"
+                 role="button"
+                 aria-pressed="true"
+                 style="float: right;
+                        background:
                         linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
                         width: 15%; 
                         height: 50%;">

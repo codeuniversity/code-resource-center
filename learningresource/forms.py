@@ -12,14 +12,14 @@ class LearningResourceForm(forms.ModelForm):
                             'class':'form-control',
                             }))
     url = forms.CharField(
-            validators=[URLValidator()], 
+            validators=[URLValidator()],
             widget=forms.TextInput(
                     attrs={
                             'placeholder':'URL',
                             'class':'form-control',
                             }))
     description = forms.CharField(
-            required=False, 
+            required=False,
             widget=forms.Textarea(
                     attrs={
                             'placeholder':'Description',
@@ -31,7 +31,7 @@ class LearningResourceForm(forms.ModelForm):
             widget=forms.Select(
                       attrs={'class':'form-control'}
             ))
-         
+
     department = forms.ModelChoiceField(
             queryset=Department.objects.all(),
             widget=forms.Select(
@@ -51,15 +51,15 @@ class LearningResourceForm(forms.ModelForm):
                             'class':'form-control',
                             }))
 
+
     class Meta:
         model = LearningResource
         fields = [
                 'title',
-                'url', 
+                'url',
                 'description',
                 'media_type',
                 'department',
                 'is_free',
                 'tag',
         ]
-
