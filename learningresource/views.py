@@ -35,7 +35,6 @@ def detail(request, resource_id):
     # profile = Profile.objects.get(pk=creator[0].profile)
     # print("THIS IS THE PROFILE {}".format(profile))
     creator = creator[0].profile.user
-    print("THIS IS THE CREATOR UPDATED {}".format(creator))
     context = {
         'resource': resource,
         'creator': creator,

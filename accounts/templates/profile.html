@@ -11,6 +11,7 @@
         <div class="row">
             <div class="col-8">
                 <h3 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h3>
+                <p style="font-size: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
             </div>
             {% if user.profile.avatar %}
             <div class="col-4 img-fluid">
@@ -30,7 +31,7 @@
             </div>
             {% endif %}
             <div class="row">
-                <p style="font-size: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
+                
             </div>
         </div>
         {% if error %}
