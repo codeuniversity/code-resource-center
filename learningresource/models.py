@@ -44,7 +44,7 @@ class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
 
-class UserLearningResource(models.Model):
+class ProfileLearningResource(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
 

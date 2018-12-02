@@ -6,13 +6,13 @@ from accounts.models import User
 from django.contrib import auth
 from django.db.models import Count
 from django.db.models import Q
-from learningresource.models import LearningResource, UserLearningResource
+from learningresource.models import LearningResource, ProfileLearningResource
 
 @login_required(login_url="/accounts/login")
 def home(request):
     user = User.objects
     learningResources = LearningResource.objects.all()
-    relations = UserLearningResource.objects.all().select_related('user').select_related('learningresource')
+    relations = ProfileLearningResource.objects.all().select_related('profile').select_related('learningresource')
     if user is not None:
         return render(request, 'dashboard.html', {'learningResources': learningResources, 'relations': relations,})
     else:

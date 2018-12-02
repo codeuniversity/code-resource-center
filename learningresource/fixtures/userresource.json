@@ -1,49 +1,49 @@
 [
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 1,
     "fields": {
-      "user": 3,
+      "profile": 3,
       "learningresource": 2
     }
   },
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 2,
     "fields": {
-      "user_id": 4,
+      "profile": 4,
       "learningresource": 3
     }
   },
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 3,
     "fields": {
-      "user": 2,
+      "profile": 2,
       "learningresource": 1
     }
   },
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 4,
     "fields": {
-      "user": 1,
+      "profile": 1,
       "learningresource": 4
     }
   },
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 5,
     "fields": {
-      "user": 3,
+      "profile": 3,
       "learningresource": 6
     }
   },
   {
-    "model": "learningresource.userlearningresource",
+    "model": "learningresource.profilelearningresource",
     "pk": 6,
     "fields": {
-      "user_id": 3,
+      "profile": 3,
       "learningresource": 5
     }
   }

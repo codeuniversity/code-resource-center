@@ -53,7 +53,7 @@
               {% endif %}
               {% for relation in relations %}
                 {%if relation.learningresource.id == learningResource.id %}
-                <span style="padding: 2px;"><b>by {{ relation.user.first_name.capitalize}}  {{relation.user.last_name.capitalize}}</b></span>
+                <span style="padding: 2px;"><b>added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
                 {% endif %}
               {% endfor %}
               <div style="padding: 2px;">{{ learningResource.department }}</div>
