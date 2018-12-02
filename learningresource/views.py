@@ -31,15 +31,26 @@ def create(request):
 def detail(request, resource_id):
     resource = get_object_or_404(LearningResource, pk=resource_id)
     creator = ProfileLearningResource.objects.filter(learningresource=resource_id)
-    # print("THIS IS THE CREATOR {}".format(creator))
-    # profile = Profile.objects.get(pk=creator[0].profile)
-    # print("THIS IS THE PROFILE {}".format(profile))
     creator = creator[0].profile.user
-    print("THIS IS THE CREATOR UPDATED {}".format(creator))
     context = {
         'resource': resource,
         'creator': creator,
     }
-    # creator = ProfileLearningResource.objects.select_related(profile)
-    # print("THIS IS THE CREATOR {}".format(creator))
     return render(request, 'learningresource/detail.html', context)
+
+def upvote(request, resource_id):
+    if request.method =="POST":
+        resource = get_object_or_404(LearningResource, pk=resource_id)
+        creator = ProfileLearningResource.objects.filter(learningresource=resource_id)
+        creator = creator[0].profile.user
+        user = request.user;
+        print(user.has_voted)
+        if user.has_voted == False:
+            resource.votes_total += 1
+            resource.save()
+            user.has_voted = True
+            user.save()
+            return redirect('/learningresource/' + str(resource.id))
+        else:
+            message = "You've voted already!"
+            return render(request,{'message': message})

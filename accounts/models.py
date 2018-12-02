@@ -61,6 +61,7 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False) # superuser
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    has_voted = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email' # make email the username
     # username_field, ws and password are required by default
@@ -76,7 +77,7 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name
-    
+
     def initials(self):
         initials = self.first_name[:1].upper() + self.last_name[:1].upper()
         return initials
@@ -143,8 +144,8 @@ class Profile(models.Model):
     #     (occupation, occupation.value) for occupation in OCCUPATION_CHOICES:
     #     return self.occupation.value
 
-    
-    # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN 
+
+    # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN
     # def __str__(self):
     #     return  self.user
 

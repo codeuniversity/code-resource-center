@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
-# from django.contrib.auth.models import User
-# from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.db.models import Count
 from django.db.models import Q
@@ -27,6 +25,14 @@ def searchResult(request):
         return render(request, 'dashboard.html', {'query':query, 'learningResources':learningResources})
     else:
         return render(request, 'dashboard.html', {'query':query})
+
+def upvote(request, resource_id):
+    if request.method =="POST":
+        resource = get_object_or_404(Product, pk=resource_id)
+        resource.votes_total += 1
+        resource.save()
+    # return redirect('/products/' + str(product.id))
+
 
 def filterSoftwareEng(request):
     learningResources = LearningResource.objects.filter(department=1)
