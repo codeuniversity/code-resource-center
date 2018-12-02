@@ -4,22 +4,26 @@
 
 {% load staticfiles %}
 <main role="main">
-<section class="jumbotron text-center bg-gray">
+<section class="jumbotron text-center" style="background-color:rgb(255, 255, 255)">
     <div class="container">
         <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1>
         <p class="lead text-muted">Find your resources here</p>
-        <div class="row">
-            <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
-              {% csrf_token %}
-              <input class="form-control mr-sm-2" type="search" name ="q" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <div id="filterDepartment" class="btn-group btn-group-toggle">
-                <button class="btn btn-primary" role="button" data-filter="sts_filter">STS</button>
-                <button class="btn btn-primary" role="button" data-filter="id_filter">ID</button>
-                <button class="btn btn-primary" role="button" data-filter="se_filter">SE</button>
-                <button class="btn btn-primary" role="button" data-filter="pm_filter">PM</button>
-                <a class="btn btn-primary" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
+        <div>
+
+            <div class="input-group form-inline" style="padding-left: 22%">
+              <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" name ="q" size="50" placeholder="Search" aria-label="Search">
+                <button class="btn my-2 my-sm-0 btn-info" type="submit" >Search</button>
+              </form>
+            </div>
+
+            <div id="filterDepartment" class="btn-group btn-group-toggle" style="padding: 10px 32%;"> 
+                <button class="btn btn-primary btn-info" role="button" data-filter="sts_filter">STS</button>
+                <button class="btn btn-primary btn-info" role="button" data-filter="id_filter">ID</button>
+                <button class="btn btn-primary btn-info" role="button" data-filter="se_filter">SE</button>
+                <button class="btn btn-primary btn-info" role="button" data-filter="pm_filter">PM</button>
+                <a class="btn btn-primary btn-info" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
             </div>
             <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
               {% csrf_token %}
@@ -40,40 +44,51 @@
         </div>
     </div>
 </section>
-<div class="album py-5">
-  {% if not query %}
-    <div class="container">
-        {% for learningResource in learningResources %}
-          <div>
-            <div style="border: 1px solid #D7D6D6; padding: 2px; height: 80px; display:flex; justify-content: space-between;">
-              {% if learningResource.title|length > 50 %}
-                <h4>{{ learningResource.short_title }}</h4>
-              {% else %}
-                <h4>{{ learningResource.title }}</h4>
-              {% endif %}
-              {% for relation in relations %}
-                {%if relation.learningresource.id == learningResource.id %}
-                <span style="padding: 2px;"><b>added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
-                {% endif %}
-              {% endfor %}
-              <div style="padding: 2px;">{{ learningResource.department }}</div>
-              <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
-                 class="btn btn-primary animated pulse"
-                 role="button"
-                 aria-pressed="true"
-                 style="float: right;
-                        background:
-                        linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
-                        width: 15%; 
-                        height: 50%;">
-                        See details</a>
-              <!-- <div class="col-6" onclick="window.location='{% url 'detail' learningResource.id %}';" style="cursor: pointer;"> -->
 
+<!-- <div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Button</a>
+    </div>
+  </div> -->
+
+<h5 align="Center">Latest Resources</h5>
+
+<div class="card w-120">
+  {% if not query %}
+    <div>
+        <div class="card-body">
+
+        {% for learningResource in learningResources %}
+            <div style="border: 1px solid #D7D6D6; padding: 10px; background-color: rgb(251, 251, 251)">
+
+              {% if learningResource.title|length > 50 %}
+                <h5 class="card-title">{{ learningResource.short_title }}</h5>
+              {% else %}
+                <h5 class="card-title">{{ learningResource.title }}</h5>
+              {% endif %}
+              <div class="row" style="float:right; margin-top: 0px">
+                  <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
+                    class="btn btn-primary btn-info"
+                    style="padding: 10px; margin: 10px; color: white">
+                            See details</a> 
+                  <br/>
+                  <br/>
+                  <a href="{{ learningresource.resource.url }}"
+                    class="btn btn-primary btn-info"
+                    style=" padding: 10px; margin: 10px">
+                          Go to resource</a> 
+                </div>
+              <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
+              <br/>
           </div>
           <br/>
         {%endfor%}
     </div>
 </div>
+
+
 {% endif %}
 <div class="album py-5">
     <div class="container" style="margin-top: -60px;">
@@ -83,4 +98,173 @@
     </div>
 </div>
 </main>
+
+
+
+
+
+
+
 {% endblock %}
+
+
+
+<!-- 
+<head>
+  <title>Code Resource Center</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="jumbotron text-center"
+    style="background-image: url('static/books.jpg'); 
+            color: #ffffff;
+            width: 100%;
+            height: 250px;"> 
+            
+  <br/> 
+  <br/>
+  <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
+    {% csrf_token %}
+    <div class="input-group">
+      <input type="search" class="form-control" size="50" placeholder="Search">
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-danger" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <br/>  
+
+  <div id="filterDepartment" class="btn-group btn-group-toggle">
+      <button class="btn btn-primary btn-danger" role="button" data-filter="sts_filter">STS</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="id_filter">ID</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="se_filter">SE</button>
+      <button class="btn btn-primary btn-danger" role="button" data-filter="pm_filter">PM</button>
+      <a class="btn btn-primary btn-danger" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
+  </div>
+
+  <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
+    {% csrf_token %}
+    <input type="hidden" />
+  </form>
+  <form id="pm_filter" method="get" action="{% url 'dashboard:PMFilter' %}" name="pm_filter">
+    {% csrf_token %}
+    <input type="hidden" />
+  </form>
+  <form id="sts_filter" method="get" action="{% url 'dashboard:STSFilter' %}" name="sts_filter">
+    {% csrf_token %}
+    <input type="hidden" />
+  </form>
+  <form id="id_filter" method="get" action="{% url 'dashboard:IDFilter' %}" name="id_filter">
+    {% csrf_token %}
+    <input type="hidden" />
+  </form>
+
+</div>
+</div>
+</section>
+<div class="album py-5">
+{% if not query %}
+<div class="container">
+{% for learningResource in learningResources %}
+<div>
+  <div style="border: 1px solid #D7D6D6; padding: 2px; height: 80px; display:flex; justify-content: space-between;">
+    {% if learningResource.title|length > 50 %}
+      <h4>{{ learningResource.short_title }}</h4>
+    {% else %}
+      <h4>{{ learningResource.title }}</h4>
+    {% endif %}
+    <div style="padding: 2px;">{{ learningResource.department }}</div>
+    <a onclick="window.location='{% url 'detail' learningResource.id %}';"
+       class="btn btn-primary animated pulse btn-danger" 
+       role="button" 
+       aria-pressed="true" 
+       style="float: right; 
+              background: 
+              /* linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157)); */
+              margin: 0 auto; 
+              width: 15%; 
+              height: 50%;">
+              See details</a>
+
+</div>
+<br/>
+{%endfor%}
+</div>
+</div>
+{% endif %}
+<div class="album py-5">
+<div class="container" style="margin-top: -60px;">
+<div class="row">
+{% include 'search.html' %}
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+</body>
+</html> -->
+
+
+
+<!-- 
+
+<div class="album py-5">
+    {% if not query %}
+    <h5 align="Center">Latest Resources</h5>
+      <div class="card">
+          {% for learningResource in learningResources %}
+            <div class="card-body">
+              <div style="border: 1px solid #D7D6D6; padding: 2px; height: 80px; display:flex; justify-content: space-between;">
+                {% if learningResource.title|length > 50 %}
+                  <h4 class="card-title">{{ learningResource.short_title }}</h4>
+                {% else %}
+                  <h4 class="card-title">{{ learningResource.title }}</h4>
+                {% endif %}
+                {% for relation in relations %}
+                  {%if relation.learningresource.id == learningResource.id %}
+                  <span style="padding: 2px;"><b>added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
+                  {% endif %}
+                {% endfor %}
+                <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
+                <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
+                   class="btn btn-primary animated pulse"
+                   role="button"
+                   aria-pressed="true"
+                   style="float: right;
+                          background:
+                          linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
+                          color: #ffffff;
+                          width: 15%; 
+                          height: 50%;">
+                          See details</a>
+  
+            </div>
+            <br/>
+          {%endfor%}
+      </div>
+  </div>
+  
+  
+  {% endif %}
+  <div class="album py-5">
+      <div class="container" style="margin-top: -60px;">
+          <div class="row">
+            {% include 'search.html' %}
+          </div>
+      </div>
+  </div>
+  </main>
+  
+  
+  
+   -->
