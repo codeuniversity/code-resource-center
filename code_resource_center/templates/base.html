@@ -20,10 +20,13 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light pb-2">
-            <a class="navbar-brand" href="{% url 'dashboard:home'%}">
-                <img src="{% static 'logo.jpg' %}" class="d-inline-block align-top" height="25" />
-                Resource Center
+            <a class="navbar-brand" href="{% url 'dashboard:home'%}" style="line-height:80%; font-weight: 200; color: rgb(119, 119, 119)">
+                <img src="{% static 'logo.jpg' %}" class="d-inline-block align-top" height="28"  style="padding-bottom: 14px;"/>
+                RESOURCE CENTER
             </a>
+
+            <!-- <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1> -->
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

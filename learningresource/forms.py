@@ -44,6 +44,7 @@ class LearningResourceForm(forms.ModelForm):
 #             ))
     is_free = forms.BooleanField(required=False)
     tag = forms.CharField(
+            required=False,
             widget = forms.TextInput(
                     attrs = {
                             'placeholder':'Tags',
