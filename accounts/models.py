@@ -61,7 +61,6 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False) # superuser
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    has_voted = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email' # make email the username
     # username_field, ws and password are required by default

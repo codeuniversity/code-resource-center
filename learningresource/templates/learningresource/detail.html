@@ -10,14 +10,11 @@
 
         <h1 style="margin: auto; width: 800px;"> {{ resource.title }} </h1>
         <hr />
-
         {% if error %}
-        <div class="alert alert-warning" role="alert">
-            {{ error }}
-        </div>
+          <div class="alert alert-warning" role="alert">
+             {{ error }}
+          </div>
         {% endif %}
-        {% csrf_token %}
-
         <dl class="row">
             <dt class="col-sm-3">Created by</dt>
             <dd class="col-sm-9">{{ creator.first_name }} {{ creator.last_name}}</dd>
@@ -40,7 +37,6 @@
             <dt class="col-sm-3">Is it free?</dt>
             <dd class="col-sm-9">{{ resource.is_free }} </dd>
         </dl>
-
         <a href="{{ resource.url }}"
            class="btn btn-primary animated pulse"
            role="button"
@@ -53,10 +49,6 @@
              </div>
             </div>
         </div>
-        {% if message %}
-          <h2>{{ message }}</h2>
-          <br />
-        {% endif %}
     <form id="upvote"method="POST" action="{% url 'upvote' resource.id %}">
     {% csrf_token %}
       <input type ="hidden">

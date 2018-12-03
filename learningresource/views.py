@@ -18,7 +18,6 @@ def create(request):
                 'resource_id': resource.id
             }
             return redirect('/learningresource/'+ str(resource.id))
-            # return render(request, 'learningresource/detail.html', context)
         else:
             form = LearningResourceForm()
             context = {
@@ -41,16 +40,13 @@ def detail(request, resource_id):
 def upvote(request, resource_id):
     if request.method =="POST":
         resource = get_object_or_404(LearningResource, pk=resource_id)
-        creator = ProfileLearningResource.objects.filter(learningresource=resource_id)
-        creator = creator[0].profile.user
-        user = request.user;
-        print(user.has_voted)
-        if user.has_voted == False:
+        profileUserRelation = ProfileLearningResource.objects.filter(learningresource=resource_id)
+        profileUserRelation = profileUserRelation[0]
+        if profileUserRelation.has_been_upvoted == False:
             resource.votes_total += 1
             resource.save()
-            user.has_voted = True
-            user.save()
+            profileUserRelation.has_been_upvoted = True
+            profileUserRelation.save()
             return redirect('/learningresource/' + str(resource.id))
         else:
-            message = "You've voted already!"
-            return render(request,{'message': message})
+            return redirect('/learningresource/' + str(resource.id), {'error': "You've voted already!"})

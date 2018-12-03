@@ -47,6 +47,7 @@ class LearningResourceTag(models.Model):
 class ProfileLearningResource(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+    has_been_upvoted = models.BooleanField(default=False)
 
 class LearningResourceModule(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)

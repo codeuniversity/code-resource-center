@@ -1,0 +1,55 @@
+[{
+		"model": "learningresource.profilelearningresource",
+		"pk": 1,
+		"fields": {
+			"profile": 3,
+			"learningresource": 2,
+			"has_been_upvoted": "True"
+		}
+	},
+	{
+		"model": "learningresource.profilelearningresource",
+		"pk": 2,
+		"fields": {
+			"profile": 4,
+			"learningresource": 3,
+			"has_been_upvoted": "False"
+		}
+	},
+	{
+		"model": "learningresource.profilelearningresource",
+		"pk": 3,
+		"fields": {
+			"profile": 2,
+			"learningresource": 1,
+			"has_been_upvoted": "True"
+		}
+	},
+	{
+		"model": "learningresource.profilelearningresource",
+		"pk": 4,
+		"fields": {
+			"profile": 1,
+			"learningresource": 4,
+			"has_been_upvoted": "False"
+		}
+	},
+	{
+		"model": "learningresource.profilelearningresource",
+		"pk": 5,
+		"fields": {
+			"profile": 3,
+			"learningresource": 6,
+			"has_been_upvoted": "False"
+		}
+	},
+	{
+		"model": "learningresource.profilelearningresource",
+		"pk": 6,
+		"fields": {
+			"profile": 3,
+			"learningresource": 5,
+			"has_been_upvoted": "True"
+		}
+	}
+]
