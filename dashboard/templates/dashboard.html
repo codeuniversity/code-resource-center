@@ -4,7 +4,7 @@
 
 {% load staticfiles %}
 <main role="main">
-<section class="jumbotron text-center" style="background-color:rgb(255, 255, 255)">
+<section class="jumbotron text-center" style="background-color: rgb(255, 255, 255)">
     <div class="container">
         <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1>
         <p class="lead text-muted">Find your resources here</p>
@@ -25,6 +25,7 @@
                 <button class="btn btn-primary btn-info" role="button" data-filter="pm_filter">PM</button>
                 <a class="btn btn-primary btn-info" href="{% url 'home' %}" role="button" data-filter="all_filter">All</a>
             </div>
+
             <form id="se_filter" method="get" action="{% url 'dashboard:SEFilter' %}" name="se_filter">
               {% csrf_token %}
               <input type="hidden" />
@@ -45,23 +46,15 @@
     </div>
 </section>
 
-<!-- <div class="card w-75">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Button</a>
-    </div>
-  </div> -->
-
 <h5 align="Center">Latest Resources</h5>
 
 <div class="card w-120">
   {% if not query %}
     <div>
-        <div class="card-body">
+        <div class="card-body" style="background-color: rgb(232, 236, 235);">
 
         {% for learningResource in learningResources %}
-            <div style="border: 1px solid #D7D6D6; padding: 10px; background-color: rgb(251, 251, 251)">
+            <div style="border: 1px solid #D7D6D6; padding: 10px; background-color: rgb(255, 255, 255)">
 
               {% if learningResource.title|length > 50 %}
                 <h5 class="card-title">{{ learningResource.short_title }}</h5>
@@ -79,6 +72,9 @@
                     class="btn btn-primary btn-info"
                     style=" padding: 10px; margin: 10px">
                           Go to resource</a> 
+                  <a class="btn btn-primary btn-info"
+                    style=" padding: 10px; margin: 10px; color: white"">
+                        Upvote 4</a>
                 </div>
               <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
               <br/>
