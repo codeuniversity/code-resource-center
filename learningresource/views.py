@@ -4,6 +4,7 @@ from accounts.models import User, Profile
 from django.contrib import auth
 from .forms import LearningResourceForm
 from .models import LearningResource, ProfileLearningResource
+from django.http import HttpResponse
 
 @login_required(login_url="/accounts/login")
 def create(request):
@@ -39,7 +40,10 @@ def detail(request, resource_id):
 
 def upvote(request, resource_id):
     if request.method =="POST":
-        resource = get_object_or_404(LearningResource, pk=resource_id)
+        try:
+            resource = get_object_or_404(LearningResource, pk=resource_id)
+        except LearningResource.DoesNotExist:
+            raise Http404("No MyModel matches the given query.")
         profileUserRelation = ProfileLearningResource.objects.filter(learningresource=resource_id)
         profileUserRelation = profileUserRelation[0]
         if profileUserRelation.has_been_upvoted == False:
@@ -49,4 +53,5 @@ def upvote(request, resource_id):
             profileUserRelation.save()
             return redirect('/learningresource/' + str(resource.id))
         else:
-            return redirect('/learningresource/' + str(resource.id), {'error': "You've voted already!"})
+            error = "You've voted for this resource already!"
+            return HttpResponse(error)
