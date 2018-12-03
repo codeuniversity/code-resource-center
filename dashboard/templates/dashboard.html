@@ -63,20 +63,25 @@
                 <h5 class="card-title">{{ learningResource.title }}</h5>
               {% endif %}
               
+              <!-- Buttons -->
               <div class="row" style="float:right; margin: 0px 5px 0px 0px">
-                  <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
-                    class="btn btn-primary btn-info"
-                    style="padding: 10px; margin: 10px; color: white">
-                            See details</a> 
-                  <br/>
-                  <br/>
-                  <a class="btn btn-primary btn-info"
-                    style=" padding: 10px; margin: 10px; color: white"">
-                        Upvote 4</a>
-                </div>
+                <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
+                  class="btn btn-primary btn-info"
+                  style="padding: 10px; margin: 10px; color: white">
+                      See details</a> 
+                <br/>
+                <br/>
+                <a class="btn btn-primary btn-info"
+                  style=" padding: 10px; margin: 10px; color: white"">
+                      Upvote 4</a>
+              </div>
 
               <!-- Direct URL -->
-              <a href="{{ learningResource.clean_url }}">{{ learningResource.clean_url }}</a>
+              {% if learningResource.url|length > 70 %}
+                <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.short_url }}</a>
+              {% else %}
+                <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.url }}</a>
+              {% endif %}
 
               <!-- Department -->
               <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>

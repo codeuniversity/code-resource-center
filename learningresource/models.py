@@ -42,12 +42,16 @@ class LearningResource(models.Model):
     
     def short_description(self):
         return '{}...'.format(self.description[:150])
+
+    def short_url(self):
+        return '{}...'.format(self.url[:70])
     
     def clean_url(self):
         url = self.url
         if not url.startswith('https://') and not url.startswith('http://'):
             return 'http://' + url
         return url
+    
 
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
