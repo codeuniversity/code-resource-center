@@ -17,10 +17,9 @@
 
 <div class="d-flex justify-content-center">
     <div class="mt-3 p-5"
-            style="height: calc(100vh-24px);
-            border-radius: 5px; width:700px;
-            background: rgb(247, 247, 247);">
-        <h1 style="margin: auto; width: 400px;"> Add a New Resource </h1>
+         style="height: calc(100vh-24px);
+                border-radius: 5px; width:75%;">
+        <h1 style="font-weight: 300;"> Add a New Resource </h1>
         <hr />
         {% if error %}
         <div class="alert alert-warning" role="alert">
@@ -31,12 +30,12 @@
         <form class="p-8 mx-auto" style="margin: auto; width: 100%;" method="POST" action="{% url 'create' %}">
             {%  csrf_token %}
             <div class="form-group">
-                    <label style="font-weight: bold">Title</label>
+                    <label style="font-weight: bold">Title*</label>
                     {{ form.title }}
                 </div>
 
                 <div class="form-group">
-                    <label style="font-weight: bold">URL</label>
+                    <label style="font-weight: bold">URL*</label>
                     {{ form.url }}
                     <small class="text-muted">
                         Include http:// in order for this to work right now.
@@ -44,15 +43,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label style="font-weight: bold">Media Type</label>
+                    <label style="font-weight: bold">Media Type*</label>
                     {{ form.media_type }}
                 </div>
 
                 <div class="checkbox">
-                    <label style="font-weight: bold">Department</label>
+                    <label style="font-weight: bold">Department*</label>
                     {{ form.department }}
                 </div>
-
+                <br/>
 
                 <div class="form-group">
                     <label style="font-weight: bold">Description</label>
@@ -68,17 +67,14 @@
                 </div>
 
                 <div class="checkbox">
-                    <label style="font-weight: bold"> Is it free?
+                    <label style="font-weight: bold"> Is it free?*
                         {{ form.is_free }}
                     </label>
                 </div>
-
-                <br/>
-            <div class="form-row">
+            <div>
                 <input
-                    class="btn btn-primary animated pulse"
-                    style="background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
-                            margin: 0 auto; width: 60%;"
+                    class="btn btn-primary btn-info"
+                    style="padding: 10px; margin: 10px; float: right"
                     type="submit"
                     value="Add Resource"/>
             </div>

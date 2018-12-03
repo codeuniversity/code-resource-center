@@ -10,11 +10,11 @@
         <p class="lead text-muted">Find your resources here</p>
         <div>
 
-            <div class="input-group form-inline" style="padding-left: 22%">
+            <div class="input-group form-inline" style="padding-left: 18%">
               <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
                 {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" name ="q" size="50" placeholder="Search" aria-label="Search">
-                <button class="btn my-2 my-sm-0 btn-info" type="submit" >Search</button>
+                <input class="form-control mr-sm-2" type="search" name ="q" size="60" placeholder="Search" aria-label="Search">
+                <button class="btn my-2 my-sm-0 btn-info" type="submit">Search</button></input>
               </form>
             </div>
 
@@ -51,32 +51,42 @@
 <div class="card w-120">
   {% if not query %}
     <div>
-        <div class="card-body" style="background-color: rgb(232, 236, 235);">
+        <div class="card-body" style="background-color: rgb(248, 252, 251); border: white">
 
         {% for learningResource in learningResources %}
-            <div style="border: 1px solid #D7D6D6; padding: 10px; background-color: rgb(255, 255, 255)">
-
+            <div style="border: 2px solid #D7D6D6; padding: 10px; background-color: rgb(255, 255, 255)">
+              
+              <!-- For titles longer than 50 chars, shorten -->
               {% if learningResource.title|length > 50 %}
                 <h5 class="card-title">{{ learningResource.short_title }}</h5>
               {% else %}
                 <h5 class="card-title">{{ learningResource.title }}</h5>
               {% endif %}
-              <div class="row" style="float:right; margin-top: 0px">
+              
+              <div class="row" style="float:right; margin: 0px 5px 0px 0px">
                   <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
                     class="btn btn-primary btn-info"
                     style="padding: 10px; margin: 10px; color: white">
                             See details</a> 
                   <br/>
                   <br/>
-                  <a href="{{ learningresource.resource.url }}"
-                    class="btn btn-primary btn-info"
-                    style=" padding: 10px; margin: 10px">
-                          Go to resource</a> 
                   <a class="btn btn-primary btn-info"
                     style=" padding: 10px; margin: 10px; color: white"">
                         Upvote 4</a>
                 </div>
+
+              <!-- Direct URL -->
+              <a href="{{ learningResource.url }}">{{ learningResource.url }}</a>
+
+              <!-- Department -->
               <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
+
+              <!-- For descriptions longer than 100 chars, shorten -->
+              {% if learningResource.description|length > 150 %}
+                <p class="card-text">{{ learningResource.short_description }}</p>
+              {% else %}
+                <p class="card-text">{{ learningResource.description }}</p>
+              {% endif %}
               <br/>
           </div>
           <br/>

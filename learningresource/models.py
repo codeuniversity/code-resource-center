@@ -39,6 +39,9 @@ class LearningResource(models.Model):
 
     def short_title(self):
         return '{}...'.format(self.title[:50])
+    
+    def short_description(self):
+        return '{}...'.format(self.description[:150])
 
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
