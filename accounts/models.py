@@ -106,14 +106,14 @@ class Department(models.Model):
 
     def __str__(self):
         return self.department_name
-
+    
 class Profile(models.Model):
  # Institution enums
     CODE = 'CODE'
     CD = 'CD'
     OTHER = 'OTHER'
     INSTITUTION_CHOICES = (
-        (CODE, 'Code University'),
+        (CODE, 'CODE University Berlin'),
         (CD, 'Code+Design Camps'),
         (OTHER, 'other'),
     )

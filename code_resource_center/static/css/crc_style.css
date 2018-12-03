@@ -13,3 +13,12 @@
     height: 50px;
     border-radius: 50%;
 }
+
+/* overwrite list style study program */
+ul#id_department {
+    list-style: none;
+}
+
+li#id_department_0 {
+    display: none;
+}

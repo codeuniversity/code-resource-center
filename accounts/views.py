@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import User, UserManager, Department, Profile
+from .models import User, UserManager, Department, Profile, ProfileDepartment
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -7,6 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 from .forms import (
     RegisterForm,
     ProfileChangeForm,
+    ProfileDepartmentChangeForm,
     UpdateUserForm, 
 )
 
@@ -77,6 +78,7 @@ def profile_edit(request):
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST or None, instance=request.user)
         profile_form = ProfileChangeForm(request.POST or None, request.FILES, instance=request.user.profile)
+        prof_dep_form = ProfileDepartmentChangeForm(request.POST or None)
         if user_form.is_valid() and profile_form.is_valid():
             # check if correct email domain
             email = user_form.cleaned_data.get('email')
@@ -91,9 +93,21 @@ def profile_edit(request):
                 # success
                 user_form.save()
                 profile_form.save()
+                # avoid showing instance of image in UI
+                profile_form = ProfileChangeForm()
+                if prof_dep_form.is_valid():
+                    print("Prof dep is valid")
+                else:
+                    print("no prof dep form")
+                # return a list with all checked departments
+                # checked = prof_dep_form.get('department')
+                # print(checked)
+                # prof_dep_form.save()
+                profile_form = ProfileChangeForm()
                 context = {
                     'user_form': user_form,
                     'profile_form': profile_form,
+                    'prof_dep_form':prof_dep_form,
                     'success': 'Profile info changed successfully.'
                 }
                 return render(request, 'profile.html', context) 
@@ -101,15 +115,18 @@ def profile_edit(request):
             context = {
                 'user_form': user_form,
                 'profile_form': profile_form,
+                'prof_dep_form':prof_dep_form,
                 'error': 'Invalid user info.'
                 }
             return render(request, 'profile.html', context) 
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = ProfileChangeForm()
+        prof_dep_form = ProfileDepartmentChangeForm()
         context = {
             'user_form': user_form,
             'profile_form': profile_form,
+            'prof_dep_form': prof_dep_form,
         }
         return render(request, 'profile.html', context) 
 

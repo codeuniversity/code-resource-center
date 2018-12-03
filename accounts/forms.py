@@ -216,7 +216,6 @@ class ProfileChangeForm(forms.ModelForm):
         model = Profile
         fields = ('avatar',)
 
-    # TO DO: Image validation
     #  source: 
     # https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
     def clean_avatar(self):
@@ -254,6 +253,15 @@ class ProfileChangeForm(forms.ModelForm):
 ###### CHANGE PROFILE_DEPARTMENT FORM ######
 class ProfileDepartmentChangeForm(forms.ModelForm):
 
+    DEPARTMENT_CHOICES = [[department.id, department.department_name] for department in Department.objects.all()]
+
+    department = forms.MultipleChoiceField(
+        required = False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=DEPARTMENT_CHOICES
+    )
+    
     class Meta:
         model = ProfileDepartment
         fields = ('department',)
+
