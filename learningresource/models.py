@@ -24,7 +24,7 @@ class LearningResource(models.Model):
     url = models.CharField(max_length=600)
     description = models.TextField()
     media_type = models.ForeignKey(MediaType, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, db_index=True, on_delete=models.CASCADE)
+    # department = models.ForeignKey(LearningResourceDepartment, db_index=True, on_delete=models.CASCADE)
     is_free = models.BooleanField(default=False)
     pub_date = models.DateTimeField(auto_now_add=True)
     votes_total = models.IntegerField(default=1)
@@ -51,7 +51,6 @@ class LearningResource(models.Model):
         if not url.startswith('https://') and not url.startswith('http://'):
             return 'http://' + url
         return url
-    
 
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
@@ -64,3 +63,7 @@ class ProfileLearningResource(models.Model):
 class LearningResourceModule(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+
+class LearningResourceDepartment(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="departments")
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE, related_name="resources")
