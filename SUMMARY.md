@@ -7,6 +7,7 @@
   * [Client/Server architecture](documentation/n-tier.md)
   * [Class Diagram](documentation/class-diagram.md)
   * [Package Diagram](documentation/package-diagram.md)
+  * [Sequence Diagram](documentation/sequence-diagram.md)
   * [ERM](documentation/erm.md)
   * [Security](documentation/security.md)
 
