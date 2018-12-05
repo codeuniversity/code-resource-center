@@ -4,12 +4,14 @@
 
 ![image](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD "Cohesion")
 
-extracted from:
-[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]
+*extracted from:
+[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]*
 
-One of the core principles of Django's stack is loose coupling and tight cohesion.
+_One of the core features of Django's stack is loose coupling and tight cohesion, following Encapsulation principles._
 
-In Computer Science, coupling is related to the degree of interdependence that exists between software modules and how closely they are connected to each other. High coupling means the components are deeply connected and interdependent. Loose coupling, means the components know little or only enough about each other when absolutely necessary.
+In Computer Science, coupling is related to the degree of interdependence that exists between software modules and how closely they are connected to each other.
+
+Tight coupling means the modules are deeply connected and interdependent. This is considered bad design, like a puzzle system. Loose coupling, means the components know little or only enough about each other when absolutely necessary and yet can work well together, like a lego system.
 
 Cohesion is related to the interdependency within the module, amongst its elements, forming a single cohesive unit.
 
@@ -18,11 +20,11 @@ Quoted from "Boulder Patterns Group Minutes Old"
 
 More on that topic can be found at: [http://wiki.c2.com/?CouplingAndCohesion]
 
-For example, in Django the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses.
+_An example of loose coupling and tight cohesion in Django is that the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses._
 
 If one wants to use the REST framework approach, that is possible and the view can be handled by another application written in React or Vue, for example.
 
-This allows Django to be flexible, resuable and maintainable. Keeping modules simple is fundamental.
+This allows Django to be flexible, reusable and maintainable. Keeping modules simple is fundamental.
 
 ## Creating a virtual environment
 
