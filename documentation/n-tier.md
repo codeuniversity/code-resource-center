@@ -2,9 +2,9 @@
 description: About the tiers / Client-Server Architecture
 ---
 
-# 3-Tier application
+# Client/Server architecture
 
-As in most webapps, we have a 3-Tier application.
+As in most webapps, we have a **3-Tier** application.
 
 We currently have the client and server hosted on our development server `localhost: 8000.`Our database is hosted on a separate local Postgres server: `localhost:5432`.
 
