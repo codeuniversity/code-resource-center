@@ -51,6 +51,14 @@ class LearningResource(models.Model):
         if not url.startswith('https://') and not url.startswith('http://'):
             return 'http://' + url
         return url
+    
+    def is_free_pretty(self):
+        is_free = self.is_free
+        if is_free:
+            return 'Yes'
+        else:
+            return 'No'
+
 
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
