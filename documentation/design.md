@@ -2,10 +2,9 @@
 
 ## ➡️ Loose coupling and tight cohesion
 
-![image](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD "Cohesion")
+![Cohesion](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD)
 
-*extracted from:
-[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]*
+_extracted from: \[_[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt](https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt)_\]_
 
 **One of the core features of Django's stack is loose coupling and tight cohesion, following Encapsulation principles.**
 
@@ -16,17 +15,18 @@ Tight coupling means the modules are deeply connected and interdependent. This i
 Cohesion is related to the interdependency within the module, amongst its elements, forming a single cohesive unit.
 
 Quoted from "Boulder Patterns Group Minutes Old"
->the correct terminology is "tight internal cohesion" and "loose external coupling". This basically means that each method in a class should have one task and the class as a whole should have one major responsibility (tight internal cohesion) and that other classes should not depend on the inner workings of this class but should be designed to the "interface" of the class (loose external coupling). See a recent post by AlanShalloway on this: [http://groups.yahoo.com/group/dpexplained/message/108]
 
-More on that topic can be found at: [http://wiki.c2.com/?CouplingAndCohesion]
+> the correct terminology is "tight internal cohesion" and "loose external coupling". This basically means that each method in a class should have one task and the class as a whole should have one major responsibility \(tight internal cohesion\) and that other classes should not depend on the inner workings of this class but should be designed to the "interface" of the class \(loose external coupling\). See a recent post by AlanShalloway on this: \[[http://groups.yahoo.com/group/dpexplained/message/108](http://groups.yahoo.com/group/dpexplained/message/108)\]
+
+More on that topic can be found at: \[[http://wiki.c2.com/?CouplingAndCohesion](http://wiki.c2.com/?CouplingAndCohesion)\]
 
 **An example of loose coupling and tight cohesion in Django is that the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses.**
 
 If one wants to use the REST framework approach, that is possible and the view can be handled by another application written in React or Vue, for example.
 
-This allows Django to be flexible, reusable and maintainable. Keeping modules simple is fundamental. (KISS)
+This allows Django to be flexible, reusable and maintainable. Keeping modules simple is fundamental. \(KISS\)
 
-## ➡️ Don’t repeat yourself (DRY)
+## ➡️ Don’t repeat yourself \(DRY\)
 
 Django follows the DRY principle, making it easy to avoid repeating code, since modules are reusable and not bloated, as previously stated.
 
@@ -44,18 +44,19 @@ Models in Django include all relevant domain logic, encapsulating every aspect o
 
 Django's ORM allows for SQL statements to be quickly executed. Joins are done automatically. Objects access related objects systemwide.
 
-Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :)
+Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :\)
 
 ## ➡️ URL Design
 
 URLs are flexible. Any design is allowed.
 
 Django does a very good job when it comes to definitive URLs.
-> Technically, foo.com/bar and foo.com/bar/ are two different URLs, and search-engine robots (and some Web traffic-analyzing tools) would treat them as separate pages. Django should make an effort to “normalize” URLs so that search-engine robots don’t get confused.
 
-This is why the APPEND_SLASH setting is set to True as default.
+> Technically, foo.com/bar and foo.com/bar/ are two different URLs, and search-engine robots \(and some Web traffic-analyzing tools\) would treat them as separate pages. Django should make an effort to “normalize” URLs so that search-engine robots don’t get confused.
+
+This is why the APPEND\_SLASH setting is set to True as default.
 
 ## ➡️ Template System
 
+_More information can be found at \[_[https://docs.djangoproject.com/en/2.1/misc/design-philosophies/](https://docs.djangoproject.com/en/2.1/misc/design-philosophies/)_\]_
 
-_More information can be found at [https://docs.djangoproject.com/en/2.1/misc/design-philosophies/]_
