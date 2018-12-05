@@ -10,7 +10,7 @@ description: Pattern used by Django
 
 _extracted from \[_[_https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction_](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)_\]_
 
-Django uses the MVC pattern. It is a widely adopted pattern for user interface, such as Code Resource Center.
+Django uses the MVC pattern. It is a widely adopted pattern for user interface, such as Code Resource Center. It has a layered architecture, following the principle of Least Knowledge.
 
 ![](../.gitbook/assets/screen-shot-2018-12-05-at-12.59.08-pm.png)
 
@@ -25,6 +25,7 @@ It relies heavily on the Separation of Concerns principle. The Model corresponds
 * A View is the Observer \(subscriber\) and the Model is an Observable;
 * The Controller is the "middleman".  It receives orders from the user and works with the Model based on those requests, and then delivers back to the frontend;
 * They are loosely coupled.
+* M\(Data Layer\) , V\(Presentation Layer\) C\(Logic Layer\) - Layered Architecture - Model at the bottom, Controller in the middle, and View at the top. The Controller talks with both the View and the Model. But the model interacts only with its adjacent layer, which is the Controller. Same thing goes for the View, which only interacts with the adjacent layer, the Controller.
 
 Django uses this pattern, which follows the Separation of Concerns principle, making the software modular and loosely coupled. 
 
