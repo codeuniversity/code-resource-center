@@ -1,3 +1,7 @@
+---
+description: Django design system
+---
+
 # Django Design Principles 📐📏
 
 ## ➡️ Loose coupling and tight cohesion
