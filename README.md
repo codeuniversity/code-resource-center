@@ -1,4 +1,4 @@
-# README
+# README 📚
 
 ## Creating a DB
 
