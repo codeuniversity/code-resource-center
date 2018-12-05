@@ -1,19 +1,58 @@
     {% if query %}
+    {% load staticfiles %}
+
     <div class="container">
       <p>You have searched for
         <b>{{ query }}</b>
       </p>
+
         {% for learningResource in learningResources %}
-        <div>
-          <div style="border: 1px solid #D7D6D6; padding: 2px; height: 80px; display:flex; justify-content: space-between;">
-            <h4>{{ learningResource.title }}</h4>
-            <div style="padding: 4px;">{{ learningResource.department }}</div>
+        <div style="border-bottom: 1px solid rgb(209, 224, 226); padding: 10px; background-color: rgb(255, 255, 255);">
+              
+          <!-- For titles longer than 50 chars, shorten -->
+          {% if learningResource.title|length > 50 %}
+            <h5 class="card-title">{{ learningResource.short_title }}</h5>
+          {% else %}
+            <h5 class="card-title">{{ learningResource.title }}</h5>
+          {% endif %}
+          
+          <!-- Buttons -->
+          <div class="row" style="float:right; margin: 0px 5px 0px 0px">
+            <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
+              class="btn btn-primary btn-info"
+              style="padding: 10px; margin-top: 20px; height: 50px; color: white">
+                  See details</a> 
+            <br/>
+            <br/>
+            <a class="btn btn-primary"
+              style=" padding: 10px; margin: 10px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); border-color: rgb(255, 255, 255)">
+              <img style="height: 30px;" src="{% static 'upvote-0.png' %}"/> <br/>4</a>
           </div>
-          <br>
+
+          <!-- Direct URL -->
+          {% if learningResource.url|length > 70 %}
+            <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.short_url }}</a>
+          {% else %}
+            <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.url }}</a>
+          {% endif %}
+          
+          <!-- Department -->
+          <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
+
+          <!-- For descriptions longer than 100 chars, shorten -->
+          {% if learningResource.description|length > 150 %}
+            <p class="card-text">{{ learningResource.short_description }}</p>
+          {% else %}
+            <p class="card-text">{{ learningResource.description }}</p>
+          {% endif %}
+          <br/>
+        </div>
+        <br/>
         {% empty %}
         <div class="row mx-auto">
           <p class="text-center">0 results found.</p>
         </div>
+
         {% endfor %}
       </div>
       {% endif %}

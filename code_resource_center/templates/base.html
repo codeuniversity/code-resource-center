@@ -43,9 +43,9 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                       {% if user.profile.avatar %}
-                      <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+                        <img style="height: 35px; width: 35px;" class="avatar" src="{{ user.profile.avatar.url }}"/> {{user.first_name}} <b>{{user.last_name}}</b>
                       {% else%}
-                      <img style="height: 30px;" src="{% static 'user.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
+                        <img style="height: 30px;" src="{% static 'user.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
                       {% endif %}
                     </a>
                     <div class="dropdown-menu">
