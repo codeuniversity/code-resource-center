@@ -62,6 +62,14 @@
               {% else %}
                 <h5 class="card-title">{{ learningResource.title }}</h5>
               {% endif %}
+
+              <!-- Media type added by -->
+              {% for relation in relations %}
+                {%if relation.learningresource.id == learningResource.id %}
+                <span style="padding: 2px;"><b> {{ relation.learningresource.media_type|capfirst }} added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
+                {% endif %}
+              {% endfor %}
+              <br/>
               
               <!-- Buttons -->
               <div class="row" style="float:right; margin: 0px 5px 0px 0px">
@@ -82,7 +90,7 @@
               {% else %}
                 <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.url }}</a>
               {% endif %}
-
+              
               <!-- Department -->
               <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
 
