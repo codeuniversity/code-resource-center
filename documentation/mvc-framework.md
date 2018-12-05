@@ -4,7 +4,7 @@
 
 ![image](https://drive.google.com/uc?export=view&id=1PawxfzI7exIjT3uKSYNxrD-ZzdjdK9Kq)
 
-extracted from \[[https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)\]
+_extracted from \[_[_https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction_](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)_\]_
 
 Django uses the MVC pattern. It is a widely adopted pattern for user interface, such as Code Resource Center.
 
