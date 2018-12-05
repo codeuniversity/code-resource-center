@@ -10,5 +10,5 @@ Current Diagram
 
 Previous Class diagram done during planning phase:
 
-![](../.gitbook/assets/screen-shot-2018-12-05-at-2.32.10-pm.png)
+![Done with Visual Paradigm](../.gitbook/assets/screen-shot-2018-12-05-at-2.47.26-pm.png)
 
