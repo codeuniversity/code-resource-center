@@ -2,6 +2,7 @@
 
 * [Code Resource Center 📚](README.md)
 * [Documentation](documentation/README.md)
+  * [3-Tier application](documentation/n-tier.md)
   * [Package Diagram](documentation/package-diagram.md)
   * [ERM](documentation/erm.md)
   * [MVC Pattern](documentation/mvc-framework.md)
