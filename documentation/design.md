@@ -1,6 +1,6 @@
 # Django Design Principles 📐📏
 
-## Loose coupling and tight cohesion
+## ➡️ Loose coupling and tight cohesion
 
 ![image](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD "Cohesion")
 
@@ -26,22 +26,22 @@ If one wants to use the REST framework approach, that is possible and the view c
 
 This allows Django to be flexible, reusable and maintainable. Keeping modules simple is fundamental. (KISS)
 
-## Don’t repeat yourself (DRY)
+## ➡️ Don’t repeat yourself (DRY)
 
 Django follows the DRY principle, making it easy to avoid repeating code, since modules are reusable and not bloated, as previously stated.
 
 The framework deduce as much as possible from as little as possible.
 
-## Explicit is better than implicit
+## ➡️ Explicit is better than implicit
 
 According to Python's core principles stated in PEP 20, Django shouldn’t do too much “magic.” Magic would be everything done for you under the hood. Magic should only be used if there is a good reason for it. Django's documentation is clear and it is very easy to customize it.
 
-## Models
+## ➡️ Models
 
 Models in Django include all relevant domain logic, encapsulating every aspect of an “object,” following Martin Fowler’s Active Record design pattern.
 
-## Database application
+## ➡️ Database application
 
 Django's ORM allow for SQL statements to be quickly executed. Joins are done automatically. Objects access related objects systemwide.
 
-Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :) 
+Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :)
