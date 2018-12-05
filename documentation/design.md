@@ -6,7 +6,7 @@ description: Django design system
 
 ##  ➡️ Loose coupling and tight cohesion
 
-![Cohesion](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD)
+![Coupling and Cohesion](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD)
 
 _extracted from:_ [https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt](https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt)
 
