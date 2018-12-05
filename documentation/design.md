@@ -30,7 +30,7 @@ This allows Django to be flexible, reusable and maintainable. Keeping modules si
 
 Django follows the DRY principle, making it easy to avoid repeating code, since modules are reusable and not bloated, as previously stated.
 
-The framework deduce as much as possible from as little as possible.
+The framework deduces as much as possible from as little as possible.
 
 ## ➡️ Explicit is better than implicit
 
@@ -42,6 +42,20 @@ Models in Django include all relevant domain logic, encapsulating every aspect o
 
 ## ➡️ Database application
 
-Django's ORM allow for SQL statements to be quickly executed. Joins are done automatically. Objects access related objects systemwide.
+Django's ORM allows for SQL statements to be quickly executed. Joins are done automatically. Objects access related objects systemwide.
 
 Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :)
+
+## ➡️ URL Design
+
+URLs are flexible. Any design is allowed.
+
+Django does a very good jog when it comes to definitive URLs.
+> Technically, foo.com/bar and foo.com/bar/ are two different URLs, and search-engine robots (and some Web traffic-analyzing tools) would treat them as separate pages. Django should make an effort to “normalize” URLs so that search-engine robots don’t get confused.
+
+This is why the APPEND_SLASH setting is set to True as default.
+
+## ➡️ Template System
+
+
+_More information can be found at [https://docs.djangoproject.com/en/2.1/misc/design-philosophies/]_
