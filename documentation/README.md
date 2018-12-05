@@ -13,9 +13,12 @@ description: >-
 * [MVC Pattern](mvc-framework.md)
 * [Client-Server Architecture](n-tier.md)
 * [Class Diagram](class-diagram.md)
-* [ERM](erm.md)
 * [Package Diagram](package-diagram.md)
+* [Sequence Diagram](sequence-diagram.md)
+* [ERM](erm.md)
 * [Security](security.md)
+
+
 
 
 

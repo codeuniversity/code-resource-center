@@ -4,5 +4,5 @@ description: Relational Database (PostGres)
 
 # ERM
 
-![](../.gitbook/assets/resource-erm.jpeg)
+![Done with Lucid Chart](../.gitbook/assets/resource-erm.jpeg)
 
