@@ -2,6 +2,6 @@
 
 * [README](README.md)
 * [Documentation](documentation/README.md)
-  * [security](documentation/security.md)
+  * [Security](documentation/security.md)
   * [Django Design Principles 📐📏](documentation/design.md)
 
