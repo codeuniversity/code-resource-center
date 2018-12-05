@@ -9,10 +9,13 @@ description: >-
 
 ## Summary
 
-* [D](class-diagram.md)jango Design Principles
-* MVC Pattern
-* Client-Server Architecture
-* Diagrams
+* [Django Design Principles](design.md)
+* [MVC Pattern](mvc-framework.md)
+* [Client-Server Architecture](n-tier.md)
+* [Class Diagram](class-diagram.md)
+* [ERM](erm.md)
+* [Package Diagram](package-diagram.md)
+* [Security](security.md)
 
 
 
