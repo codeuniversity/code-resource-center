@@ -34,7 +34,7 @@ The framework deduces as much as possible from as little as possible.
 
 ## ➡️ Explicit is better than implicit
 
-According to Python's core principles stated in PEP 20, Django shouldn’t do too much “magic.” Magic would be everything done for you under the hood. Magic should only be used if there is a good reason for it. Django's documentation is clear and it is very easy to customize it.
+According to Python's core principles stated in PEP 20[https://www.python.org/dev/peps/pep-0020/], Django shouldn’t do too much “magic.” Magic would be everything done for you under the hood. Magic should only be used if there is a good reason for it. Django's documentation is clear and it is very easy to customize it.
 
 ## ➡️ Models
 
@@ -56,6 +56,12 @@ Django does a very good job when it comes to definitive URLs.
 This is why the APPEND_SLASH setting is set to True as default.
 
 ## ➡️ Template System
+
+The template system  controls presentation and presentation-related logic only. It doesn't support functionality that goes beyond this basic goal.
+
+Template inheritance allows for elements to be stored in a single place, eliminating duplicate code `base.html`.
+
+It provides simple tools such as branching and looping, that is essential for making presentation-related decisions, but avoids advanced logic.
 
 
 _More information can be found at [https://docs.djangoproject.com/en/2.1/misc/design-philosophies/]_
