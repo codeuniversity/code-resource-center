@@ -4,7 +4,7 @@ description: UML Class Diagram
 
 # Class Diagram
 
-Current Diagram
+Current Diagram:
 
 ![Generated with Graphviz \(https://graphviz.gitlab.io/download/\)](../.gitbook/assets/code-resource-center_models.png)
 
