@@ -2,13 +2,16 @@
 
 ## Loose coupling and tight cohesion
 
+![image](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD "Cohesion")
+
+extracted from:
+[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]
+
 One of the core principles of Django's stack is loose coupling and tight cohesion.
 
 In Computer Science, coupling is related to the degree of interdependence that exists between software modules and how closely they are connected to each other. High coupling means the components are deeply connected and interdependent. Loose coupling, means the components know little or only enough about each other when absolutely necessary.
 
 Cohesion is related to the interdependency within the module, amongst its elements, forming a single cohesive unit.
-![image](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD "Cohesion")
-extracted from [https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]
 
 Quoted from "Boulder Patterns Group Minutes Old"
 >the correct terminology is "tight internal cohesion" and "loose external coupling". This basically means that each method in a class should have one task and the class as a whole should have one major responsibility (tight internal cohesion) and that other classes should not depend on the inner workings of this class but should be designed to the "interface" of the class (loose external coupling). See a recent post by AlanShalloway on this: [http://groups.yahoo.com/group/dpexplained/message/108]
