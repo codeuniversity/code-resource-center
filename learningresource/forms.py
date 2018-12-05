@@ -31,16 +31,16 @@ class LearningResourceForm(forms.ModelForm):
                       attrs={'class':'form-control'}
             ))
 
-#     department = forms.ModelChoiceField(
-#             queryset=Department.objects.all(),
-#             widget=forms.Select(
-#                       attrs={'class':'form-control'}
-#             ))
     department = forms.ModelChoiceField(
             queryset=Department.objects.all(),
-            widget=forms.CheckboxSelectMultiple(
-                      attrs={}
+            widget=forms.Select(
+                      attrs={'class':'form-control'}
             ))
+#     department = forms.ModelChoiceField(
+#             queryset=Department.objects.all(),
+#             widget=forms.CheckboxSelectMultiple(
+#                       attrs={}
+#             ))
 #     department = forms.ModelMultipleChoiceField(
 #             queryset=Department.objects.all(),
 #             widget=forms.CheckboxSelectMultiple(

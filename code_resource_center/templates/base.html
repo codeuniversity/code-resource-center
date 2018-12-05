@@ -25,16 +25,15 @@
                 RESOURCE CENTER
             </a>
 
-            <!-- <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1> -->
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
               <div class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                  <a class="nav-item nav-link" href="{% url 'create'%}">Add Resources</a>
+                  <a class="nav-item nav-link" href="{% url 'create'%}">+ Resources</a>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                       {% if user.profile.avatar %}

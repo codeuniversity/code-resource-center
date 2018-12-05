@@ -1,10 +1,24 @@
-# Code Resource Center 🌻
+# Django Design Principles 📐📏
 
-## Creating a DB
+## Loose coupling and tight cohesion
 
-Please, create a DB with the same settings \(name, username, password\) established by the team.
+One of the core principles of Django's stack is loose coupling and tight cohesion.
 
-_name for the DB should be 'crc\_db', user: 'crcuser','password': 'myresources'_
+In Computer Science, coupling is related to the degree of interdependence that exists between software modules and how closely they are connected to each other. High coupling means the components are deeply connected and interdependent. Loose coupling, means the components know little or only enough about each other when absolutely necessary.
+
+Cohesion is related to the interdependency within the module, amongst its elements, forming a single cohesive unit. ![Cohesion](https://drive.google.com/file/d/1fRVLUI-ZUu4dZoZ6YRWYr_A8bZ6rTDZS)
+
+Quoted from "Boulder Patterns Group Minutes Old"
+
+> the correct terminology is "tight internal cohesion" and "loose external coupling". This basically means that each method in a class should have one task and the class as a whole should have one major responsibility \(tight internal cohesion\) and that other classes should not depend on the inner workings of this class but should be designed to the "interface" of the class \(loose external coupling\). See a recent post by AlanShalloway on this: \[[http://groups.yahoo.com/group/dpexplained/message/108](http://groups.yahoo.com/group/dpexplained/message/108)\]
+
+More on that topic can be found at: \[[http://wiki.c2.com/?CouplingAndCohesion](http://wiki.c2.com/?CouplingAndCohesion)\]
+
+For example, in Django the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses.
+
+If one wants to use the REST framework approach, that is possible and the view can be handled by another application written in React or Vue, for example.
+
+This allows Django to be flexible, resuable and maintainable. Keeping modules simple is fundamental.
 
 ## Creating a virtual environment
 
