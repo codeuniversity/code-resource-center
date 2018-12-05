@@ -24,3 +24,7 @@ It relies heavily on the Separation of Concerns principle. The Model corresponds
 
 Django uses this pattern, which follows the Separation of Concerns principle, making the software modular and loosely coupled. 
 
+**Observation:**   Why not choosing Observational, Creational or Structural Design patterns instead? Simply because we chose Django as a Framework. As beginners, we thought it would be safer to have some decisions made on our behalf. Once we advance our knowledge we might use other patterns depending on our use case. But we believe MVC frameworks fits perfectly for the Code Resource Center since it relies on a constant interaction with users. 
+
+\*\*\*\*
+
