@@ -34,6 +34,14 @@ The framework deduce as much as possible from as little as possible.
 
 ## Explicit is better than implicit
 
-This is a core Python principle listed in PEP 20, and it means Django shouldn’t do too much “magic.” Magic shouldn’t happen unless there’s a really good reason for it
+According to Python's core principles stated in PEP 20, Django shouldn’t do too much “magic.” Magic would be everything done for you under the hood. Magic should only be used if there is a good reason for it. Django's documentation is clear and it is very easy to customize it.
 
-For example, in Django Models, fields shouldn’t assume certain behaviors based solely on the name of the field. This requires too much knowledge of the system and is prone to errors. Instead, behaviors should be based on keyword arguments and, in some cases, on the type of the field.
+## Models
+
+Models in Django include all relevant domain logic, encapsulating every aspect of an “object,” following Martin Fowler’s Active Record design pattern.
+
+## Database application
+
+Django's ORM allow for SQL statements to be quickly executed. Joins are done automatically. Objects access related objects systemwide.
+
+Yet, if you're not a fan of magic you have the option to use raw SQL if you want. It is easy to write custom SQL queries. :) 
