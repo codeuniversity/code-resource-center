@@ -7,7 +7,7 @@
 *extracted from:
 [https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt]*
 
-_One of the core features of Django's stack is loose coupling and tight cohesion, following Encapsulation principles._
+**One of the core features of Django's stack is loose coupling and tight cohesion, following Encapsulation principles.**
 
 In Computer Science, coupling is related to the degree of interdependence that exists between software modules and how closely they are connected to each other.
 
@@ -20,7 +20,7 @@ Quoted from "Boulder Patterns Group Minutes Old"
 
 More on that topic can be found at: [http://wiki.c2.com/?CouplingAndCohesion]
 
-_An example of loose coupling and tight cohesion in Django is that the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses._
+**An example of loose coupling and tight cohesion in Django is that the template system doesn't know about Web requests, the database layer knows nothing about how the data will be displayed and the view system allows for any template system a programmer uses.**
 
 If one wants to use the REST framework approach, that is possible and the view can be handled by another application written in React or Vue, for example.
 
