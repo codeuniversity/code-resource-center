@@ -4,7 +4,7 @@ description: Django design system
 
 # Django Design Principles 📐📏
 
-## ➡️ Loose coupling and tight cohesion
+##  ➡️ Loose coupling and tight cohesion
 
 ![Cohesion](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD)
 

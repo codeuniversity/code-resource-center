@@ -7,5 +7,12 @@ description: >-
 
 # Documentation
 
+## Summary
+
+* [D](class-diagram.md)jango Design Principles
+* MVC Pattern
+* Client-Server Architecture
+* Diagrams
+
 
 
