@@ -15,5 +15,5 @@ description: >-
 7. The Controller triggers the template to display the data on the Detail page.
 8. The user then, sees the data displayed on the browser. 
 
-![](../.gitbook/assets/screen-shot-2018-12-05-at-6.12.01-pm.png)
+![Done with Visual Paradigm](../.gitbook/assets/screen-shot-2018-12-05-at-6.12.01-pm.png)
 
