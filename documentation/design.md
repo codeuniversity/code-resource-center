@@ -50,7 +50,7 @@ Yet, if you're not a fan of magic you have the option to use raw SQL if you want
 
 URLs are flexible. Any design is allowed.
 
-Django does a very good jog when it comes to definitive URLs.
+Django does a very good job when it comes to definitive URLs.
 > Technically, foo.com/bar and foo.com/bar/ are two different URLs, and search-engine robots (and some Web traffic-analyzing tools) would treat them as separate pages. Django should make an effort to “normalize” URLs so that search-engine robots don’t get confused.
 
 This is why the APPEND_SLASH setting is set to True as default.
