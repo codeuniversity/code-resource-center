@@ -4,7 +4,7 @@
 
 ![Cohesion](https://drive.google.com/uc?export=view&id=1akH6ytCH4pcvuo1a74hYE2uZP6HHUnoD)
 
-_extracted from: \[_[https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt](https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt)_\]_
+_extracted from:_ [https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt](https://www.coursera.org/lecture/object-oriented-design/1-3-1-coupling-and-cohesion-q8wGt)
 
 **One of the core features of Django's stack is loose coupling and tight cohesion, following Encapsulation principles.**
 
@@ -64,5 +64,5 @@ Template inheritance allows for elements to be stored in a single place, elimina
 
 It provides simple tools such as branching and looping, that is essential for making presentation-related decisions, but avoids advanced logic.
 
-_More information can be found at \[_[https://docs.djangoproject.com/en/2.1/misc/design-philosophies/](https://docs.djangoproject.com/en/2.1/misc/design-philosophies/)_\]_
+_More information can be found at_ [https://docs.djangoproject.com/en/2.1/misc/design-philosophies/](https://docs.djangoproject.com/en/2.1/misc/design-philosophies/)
 
