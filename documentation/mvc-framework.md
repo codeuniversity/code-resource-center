@@ -1,3 +1,7 @@
+---
+description: Pattern used by Django
+---
+
 # MVC Pattern
 
 ## Model View Controller Design Pattern
