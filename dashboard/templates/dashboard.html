@@ -4,6 +4,7 @@
 
 {% load staticfiles %}
 <main role="main">
+
 <section class="jumbotron text-center" style="background-color: rgb(255, 255, 255)">
     <div class="container">
         <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1>
@@ -48,68 +49,77 @@
 
 <h5 align="Center" class="text-muted">Latest Resources</h5>
 
+
 <div>
-  {% if not query %}
-    <div>
-        <div class="card-body" ">
+{% if not query %}
+  <div class="card-body" ">
+    
+  <!-- Looping through resources to show on cards   -->
+  {% for learningResource in learningResources %}
+    <div style="border-bottom: 1px solid rgb(209, 224, 226); padding: 10px; background-color: rgb(255, 255, 255);">
+      <div class="row">
 
-        {% for learningResource in learningResources %}
-            <div style="border-bottom: 1px solid rgb(209, 224, 226); padding: 10px; background-color: rgb(255, 255, 255);">
-              
-              <!-- For titles longer than 50 chars, shorten -->
-              {% if learningResource.title|length > 50 %}
-                <h5 class="card-title">{{ learningResource.short_title }}</h5>
-              {% else %}
-                <h5 class="card-title">{{ learningResource.title }}</h5>
-              {% endif %}
-              <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div>
+        <!-- Department Image -->
+        <div class="col-sm-1"><img style="height: 60px; margin-top: 10px;" src="{% static 'coding.png' %}"/></div>
 
+        <div class="col-sm-9">
+          <!-- For titles longer than 50 chars, shorten -->
+          {% if learningResource.title|length > 50 %}
+            <h5 class="card-title">{{ learningResource.short_title }}</h5>
+          {% else %}
+            <h5 class="card-title">{{ learningResource.title }}</h5>
+          {% endif %}
+          <!-- <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div> -->
 
-              <!-- Media type added by -->
-              {% for relation in relations %}
-                {%if relation.learningresource.id == learningResource.id %}
-                <span style="padding: 2px;"><b> {{ relation.learningresource.media_type|capfirst }} added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
-                {% endif %}
-              {% endfor %}
-              <br/>
-              
-              <!-- Buttons -->
-              <div class="row" style="float:right; margin: 0px 5px 0px 0px">
-                <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
-                  class="btn btn-primary btn-info"
-                  style="padding: 10px; margin-top: 20px; height: 50px; color: white">
-                      See details</a> 
-                
-                <br/>
-                <br/>
-                <a class="btn btn-primary"
-                  style=" padding: 10px; margin: 10px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); border-color: rgb(255, 255, 255)">
-                  <img style="height: 30px;" src="{% static 'upvote-0.png' %}"/> <br/>4</a>
-              </div>
-              
-
-              <!-- Direct URL -->
-              {% if learningResource.url|length > 70 %}
-                <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.short_url }}</a>
-              {% else %}
-                <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.url }}</a>
-              {% endif %}
-              
-              <!-- Department -->
-              <!-- <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div> -->
-              <br/>
-              <br/>
-              <!-- For descriptions longer than 100 chars, shorten -->
-              {% if learningResource.description|length > 150 %}
-                <p class="card-text">{{ learningResource.short_description }}</p>
-              {% else %}
-                <p class="card-text">{{ learningResource.description }}</p>
-              {% endif %}
-              <br/>
-          </div>
+          <!-- Media type added by -->
+          {% for relation in relations %}
+            {%if relation.learningresource.id == learningResource.id %}
+            <span style="padding: 2px;"><b> {{ relation.learningresource.media_type|capfirst }} added by {{ relation.profile.user.first_name.capitalize}}  {{ relation.profile.user.last_name.capitalize}}</b></span>
+            {% endif %}
+          {% endfor %}
           <br/>
-        {%endfor%}
+          
+          <!-- Direct URL -->
+          {% if learningResource.url|length > 70 %}
+            <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.short_url }}</a>
+          {% else %}
+            <a class="card-text" href="{{ learningResource.clean_url }}">{{ learningResource.url }}</a>
+          {% endif %}
+        </div>
+
+        <div class="col-sm-1">
+
+        <!-- Buttons -->
+        <div class="row" style="float:right; margin: 0px 5px 0px 0px">
+          <!-- Details link -->
+          <a onclick="javascript:window.location.href='{% url 'detail' learningResource.id %}';"
+            class="btn btn-primary btn-info"
+            style="padding: 10px; margin-top: 20px; margin-right: 20px; width: 120px; height: 50px; color: white">
+                See details</a> 
+            </div>
+                <div class="col-sm-1">
+
+          <!-- Upvote -->
+          <a class="btn btn-primary"
+            style=" padding: 10px; margin: 10px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); border-color: rgb(255, 255, 255)">
+            <img style="height: 30px;" src="{% static 'up-arrow.png' %}"/> <br/>14</a>
+        </div>
+        </div>
+        
+        <!-- Department -->
+        <!-- <div class="card-text" style="padding: 2px;">{{ learningResource.department }}</div> -->
+
+        <!-- For descriptions longer than 100 chars, shorten -->
+        <!-- {% if learningResource.description|length > 150 %}
+          <p class="card-text">{{ learningResource.short_description }}</p>
+        {% else %}
+          <p class="card-text">{{ learningResource.description }}</p>
+        {% endif %}
+        <br/> -->
+      </div>
     </div>
+    <br/>
+  {%endfor%}
 </div>
 
 <a style="color: white;
