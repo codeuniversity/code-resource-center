@@ -9,13 +9,20 @@
          style="border-radius: 5px; 
             width:420px;">
         <div class="row">
-            <div class="col-8">
-                <h3 style="margin: auto; "> {{user.first_name}} {{user.last_name}} </h3>
+            <div class="col-7">
+
+                <!-- Name title -->
+                <h3 style="margin: auto; font-weight: 300; margin-left: 5px"> {{user.first_name}} {{user.last_name}} </h3>
+                <p style="font-size: 10px; margin-left: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
+
             </div>
+            <!-- If the user has a profile picture -->
             {% if user.profile.avatar %}
-            <div class="col-4 img-fluid">
-                <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+            <div class="col-5 img-fluid">
+                <img class="avatar" style="height: 90px; width: 90px" src="{{ user.profile.avatar.url }}"/>
             </div>
+
+            <!-- If the user does not have a profile picture, show placeholder -->
             {% else %}
             <div class="col-4" 
                 style="
@@ -30,7 +37,7 @@
             </div>
             {% endif %}
             <div class="row">
-                <p style="font-size: 10px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p>
+                <!-- <p style="font-size: 10px; margin-left: 30px;">{{user.profile.get_occupation_display}} at {{user.profile.get_institution_display}}</p> -->
             </div>
         </div>
         {% if error %}
@@ -74,9 +81,8 @@
             <br>            
             <div class="form-row">
                 <input
-                    class="btn btn-primary animated pulse"
-                    style="background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
-                            margin: 0 auto; width: 60%;"
+                    class="btn btn-primary btn-info"
+                    style="padding: 10px; margin: 10px; margin-left: 55%;"
                     type="submit"
                     value="Submit changes"/>
             </div>

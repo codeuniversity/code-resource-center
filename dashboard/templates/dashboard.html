@@ -9,9 +9,10 @@
     <div class="container">
         <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1>
         <p class="lead text-muted">Find your resources here</p>
+        
         <div>
-
-            <div class="input-group form-inline" style="padding-left: 12%">
+            <!-- Search bar -->
+            <div class="input-group form-inline" style="margin-left: 10%">
               <form class="form-inline" action="{% url 'dashboard:searchResult' %}" method="get">
                 {% csrf_token %}
                 <input class="form-control mr-sm-2" type="search" name ="q" size="60" placeholder="Search" aria-label="Search">
@@ -19,6 +20,7 @@
               </form>
             </div>
 
+            <!-- Department filter -->
             <div id="filterDepartment" class="btn-group btn-group-toggle" style="padding: 10px 32%;"> 
                 <button class="btn btn-primary btn-info" role="button" data-filter="sts_filter">STS</button>
                 <button class="btn btn-primary btn-info" role="button" data-filter="id_filter">ID</button>
@@ -131,6 +133,7 @@
   {%endfor%}
 </div>
 
+<!-- Style for add resource button -->
 <a style="color: white;
           width: 50px;
           height: 50px;
