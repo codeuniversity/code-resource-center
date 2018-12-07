@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, UserManager, Department, Profile, ProfileDepartment
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import (
     RegisterForm,
     ProfileChangeForm,
-    ProfileDepartmentChangeForm,
+    # ProfileDepartmentChangeForm,
     UpdateUserForm, 
 )
 
@@ -78,7 +78,6 @@ def profile_edit(request):
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST or None, instance=request.user)
         profile_form = ProfileChangeForm(request.POST or None, request.FILES, instance=request.user.profile)
-        prof_dep_form = ProfileDepartmentChangeForm(request.POST or None)
         if user_form.is_valid() and profile_form.is_valid():
             # check if correct email domain
             email = user_form.cleaned_data.get('email')
@@ -95,19 +94,11 @@ def profile_edit(request):
                 profile_form.save()
                 # avoid showing instance of image in UI
                 profile_form = ProfileChangeForm()
-                if prof_dep_form.is_valid():
-                    print("Prof dep is valid")
-                else:
-                    print("no prof dep form")
                 # return a list with all checked departments
-                # checked = prof_dep_form.get('department')
-                # print(checked)
-                # prof_dep_form.save()
                 profile_form = ProfileChangeForm()
                 context = {
                     'user_form': user_form,
                     'profile_form': profile_form,
-                    'prof_dep_form':prof_dep_form,
                     'success': 'Profile info changed successfully.'
                 }
                 return render(request, 'profile.html', context) 
@@ -115,18 +106,15 @@ def profile_edit(request):
             context = {
                 'user_form': user_form,
                 'profile_form': profile_form,
-                'prof_dep_form':prof_dep_form,
                 'error': 'Invalid user info.'
                 }
             return render(request, 'profile.html', context) 
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = ProfileChangeForm()
-        prof_dep_form = ProfileDepartmentChangeForm()
         context = {
             'user_form': user_form,
             'profile_form': profile_form,
-            'prof_dep_form': prof_dep_form,
         }
         return render(request, 'profile.html', context) 
 
@@ -135,74 +123,25 @@ def profile_edit(request):
 def change_password(request):
     # request user info
     if request.method == "POST":
-        user_instance = request.user
-        form = PasswordChangeForm(data=request.POST, user=user_instance)
+        form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():
-            form.save()
-            # login user with new password TO DO!!!
-            update_session_auth_hash(request, form.user)
-            return redirect('/accounts/profile')
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was changed successfully.')
+            print("valid form")
+            return redirect('/accounts/password')
+            # context = {
+            #         'success': 'Profile info changed successfully.'
+            # }
+            # return (request, 'change_password.html', context)
         else:
-            return redirect('/accounts/profile')
+            messages.error(request, 'Please enter valid password.')
+            print("invalid form")
+            return redirect('/accounts/password')
     else:        
-        user_instance = request.user
-        form = PasswordChangeForm(user=user_instance)
+        form = PasswordChangeForm(request.user)
         context = {
             'form': form,
         }
         return render(request, 'change_password.html', context) 
-
-    #     if user_form.is_valid():
-    #         print('Inside form valid')
-    #         try:
-    #             # email must be unique
-    #             email = user_form.cleaned_data.get('email')
-    #             user = User.objects.get(email=email)
-    #             context = {
-    #                 'user_form': user_form,
-    #                 'error': 'Account already exists.'
-    #             }
-    #             print('Inside try')
-    #             return render(request, 'profile.html', context)
-    #         except User.DoesNotExist:
-    #             # email must user code.berlin domain
-    #             if not email.endswith("@code.berlin"):
-    #                 context = {
-    #                     'user_form': user_form,
-    #                     'error': 'User must register with [user]@code.berlin email.'
-    #                 }
-    #                 print('Not code email.')
-    #                 return render(request, 'profile.html', context )
-
-    #             # check if confirmation password is correct
-    #             password_confirm = user_form.cleaned_data.get('password_confirm')
-
-    #             if user_instance.check_password(password_confirm):
-    #                 print('After check password.')
-    #                 user_instance.first_name = user_form.cleaned_data.get('first_name')
-    #                 user_instance.last_name = user_form.cleaned_data.get('last_name')
-    #                 user_instance.email = user_form.cleaned_data.get('email')
-    #                 user_instance.save()
-    #             user = auth.authenticate(username=email, password=password_confirm)
-    #             if user is not None:
-    #                 auth.login(request, user)
-    #                 # context = {
-    #                 #     'user_form': user_form,
-    #                 #     'success': 'User info successfully changed.'
-    #                 # }
-    #                 # return render(request, 'profile.html', context)
-    #                 return redirect('/accounts/profile')
-    #             else:
-    #                 return render(request, 'profile.html', {'error': 'Ooops! Something went wrong. ☹️'})
-    #     else:
-    #         context = {
-    #             'user_form': user_form,
-    #         }
-    #         return render(request, 'profile.html', context )
-    # else:
-    #     context = {
-    #         'user_form': user_form,
-    #         'user_instance': user_instance
-    #     }
-    #     return render(request, 'profile.html', context)
 

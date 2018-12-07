@@ -15,10 +15,6 @@
 }
 
 /* overwrite list style study program */
-ul#id_department {
+ul#id_departments {
     list-style: none;
-}
-
-li#id_department_0 {
-    display: none;
 }
