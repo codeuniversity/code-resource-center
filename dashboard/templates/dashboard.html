@@ -134,26 +134,26 @@
 </div>
 
 <!-- Style for add resource button -->
-<a style="color: white;
+<a style="background-color: #de625b;
           width: 50px;
           height: 50px;
           display: inline-block;
           border-radius: 30px;
           box-shadow: 10px 10px 5px grey;
           -webkit-box-shadow: 2px 2px 5px 0px rgb(66, 66, 66);
-    -moz-box-shadow: 2px 2px 9px 0px rgb(53, 53, 53);
+          -moz-box-shadow: 2px 2px 9px 0px rgb(53, 53, 53);
           position:fixed;   
           bottom:7%; 
           right:4%;"
     class="nav-item nav-link" 
-    href="{% url 'create'%}"/>
-    <a class="nav-item nav-link" href="{% url 'create'%}">
-      <img style="height: 53px;
-                  width: 53px;
+    href="{% url 'create'%}">     
+    <img style="height: 30px;
+                  width: 30px;
                   position:fixed;   
-                  bottom:7%; 
-                  right:3.9%;" 
-            src="{% static 'plus2.png' %}"/></a>
+                  bottom:8%; 
+                  right:4.9%;" 
+            src="{% static 'add.svg' %}"/>
+          </a>
   
 
 {% endif %}
