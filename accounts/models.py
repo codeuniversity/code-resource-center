@@ -1,5 +1,5 @@
 from django.db import models
-from enum import Enum
+from django.forms.models import model_to_dict
 # use Django signals to extend User object
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (
@@ -103,17 +103,17 @@ class User(AbstractBaseUser):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
-
+    
     def __str__(self):
         return self.department_name
-
+    
 class Profile(models.Model):
  # Institution enums
     CODE = 'CODE'
     CD = 'CD'
     OTHER = 'OTHER'
     INSTITUTION_CHOICES = (
-        (CODE, 'Code University'),
+        (CODE, 'CODE University Berlin'),
         (CD, 'Code+Design Camps'),
         (OTHER, 'other'),
     )
@@ -138,22 +138,77 @@ class Profile(models.Model):
     institution = models.CharField(max_length=32, null=True, blank=True, choices=INSTITUTION_CHOICES, default=CODE)
     avatar = models.ImageField(upload_to='profile_images', null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)
-
-    # def get_occupation_di(self):
-    #     (occupation, occupation.value) for occupation in OCCUPATION_CHOICES:
-    #     return self.occupation.value
-
     
     # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN 
     # def __str__(self):
     #     return  self.user
 
 class ProfileDepartment(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    departments = models.ManyToManyField(Department)
 
-    def __str__(self):
-        return  "%s %s" % (self.profile, self.department)
+    @classmethod
+    def add_department(cls, profile, new_department):
+        profile_department, created = cls.objects.get_or_create(
+            profile=profile
+        )
+        profile_department.departments.add(new_department)
+
+    @classmethod
+    def remove_department(cls, profile, department):
+        profile_department, created = cls.objects.get_or_create(
+            profile=profile
+        )
+        profile_department.departments.remove(department)
+
+    # def __str__(self):
+    #     return  "%s %s" % (self.profile.user, self.departments)
+
+####### Mixins ##########
+
+# source:
+# https://stackoverflow.com/questions/1355150/django-when-saving-how-can-you-check-if-a-field-has-changed
+
+# class ModelDiffMixin(object):
+#     """A model mixin that tracks model fields' values 
+#     and whether  fields have been changed."""
+
+#     def __init__(self, *args, **kwargs):
+#         super(ModelDiffMixins, self).__init__(*args, **kwargs)
+#         self.__initial = self.dict
+
+#     @property
+#     def diff(self):
+#         d1 = self.__initial
+#         d2 = self._dict
+#         diffs = [(k, (v, d2[k])) for k, v in d1.items() if v != d2[k]]
+#         return dict(diffs)
+
+#     @property
+#     def has_changed(self):
+#         return bool(self.diff)
+
+#     @property
+#     def changed_fields(self):
+#         return self.diff.keys()
+
+#     def get_field_diff(self, field_name):
+#         """
+#         Returns a diff for field if it's changed and None otherwise.
+#         """
+#         return self.diff.get(field_name, None)
+
+#     def save(self, *args, **kwargs):
+#         """
+#         Saves model and set initial state.
+#         """
+#         super(ModelDiffMixin, self).save(*args, **kwargs)
+#         self.__initial = self._dict
+
+#     @property
+#     def _dict(self):
+#         return model_to_dict(self, 
+#             fields=[field.name for field in self._meta.fields])
 
 # Trigger creation of corresponding user profile as soon as Django User object has been created.
 def create_profile(sender, **kwargs):
