@@ -3,7 +3,7 @@
     "model": "learningresource.profilelearningresource",
     "pk": 1,
     "fields": {
-      "profile": 3,
+      "profile": 7,
       "learningresource": 2
     }
   },
@@ -11,7 +11,7 @@
     "model": "learningresource.profilelearningresource",
     "pk": 2,
     "fields": {
-      "profile": 4,
+      "profile": 8,
       "learningresource": 3
     }
   },
@@ -19,7 +19,7 @@
     "model": "learningresource.profilelearningresource",
     "pk": 3,
     "fields": {
-      "profile": 2,
+      "profile": 8,
       "learningresource": 1
     }
   },
@@ -35,7 +35,7 @@
     "model": "learningresource.profilelearningresource",
     "pk": 5,
     "fields": {
-      "profile": 3,
+      "profile": 9,
       "learningresource": 6
     }
   },
@@ -43,7 +43,7 @@
     "model": "learningresource.profilelearningresource",
     "pk": 6,
     "fields": {
-      "profile": 3,
+      "profile": 13,
       "learningresource": 5
     }
   }

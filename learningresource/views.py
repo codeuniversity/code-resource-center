@@ -30,7 +30,6 @@ def detail(request, resource_id):
     resource = get_object_or_404(LearningResource, pk=resource_id)
     creator = ProfileLearningResource.objects.filter(learningresource=resource_id)
     creator = creator[0].profile.user
-    print("THIS IS THE CREATOR UPDATED {}".format(creator))
     context = {
         'resource': resource,
         'creator': creator,
