@@ -1,8 +1,15 @@
-from django.shortcuts import render, redirect
-from .models import User, UserManager, UserType, Department, Institution, UserProfile
-from django.contrib import auth
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import User, UserManager, Department, Profile, ProfileDepartment
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from .forms import (
+    RegisterForm,
+    ProfileChangeForm,
+    # ProfileDepartmentChangeForm,
+    UpdateUserForm, 
+)
 
 def signup(request):
     form = RegisterForm(request.POST or None)
@@ -25,12 +32,14 @@ def signup(request):
                     }
                     return render(request, 'signup.html', context )
                 form.save()
+                # authenticate user and log in
                 email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password1')
                 user = auth.authenticate(username=email, password=password)
                 auth.login(request, user)
-                return redirect('/dashboard')
+                return redirect('/dashboard/home')
         else:
+            # Return invalid form with error messages.
             context = {
                 'form': form,
             }
@@ -48,17 +57,85 @@ def login(request):
         user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
-            return redirect('/dashboard')
+            return redirect('/dashboard/home')
         else:
             return render(request, 'login.html', {'error': 'Ooops! Something went wrong. ☹️'})
     else:
         return render(request, 'login.html')
 
+@login_required(login_url="/accounts/login")
 def logout(request):
-    #TODO need to route into homepage
-    #and don't forget to logout
     if request.method == "POST":
         auth.logout(request)
         return redirect('/accounts/login')
     else:
         return render(request, 'dashboard.html')
+
+# to change user, profile and ProfileDepartment
+@login_required(login_url="/accounts/login")
+def profile_edit(request):
+    # request user info
+    if request.method == "POST":
+        user_form = UpdateUserForm(request.POST or None, instance=request.user)
+        profile_form = ProfileChangeForm(request.POST or None, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            # check if correct email domain
+            email = user_form.cleaned_data.get('email')
+            if not email.endswith("@code.berlin"):
+                context = {
+                    'user_form': user_form,
+                    'profile_form': profile_form,
+                    'error': 'You can only login with your code email.'
+                }
+                return render(request, 'profile.html', context )
+            else:
+                # success
+                user_form.save()
+                profile_form.save()
+                # avoid showing instance of image in UI
+                profile_form = ProfileChangeForm()
+                # return a list with all checked departments
+                profile_form = ProfileChangeForm()
+                context = {
+                    'user_form': user_form,
+                    'profile_form': profile_form,
+                    'success': 'Profile info changed successfully.'
+                }
+                return render(request, 'profile.html', context) 
+        else:
+            context = {
+                'user_form': user_form,
+                'profile_form': profile_form,
+                'error': 'Invalid user info.'
+                }
+            return render(request, 'profile.html', context) 
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = ProfileChangeForm()
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form,
+        }
+        return render(request, 'profile.html', context) 
+
+# to change user, profile and ProfileDepartment
+@login_required(login_url="/accounts/login")
+def change_password(request):
+    # request user info
+    if request.method == "POST":
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was changed successfully.')
+            return redirect('/accounts/password')
+        else:
+            messages.error(request, 'Please enter valid password.')
+            return redirect('/accounts/password')
+    else:        
+        form = PasswordChangeForm(request.user)
+        context = {
+            'form': form,
+        }
+        return render(request, 'change_password.html', context) 
+

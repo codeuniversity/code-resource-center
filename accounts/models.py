@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import model_to_dict
 # use Django signals to extend User object
 from django.db.models.signals import post_save
 from django.contrib.auth.models import (
@@ -75,6 +76,10 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name
+    
+    def initials(self):
+        initials = self.first_name[:1].upper() + self.last_name[:1].upper()
+        return initials
 
     # "Does the user have a specific permission?"
     def has_perm(self, perm, obj=None):
@@ -96,45 +101,120 @@ class User(AbstractBaseUser):
     def is_active(self):
         return self.active
 
-class UserType(models.Model):
-    type_name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.type_name
-
-class Institution(models.Model):
-    institution_name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.institution_name
-
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
-
+    
     def __str__(self):
         return self.department_name
+    
+class Profile(models.Model):
+ # Institution enums
+    CODE = 'CODE'
+    CD = 'CD'
+    OTHER = 'OTHER'
+    INSTITUTION_CHOICES = (
+        (CODE, 'CODE University Berlin'),
+        (CD, 'Code+Design Camps'),
+        (OTHER, 'other'),
+    )
 
-class UserRole(models.Model):
-    role_name = models.CharField(max_length=32)
+    # occupation enums
+    STUDENT = 'STUDENT'
+    AC_STAFF = 'AC_STAFF'
+    ADMIN_STAFF = 'ADMIN_STAFF'
+    ALUMNI = 'ALUMNI'
+    EXTERNAL = 'EXTERNAL'
 
-    def __str__(self):
-        return self.role_name
+    OCCUPATION_CHOICES = (
+        (STUDENT, 'Student'),
+        (CD, 'Code+Design Camper'),
+        (AC_STAFF, 'Academic Team'),
+        (ADMIN_STAFF, 'Code Administration Team'),
+        (ALUMNI, 'Alumni'),
+        (EXTERNAL, 'External')
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    occupation = models.CharField(max_length=32, null=True, blank=True, choices=OCCUPATION_CHOICES, default=STUDENT)
+    institution = models.CharField(max_length=32, null=True, blank=True, choices=INSTITUTION_CHOICES, default=CODE)
+    avatar = models.ImageField(upload_to='profile_images', null=True, blank=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    
+    # TO DO PROVIDE PROFILECHANGEFORM FOR ADMIN 
+    # def __str__(self):
+    #     return  self.user
 
-class UserProfile(models.Model):
-    django_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.ForeignKey(UserType, null=True, on_delete=models.SET_NULL)
-    institution = models.ForeignKey(Institution, null=True, on_delete=models.SET_NULL)
-    # department = models.ManyToManyField(Department)
-    role = models.ForeignKey(UserRole, null=True, on_delete=models.SET_NULL)
-    image = models.ImageField(upload_to='profile_images', null=True, blank=True)
+class ProfileDepartment(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    departments = models.ManyToManyField(Department)
 
-    def __str__(self):
-        return self.django_user
+    @classmethod
+    def add_department(cls, profile, new_department):
+        profile_department, created = cls.objects.get_or_create(
+            profile=profile
+        )
+        profile_department.departments.add(new_department)
+
+    @classmethod
+    def remove_department(cls, profile, department):
+        profile_department, created = cls.objects.get_or_create(
+            profile=profile
+        )
+        profile_department.departments.remove(department)
+
+    # def __str__(self):
+    #     return  "%s %s" % (self.profile.user, self.departments)
+
+####### Mixins ##########
+
+# source:
+# https://stackoverflow.com/questions/1355150/django-when-saving-how-can-you-check-if-a-field-has-changed
+
+# class ModelDiffMixin(object):
+#     """A model mixin that tracks model fields' values 
+#     and whether  fields have been changed."""
+
+#     def __init__(self, *args, **kwargs):
+#         super(ModelDiffMixins, self).__init__(*args, **kwargs)
+#         self.__initial = self.dict
+
+#     @property
+#     def diff(self):
+#         d1 = self.__initial
+#         d2 = self._dict
+#         diffs = [(k, (v, d2[k])) for k, v in d1.items() if v != d2[k]]
+#         return dict(diffs)
+
+#     @property
+#     def has_changed(self):
+#         return bool(self.diff)
+
+#     @property
+#     def changed_fields(self):
+#         return self.diff.keys()
+
+#     def get_field_diff(self, field_name):
+#         """
+#         Returns a diff for field if it's changed and None otherwise.
+#         """
+#         return self.diff.get(field_name, None)
+
+#     def save(self, *args, **kwargs):
+#         """
+#         Saves model and set initial state.
+#         """
+#         super(ModelDiffMixin, self).save(*args, **kwargs)
+#         self.__initial = self._dict
+
+#     @property
+#     def _dict(self):
+#         return model_to_dict(self, 
+#             fields=[field.name for field in self._meta.fields])
 
 # Trigger creation of corresponding user profile as soon as Django User object has been created.
 def create_profile(sender, **kwargs):
     # use keyword argument
     if kwargs['created']:
-        user_profile = UserProfile.objects.create(django_user=kwargs['instance'])
+        profile = Profile.objects.create(user=kwargs['instance'])
+        profile.save()
 # connect User and user profile
 post_save.connect(create_profile, sender=User)

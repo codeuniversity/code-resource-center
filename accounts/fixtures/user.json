@@ -1,0 +1,146 @@
+[
+    {
+        "model": "accounts.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$rv6m93JTtMM0$m6zOjsHJRhW7DMRdPCmCLKz8vo6lMIZ8M0GeVIMDYLg=",
+            "last_login": "2018-12-02T10:56:19.391Z",
+            "email": "marie.klaus@code.berlin",
+            "first_name": "Marie",
+            "last_name": "Klaus",
+            "active": true,
+            "staff": true,
+            "admin": true,
+            "created_at": "2018-12-01T15:45:00.414Z",
+            "last_modified": "2018-12-02T11:02:15.107Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$k82vH9r3xLyw$XWiWnJX59CNC0an+xKQsedreHd2Qi7lAhb24qfmNUDA=",
+            "last_login": "2018-12-02T11:03:43.863Z",
+            "email": "ada.lovelace@code.berlin",
+            "first_name": "Ada",
+            "last_name": "Lovelace",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:03:43.611Z",
+            "last_modified": "2018-12-02T11:03:43.611Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$WOV3kHleJlqy$HrTzGFmL/HGIdhhpHRL0QNb5y9ZVatAJvhLNkj15trM=",
+            "last_login": "2018-12-02T11:04:10.506Z",
+            "email": "arya.starck@code.berlin",
+            "first_name": "Arya",
+            "last_name": "Starck",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:04:10.290Z",
+            "last_modified": "2018-12-02T11:04:10.291Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$F0EysZAlIKdE$IQBiVaQNE/+UqibMwRRNS+kSFacDDm5Lmm2ORj2MT20=",
+            "last_login": "2018-12-02T11:04:37.260Z",
+            "email": "john.snow@code.berlin",
+            "first_name": "John",
+            "last_name": "Snow",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:04:37.014Z",
+            "last_modified": "2018-12-02T11:04:37.014Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$w1a7iQxa6kfd$HMrCILdy+YSDHW7h/3yjDwhtSHwP4a8zDrkdZJfiE+w=",
+            "last_login": "2018-12-02T11:05:17.782Z",
+            "email": "tyrion.lannister@code.berlin",
+            "first_name": "Tyrion",
+            "last_name": "Lannister",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:05:17.531Z",
+            "last_modified": "2018-12-02T11:05:17.531Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$mkzNguyTGuN2$bpseWGCeGFQ0wSSoYoRKrob0tK2DSftGmh7MGmyL+dU=",
+            "last_login": "2018-12-02T11:07:01.894Z",
+            "email": "ned.starck@code.berlin",
+            "first_name": "Ned",
+            "last_name": "Starck",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:07:01.626Z",
+            "last_modified": "2018-12-02T11:07:01.626Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$HPNqx6How7ZL$dEcPBSAyL7WpMvoSX+aCq7DzdoAZA48m6b6JtRyZN00=",
+            "last_login": "2018-12-02T11:08:19.829Z",
+            "email": "Daenerys.targeryan@code.berlin",
+            "first_name": "Daenerys",
+            "last_name": "Targeryan",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:08:19.546Z",
+            "last_modified": "2018-12-02T11:08:19.546Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$XgVyQPtrWOXy$SJXPK+Fxjd3+pNsaYFYZjCPlRg6q6nUMJxfat4L4yrE=",
+            "last_login": "2018-12-02T11:09:05.023Z",
+            "email": "cersei.lannister@code.berlin",
+            "first_name": "Cersei",
+            "last_name": "Lannister",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:09:04.778Z",
+            "last_modified": "2018-12-02T11:09:04.778Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$WNvF3bm9rE5p$2an6mrLo3AByyxsCNfNGq2oJS/MASNHtkLd7xMWajoM=",
+            "last_login": "2018-12-02T11:09:54.175Z",
+            "email": "khal.drogo@code.berlin",
+            "first_name": "Khal",
+            "last_name": "Drogo",
+            "active": true,
+            "staff": false,
+            "admin": false,
+            "created_at": "2018-12-02T11:09:53.944Z",
+            "last_modified": "2018-12-02T11:09:53.944Z"
+        }
+    }
+]

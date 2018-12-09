@@ -1,0 +1,20 @@
+.update-profile {
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid;
+    font-weight: 200;
+    padding-left: 0;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* overwrite list style study program */
+ul#id_departments {
+    list-style: none;
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="mt-3 p-5"
+         style="height: calc(100vh-24px);
+                border-radius: 5px; width:75%;">
+
+        <h1 style="font-weight: 300; width: 800px;"> {{ resource.title }} </h1>
+        <hr />
+
+        {% if error %}
+        <div class="alert alert-warning" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        {% csrf_token %}
+
+
+        <dl class="row">
+
+            <p  class="col-sm-9" style="font-weight:500"> {{ resource.media_type|capfirst }} added by {{ creator.first_name }} {{ creator.last_name}}</p>
+            <p class="col-sm-3" style="font-weight:100">{{ resource.pub_date_pretty }}</p>
+
+            <br/>
+            <br/>
+
+            <p  class="col-sm-3" style="font-weight:500">Description</p>
+            <p class="col-sm-9" style="font-weight:300">{{ resource.description }}</p>
+            
+            <p  class="col-sm-3" style="font-weight:500">Department</p>
+            <p class="col-sm-9" style="font-weight:300">{{ resource.department }}</p>
+
+            <p  class="col-sm-3" style="font-weight:500">Tags</p>
+            <p class="col-sm-9" style="font-weight:300">{{ resource.tag }}</p>
+
+            <p  class="col-sm-3" style="font-weight:500">Is it free?</p>
+            <p class="col-sm-9" style="font-weight:300">{{ resource.is_free_pretty }}</p>
+        </dl>
+
+        <div style="float: right">
+            <a href="{{ resource.url }}"
+            class="btn btn-primary btn-info"
+            role="button"
+            aria-pressed="true"
+            style=" padding: 10px; margin: 10px;">Go to resource</a> 
+            <a href="{% url 'home' %}"
+            class="btn btn-primary btn-info"
+            role="button"
+            aria-pressed="true"
+            style=" padding: 10px; margin: 10px;">Return to Dashboard</a> 
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
