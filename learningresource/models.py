@@ -43,6 +43,23 @@ class LearningResource(models.Model):
     def short_description(self):
         return '{}...'.format(self.description[:150])
 
+    def short_url(self):
+        return '{}...'.format(self.url[:70])
+    
+    def clean_url(self):
+        url = self.url
+        if not url.startswith('https://') and not url.startswith('http://'):
+            return 'http://' + url
+        return url
+    
+    def is_free_pretty(self):
+        is_free = self.is_free
+        if is_free:
+            return 'Yes'
+        else:
+            return 'No'
+
+
 class LearningResourceTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
@@ -54,3 +71,7 @@ class ProfileLearningResource(models.Model):
 class LearningResourceModule(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE)
+
+class LearningResourceDepartment(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="departments")
+    learningresource = models.ForeignKey(LearningResource, on_delete=models.CASCADE, related_name="resources")

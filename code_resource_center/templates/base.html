@@ -15,37 +15,43 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/crc_style.css' %}">
   </head>
-
-  <body>
+    <style>
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light pb-2">
-            <a class="navbar-brand" href="{% url 'dashboard:home'%}" style="line-height:80%; font-weight: 200; color: rgb(119, 119, 119)">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light pb-2" style="z-index: 5;">
+            <a class="navbar-brand" href="{% url 'dashboard:home'%}" style="line-height:80%; margin-top: 10px; font-weight: 200; color: rgb(119, 119, 119)">
                 <img src="{% static 'logo.jpg' %}" class="d-inline-block align-top" height="28"  style="padding-bottom: 14px;"/>
                 RESOURCE CENTER
             </a>
 
-            <!-- <h1 class="jumbotron-heading" style="line-height:80%; font-weight: 200" ><img src="{% static 'logo2.png' %}" height=39 style="padding-bottom: 7px"/> RESOURCE CENTER</h1> -->
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
               <div class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                  <a class="nav-item nav-link" href="{% url 'create'%}">Add Resources</a>
+                  <!-- <a class="nav-item nav-link" href="{% url 'create'%}"><img style="height: 30px;" src="{% static 'plus.png' %}"/></a> -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                       {% if user.profile.avatar %}
-                      <img class="avatar" src="{{ user.profile.avatar.url }}"/>
+                        <img style="height: 35px; width: 35px;" class="avatar" src="{{ user.profile.avatar.url }}"/> {{user.first_name}} <b>{{user.last_name}}</b>
                       {% else%}
-                      <img src="{% static 'outline_account_circle.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
+                        <img style="height: 30px;" src="{% static 'user.png' %}"/> {{user.first_name}} <b>{{user.last_name}}</b>
                       {% endif %}
                     </a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item nav-link" href="{% url 'profile'%}">Profile</a>
-                      <a class="dropdown-item nav-link" href="javascript:{document.getElementById('logout').submit()}">    Logout</a>
+                      <a class="dropdown-item nav-link" href="{% url 'create'%}">Add Resource</a>
+                      <a class="dropdown-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                     </div>
                   </li>
                   
@@ -62,14 +68,15 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-top: 30px">
     {% block content %}
     {% endblock %}
     </div>
 
     <footer class="text-muted">
         <div class="container">
-         <p>©️ CODE Resource Center 2018</p>
+         <p style="padding-top: 100px">©️ CODE Resource Center 2018</p>
+         <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
         </div>
     </footer>
 
@@ -98,5 +105,20 @@
             document.getElementById(filterId).submit();
           }
       </script>
+      <script>
+        window.onscroll = function() {myFunction()};
+        
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+        
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+          } else {
+            navbar.classList.remove("sticky");
+          }
+        }
+        </script>
     </body>
 </html>
+

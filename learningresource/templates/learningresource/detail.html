@@ -25,6 +25,7 @@
 
             <br/>
             <br/>
+
             <p  class="col-sm-3" style="font-weight:500">Description</p>
             <p class="col-sm-9" style="font-weight:300">{{ resource.description }}</p>
             
@@ -35,35 +36,8 @@
             <p class="col-sm-9" style="font-weight:300">{{ resource.tag }}</p>
 
             <p  class="col-sm-3" style="font-weight:500">Is it free?</p>
-            <p class="col-sm-9" style="font-weight:300">{{ resource.is_free }}</p>
+            <p class="col-sm-9" style="font-weight:300">{{ resource.is_free_pretty }}</p>
         </dl>
-
-        <!-- <dl class="row">
-
-            <p  class="col-sm-9" style="font-weight:100">{{ creator.first_name }} {{ creator.last_name}}</p>
-            <p class="col-sm-3" style="font-weight:100">{{ resource.pub_date_pretty }}</p>
-
-            <p  class="col-sm-3" style="font-weight:100">Created by</p>
-            <h4 class="col-sm-9" ">{{ creator.first_name }} {{ creator.last_name}}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Added on</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.pub_date_pretty }}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Media Type</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.media_type }}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Department</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.department }}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Description</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.description }}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Tags</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.tag }}</h4>
-
-            <p  class="col-sm-3" style="font-weight:100">Is it free?</p>
-            <h4 class="col-sm-9" style="font-weight:300">{{ resource.is_free }}</h4>
-        </dl> -->
 
         <div style="float: right">
             <a href="{{ resource.url }}"

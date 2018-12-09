@@ -1,5 +1,5 @@
 from django import forms
-from .models import LearningResource, MediaType
+from .models import LearningResource, MediaType, LearningResourceDepartment
 from accounts.models import Department
 from django.core.validators import URLValidator
 
@@ -12,7 +12,6 @@ class LearningResourceForm(forms.ModelForm):
                             'class':'form-control',
                             }))
     url = forms.CharField(
-            validators=[URLValidator()],
             widget=forms.TextInput(
                     attrs={
                             'placeholder':'URL',
@@ -37,6 +36,11 @@ class LearningResourceForm(forms.ModelForm):
             widget=forms.Select(
                       attrs={'class':'form-control'}
             ))
+#     department = forms.ModelChoiceField(
+#             queryset=Department.objects.all(),
+#             widget=forms.CheckboxSelectMultiple(
+#                       attrs={}
+#             ))
 #     department = forms.ModelMultipleChoiceField(
 #             queryset=Department.objects.all(),
 #             widget=forms.CheckboxSelectMultiple(
