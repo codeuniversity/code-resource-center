@@ -8,7 +8,7 @@ from .forms import (
     RegisterForm,
     ProfileChangeForm,
     # ProfileDepartmentChangeForm,
-    UpdateUserForm, 
+    UpdateUserForm,
 )
 
 def signup(request):
@@ -101,14 +101,14 @@ def profile_edit(request):
                     'profile_form': profile_form,
                     'success': 'Profile info changed successfully.'
                 }
-                return render(request, 'profile.html', context) 
+                return render(request, 'profile.html', context)
         else:
             context = {
                 'user_form': user_form,
                 'profile_form': profile_form,
                 'error': 'Invalid user info.'
                 }
-            return render(request, 'profile.html', context) 
+            return render(request, 'profile.html', context)
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = ProfileChangeForm()
@@ -116,7 +116,7 @@ def profile_edit(request):
             'user_form': user_form,
             'profile_form': profile_form,
         }
-        return render(request, 'profile.html', context) 
+        return render(request, 'profile.html', context)
 
 # to change user, profile and ProfileDepartment
 @login_required(login_url="/accounts/login")
@@ -132,10 +132,9 @@ def change_password(request):
         else:
             messages.error(request, 'Please enter valid password.')
             return redirect('/accounts/password')
-    else:        
+    else:
         form = PasswordChangeForm(request.user)
         context = {
             'form': form,
         }
-        return render(request, 'change_password.html', context) 
-
+        return render(request, 'change_password.html', context)
