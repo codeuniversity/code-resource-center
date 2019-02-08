@@ -7,6 +7,9 @@ migrate:
 migrations:
 	python manage.py makemigrations
 
+test:
+	python manage.py test
+
 load_fixtures:
 	python manage.py loaddata */fixtures/*.json
 
